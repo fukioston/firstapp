@@ -18,6 +18,7 @@
 
 		},
 		onNavigationBarButtonTap(e) {
+			// 搜索框
 			if(e.float=='left'){
 				uni.navigateTo({
 					url:'/pages/search/search'

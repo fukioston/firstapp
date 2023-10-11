@@ -35,6 +35,39 @@
 		    "path" : "pages/my/my",
 		    "style" : {"navigationBarTitleText": "南开大学二手平台",
 				"navigationBarBackgroundColor":"#FFFFFF"}
+		},
+		{
+		    "path" : "pages/search-list/search-list",
+		    "style" :  { "navigationBarBackgroundColor":"#FFFFFF",
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				
+				"app-plus": {
+					"scrollIndicator":"none",
+					"titleNView": {
+						"searchInput":{
+							"placeholder":"nike",
+							"disabled": false,
+							"align": "left",
+							"autoFocus": false,
+							"borderRadius": "15px"
+						},
+						"buttons": [
+							{
+								"float": "right",
+								"color": "#636263",
+								"text": "筛选",
+								"fontSize": "14px",
+								"width":"60px"
+								
+							}
+							
+						]
+					}
+				}
+            }
+            
+        
 		}
 	    ,{
             "path" : "pages/search/search",
