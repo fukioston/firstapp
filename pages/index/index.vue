@@ -5,6 +5,7 @@
 			<text class="title">{{title}}</text>
 		</view>
 	</view>
+	<view></view>
 </template>
 
 <script>
