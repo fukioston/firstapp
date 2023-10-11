@@ -17,6 +17,13 @@
 		onLoad() {
 
 		},
+		onNavigationBarButtonTap(e) {
+			if(e.float=='left'){
+				uni.navigateTo({
+					url:'/pages/search/search'
+				})
+			}
+		},
 		methods: {
 
 		}
