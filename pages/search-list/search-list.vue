@@ -1,7 +1,6 @@
 <template>
 	<view>
-		搜索结果页面
-		<ShopList></ShopList>
+		<ShopList :keyword='keyword'></ShopList>
 	</view>
 </template>
 
@@ -10,8 +9,17 @@
 	export default {
 		data() {
 			return {
-				
+				keyword:""
 			}
+		},
+		onLoad(e) {
+			
+			this.keyword = e.keyword;
+			// #ifdef APP-PLUS  
+			var webView = this.$mp.page.$getAppWebview();  
+			webView.setTitleNViewSearchInputText(e.keyword);
+			// #endif
+			
 		},
 		components:{
 			ShopList
