@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	
 export default {
 	props:{
 		// 数据
@@ -54,6 +55,7 @@ export default {
 		}
 	}
 }
+
 </script>
 
 <style scoped>

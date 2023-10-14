@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
 });
 router.get('/api/goods/search', function(req, res, next) {
 	// let [goods_name,goods_name2]=Objects.keys(req.query)
-	
 	goods_name=req.query.goods_name;
 	let topN = 4; // 提取topN个关键词
 	    let words = jieba.extract(goods_name, topN);
