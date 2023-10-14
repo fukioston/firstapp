@@ -33,8 +33,18 @@ router.get('/api/goods/search', function(req, res, next) {
 				  data:results
 			  })
 			
-	    console.log(results[0]);
+	   
 		
+	});
+	})
+router.get('/api/goods/getall', function(req, res, next){
+	let sql = 'SELECT * FROM goods';
+	db.query(sql, function(error, results, fields) {
+	    if (error) throw error;
+		res.send({
+				  code:"0",
+				  data:results
+			  })
 	});
 	})
 	

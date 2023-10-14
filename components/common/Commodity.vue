@@ -17,10 +17,10 @@
 			<view class='commodity-content'>
 				<text class='commodity-name' :style="'font-size:'+nameSize+';'">{{item.name}}</text>
 				<view>
-					<text class='pprice'>¥{{item.pprice}}</text>
+					<text class='pprice'>¥{{item.nprice}}</text>
 					<text class='oprice'>¥{{item.oprice}}</text>
 				</view>
-				<text class='discount'>{{item.discount}}折</text>
+				<!-- <text class='discount'>{{item.discount}}折</text> -->
 			</view>
 		</view>
 	
