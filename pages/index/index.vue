@@ -1,12 +1,16 @@
 <template>
 	<view class="content">
+		<IndexSwiper></IndexSwiper>
 		
-		<CommodityList :dataList='dataList'></CommodityList>
+		<card cardTitle="猜您喜欢"></card>
+		<CommodityList :dataList='dataList'>ss</CommodityList>
 	
 	</view>
 </template>
 
 <script>
+	import IndexSwiper from '@/components/index/IndexSwiper.vue'
+	import Card from '@/components/common/Card.vue'
 	import $http from '@/common/api/request.js'
 	import Commodity from '@/components/common/Commodity.vue' 
 	import CommodityList from '@/components/common/CommodityList.vue'
@@ -23,7 +27,10 @@
 		},
 		components:{
 			Commodity,
-			CommodityList
+			CommodityList,
+			IndexSwiper,
+			Card
+			
 		},
 		
 		onNavigationBarButtonTap(e) {
