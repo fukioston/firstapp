@@ -35,9 +35,9 @@ export default {
 				shopList:{
 				    currentIndex:0,
 					data:[
-						{name:"价格",status:1},
-						{name:"折扣",status:0},
-						{name:"品牌",status:0}
+						{name:"暂无",status:1},
+						{name:"暂无",status:0},
+						{name:"暂无",status:0}
 					]
 				},
 				dataList:[]
@@ -53,17 +53,26 @@ export default {
 		methods: {
 			//请求数据数据
 			getData(){
-				
-				$http.request({
-					url:"/goods/search",
+				uniCloud.callFunction({
+					name:"Search",
 					data:{
-						goods_name:this.keyword,
-						pprice:"desc"
+							goods_name:this.keyword,
+							
 					}
-				}).then((res)=>{
+				}).then(res=>{
 					console.log(res)
-					this.dataList = res;
+					this.dataList=res.result.data
 				})
+				// $http.request({
+				// 	url:"/goods/search",
+				// 	data:{
+				// 		goods_name:this.keyword,
+				// 		pprice:"desc"
+				// 	}
+				// }).then((res)=>{
+				// 	console.log(res)
+				// 	this.dataList = res;
+				// })
 			},
 			changTab(index){
 				//索引值

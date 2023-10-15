@@ -23,7 +23,16 @@
 		},
 		
 		onLoad() {
-			this.getAll();
+			// this.getAll();
+				uniCloud.callFunction({
+					name:"GetCommodity",
+					data:{
+						name:'haha'
+					}
+				}).then(res=>{
+					console.log(res)
+					this.dataList=res.result.data
+				})
 		},
 		components:{
 			Commodity,
@@ -42,15 +51,15 @@
 			}
 		},
 		methods: {
-			getAll(){
+			// getAll(){
 				
-				$http.request({
-					url:"/goods/getall",
-				}).then((res)=>{
-					console.log(res)
-					this.dataList = res;
-				})
-			},
+			// 	$http.request({
+			// 		url:"/goods/getall",
+			// 	}).then((res)=>{
+			// 		console.log(res)
+			// 		this.dataList = res;
+			// 	})
+			// },
 		}
 	}
 </script>
