@@ -8,6 +8,7 @@
 				<p>{{ user.bio }}</p>
 			</view>
 		</view>
+		<view class="recommend" @click="tologin">您还未登录，点击此处登录</view>
 		<view class="relations">
 			<view class="concern">关注</view>
 			<view class="mysale">我的商品</view>
@@ -32,10 +33,12 @@
 			};
 		},
 		methods: {
-			logout() {
-				// 在这里执行退出登录的逻辑，例如清除用户会话信息等
-				// 跳转到登录页或其他适当的操作
+			tologin(){
+				uni.navigateTo({
+					url:"/pages/login/login"
+				})
 			}
+			
 		}
 	};
 </script>

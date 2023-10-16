@@ -46,7 +46,7 @@ export default {
 			  password:this.password
 		  }
 	  }).then(res=>{
-		  if(res.result.statu=="fail"){
+		  if(res.result.statu==1){
 			  uni.showToast({
 			  				title: '密码错误',
 			  				icon: 'none',
@@ -54,11 +54,24 @@ export default {
 			  			})
 		  }
 		  else{
-			  uni.showToast({
-			  				title: '登陆成功',
-			  				icon: 'none',
-			  				duration: 2000 
-			  			})
+			  if(res.result.statu==0){
+				  uni.showToast({
+				  				title: '请输入用户名',
+				  				icon: 'none',
+				  				duration: 2000 
+				  			})
+			  }
+			  else{
+				  uni.switchTab({
+				  	url:"/pages/my/my"
+				  });
+				  uni.showToast({
+				  				title: '登陆成功',
+				  				icon: 'success',
+				  				duration: 2000 
+				  			});
+			  }
+			  
 		  }
 	  });
 	}
