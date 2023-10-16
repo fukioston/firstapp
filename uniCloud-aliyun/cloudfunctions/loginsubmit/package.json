@@ -1,0 +1,7 @@
+{
+  "name": "loginsubmit",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
