@@ -111,6 +111,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/signup/signup",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

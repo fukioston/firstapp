@@ -19,6 +19,7 @@
         </view>
         <button type="submit" @click="login">Log In</button>
       </form>
+	  <view style="color: 7e0c6e;" @click="tosignup">没有账号？点击注册</view>
     </view>
   </view>
 </template>
@@ -29,10 +30,14 @@ export default {
     return {
       username: '',
       password: '',
-	  user:{}
     };
   },
   methods: {
+	  tosignup(){
+		  uni.navigateTo({
+		  	url:"/pages/signup/signup"
+		  })
+	  },
     login() {
       uniCloud.callFunction({
 		  name:"loginsubmit",
@@ -64,7 +69,6 @@ export default {
 <style scoped>
 .login-page {
   display:flex;
-  background: #FFF8FA;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -87,6 +91,7 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 5%;
 }
 
 .form-group {
