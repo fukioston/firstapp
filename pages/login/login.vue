@@ -25,6 +25,7 @@
 </template>
 
 <script>
+	import {mapActions} from "vuex";
 export default {
   data() {
     return {
@@ -33,6 +34,8 @@ export default {
     };
   },
   methods: {
+	  
+	  ...mapActions(['Recordusername']),
 	  tosignup(){
 		  uni.navigateTo({
 		  	url:"/pages/signup/signup"
@@ -62,14 +65,16 @@ export default {
 				  			})
 			  }
 			  else{
-				  uni.switchTab({
-				  	url:"/pages/my/my"
-				  });
-				  uni.showToast({
-				  				title: '登陆成功',
-				  				icon: 'success',
-				  				duration: 2000 
-				  			});
+				  this.Recordusername(res.result.username);
+				  // uni.showToast({
+				  // 				title: '登陆成功:'+this.$store.state.Nowusername,
+				  // 				icon: 'success',
+				  // 				duration: 2000 
+				  // 			});
+							uni.switchTab({
+								url:'/pages/my/my'
+							});
+							
 			  }
 			  
 		  }
