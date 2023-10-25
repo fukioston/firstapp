@@ -1,11 +1,12 @@
 <template>
-	<view class='commodity' :style="'flex-wrap:' +wrap+';'">
+	<view  class='commodity' :style="'flex-wrap:' +wrap+';'">
 		<!-- 单个商品组件 -->
 		
 		<view class='commodity-item' 
 			v-for="(item,index) in dataList"
 			:key='index'
 			:style="'width:'+itemW+';'"
+			@click="get_details(item._id)"
 		>
 			<image 
 			class='commodity-img' 
@@ -30,6 +31,14 @@
 <script>
 	
 export default {
+	methods: {
+	    get_details(id) {
+			
+	      uni.navigateTo({  
+	      	url:'/pages/goods-details/goods-details?_id='+id+""
+	      })
+	    },
+	  },
 	props:{
 		// 数据
 		dataList:Array,
