@@ -103,7 +103,10 @@ export default {
 	color:#333333;
 	word-break: break-all;
 	padding:6rpx 20rpx;
-	min-height: 44px;
+	  overflow: hidden;
+	  line-height: 1.5em; /* 这里的值根据你的设计来定 */
+	  max-height: 2.9em; /* 两倍的line-height值 */
+	  min-height: 2.9em; /* 保证即使只有一行文本也有两行的高度 */
 	
 }
 .oprice{

@@ -127,8 +127,12 @@
             "path" : "pages/goods-details/goods-details",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+				"navigationBarTitleText": "",
+                "backgroundColor": "#a52a2a", // 使用棕色的HEX代码
+                  "navigationBarBackgroundColor": "#a52a2a",
+                  "navigationBarTextStyle": "white"
+				 
+				
             }
             
         }
