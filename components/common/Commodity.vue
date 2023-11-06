@@ -45,12 +45,12 @@ export default {
 		//宽度
 		itemW:{
 			type:String,
-			default:"375rpx"
+			default:"48%"
 		},
 		//高度
 		bigH:{
 			type:String,
-			default:"375rpx"
+			default:"320rpx"
 		},
 		//是否换行
 		wrap:{
@@ -60,7 +60,7 @@ export default {
 		//商品文字大小
 		nameSize:{
 			type:String,
-			default:"26rpx"
+			default:"20rpx"
 		}
 	}
 }
@@ -70,12 +70,26 @@ export default {
 <style scoped>
 .commodity{
 	display: flex;
+	align-items: space-around;
+	justify-content: space-around;
+	background-color: aliceblue;
+	padding: 3rpx;
+	
+	
 }
 .commodity-item{
 	padding-bottom:20rpx;
+	border:1px solid gray;
+	background-color: white;
+	border-radius: 10px;
+	
+	
 }
 .commodity-img{
 	width:100%;
+	border-radius: 10px;
+	
+	
 }
 .commodity-content{
 	text-align: center;
@@ -89,6 +103,8 @@ export default {
 	color:#333333;
 	word-break: break-all;
 	padding:6rpx 20rpx;
+	min-height: 44px;
+	
 }
 .oprice{
 	text-decoration: line-through;
@@ -101,5 +117,9 @@ export default {
 	padding:2rpx 10rpx;
 	font-size:20rpx;
 	color:#FF3333;
+}
+.commodity-item:hover {
+  border-color: #0000FF;
+  transform: scale(1.05); /* 鼠标悬浮时放大元素 */
 }
 </style>
