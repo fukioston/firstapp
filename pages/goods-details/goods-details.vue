@@ -1,5 +1,6 @@
 <template>
 	<view class='all'>
+		<view>
 		<image class='detail_img'
 		:src="imgUrl" ></image>
 		<view class="textbox">
@@ -11,7 +12,11 @@
 				<text>介绍：{{introduction}}</text>
 			</view>
 		</view>
-		<uni-goods-nav :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
+		</view>
+		
+		<uni-goods-nav 
+		class="test"
+		:fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
 			@buttonClick="buttonClick" style="margin-top: 20px;" />
 	</view>
 </template>
@@ -122,7 +127,10 @@
 		flex-direction:column;
 		justify-content: center;
 		align-self: center;
-		min-height: 100vh; /* 设置最小高度为视口高度 */
+		background-color:white;
+		
+		
+		
 		
 		
 		
@@ -154,19 +162,24 @@
 	.introduction{
 		font-size: 15rpx;
 	}
-	
+	.test{
+			position: fixed;
+				bottom: 0;
+					left: 0;
+					right: 0;
+	}
 	.goods-carts {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
+		// /* #ifndef APP-NVUE */
+		// display: flex;
+		// /* #endif */
+		// flex-direction: column;
 		position: fixed;
-		left: 0;
-		right: 0;
-		/* #ifdef H5 */
-		left: var(--window-left);
-		right: var(--window-right);
-		/* #endif */
+		// left: 0;
+		// right: 0;
+		// #ifdef H5 */
+		// left: var(--window-left);
+		// right: var(--window-right);
+		/* #endif
 		bottom: 0;
 	}
 </style>
