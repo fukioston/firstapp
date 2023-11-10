@@ -4,7 +4,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "南开大学二手平台",
-				"navigationBarBackgroundColor":"#FFFFFF",
+				"navigationBarBackgroundColor": "#7e0c6e",
 			"app-plus":{
 					"scrollIndicator":"none",
 					"titleNView":{
@@ -28,17 +28,17 @@
 		{
 		    "path" : "pages/upload/upload",
 		    "style" : {"navigationBarTitleText": "南开大学二手平台",
-				"navigationBarBackgroundColor":"#FFFFFF"
+				"navigationBarBackgroundColor": "#7e0c6e"
 				}
 		}
 		,{
 		    "path" : "pages/my/my",
 		    "style" : {"navigationBarTitleText": "南开大学二手平台",
-				"navigationBarBackgroundColor":"#FFFFFF"}
+				"navigationBarBackgroundColor": "#7e0c6e"}
 		},
 		{
 		    "path" : "pages/search-list/search-list",
-		    "style" :  { "navigationBarBackgroundColor":"#FFFFFF",
+		    "style" :  { "navigationBarBackgroundColor": "#7e0c6e",
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
 				
@@ -105,7 +105,7 @@
         ,{
             "path" : "pages/login/login",
             "style" :                                                                                    
-            {
+            {	
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
@@ -129,7 +129,7 @@
             {
 				"navigationBarTitleText": "",
                 "backgroundColor": "#a52a2a", // 使用棕色的HEX代码
-                  "navigationBarBackgroundColor": "#a52a2a",
+                  "navigationBarBackgroundColor": "#7e0c6e",
                   "navigationBarTextStyle": "white"
 				 
 				

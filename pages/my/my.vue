@@ -3,7 +3,8 @@
 		<view class="setting-corns">这里是一些设置</view>
 		<view class="user-info">
 			<view class='ima'>
-			<img class="avatar" :src="user.avatar" alt="User Avatar">
+			<img class="avatar" 
+			:src="user.avatar" alt="User Avatar">
 			</view>
 			<view class="user-details">
 				<h2>{{ user.name }}</h2>
@@ -30,7 +31,7 @@ import {mapActions,mapState} from "vuex";
 			return {
 				user: {
 					name: "游客", // 用户名
-					avatar: "ava.jpg", // 头像图片路径
+					avatar: "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity3.jpg", // 头像图片路径
 					bio: "个人简介" // 个人简介
 				},
 				login_logout:""
