@@ -23,6 +23,15 @@
 		
 		onLoad() {
 			this.getAll();
+			uni.getPushClientId({
+				success:res=>{
+					console.log(res)
+					console.log(res.cid)
+				}
+			})
+			uni.onPushMessage(res=>{
+				console.log(res)
+			})
 				
 		},
 		components:{

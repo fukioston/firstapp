@@ -139,6 +139,15 @@
         ,{
             "path" : "pages/talk/talk",
             "style" :                                                                                    
+            {	"navigationBarTitleText": "我的消息",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        }
+        ,{
+            "path" : "pages/talk-details/talk-details",
+            "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
