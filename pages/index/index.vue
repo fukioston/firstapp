@@ -11,7 +11,6 @@
 <script>
 	import IndexSwiper from '@/components/index/IndexSwiper.vue'
 	import Card from '@/components/common/Card.vue'
-	import $http from '@/common/api/request.js'
 	import Commodity from '@/components/common/Commodity.vue' 
 	import CommodityList from '@/components/common/CommodityList.vue'
 	export default {
@@ -39,6 +38,12 @@
 			if(e.float=='left'){
 				uni.navigateTo({
 					url:'/pages/search/search'
+				})
+			}
+			
+			if(e.float=='right'){
+				uni.navigateTo({
+					url:'/pages/upload/upload'
 				})
 			}
 		},
@@ -85,4 +90,5 @@
 		font-size: 36rpx;
 		color: #8f8f94;
 	}
+	
 </style>

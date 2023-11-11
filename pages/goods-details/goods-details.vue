@@ -125,10 +125,10 @@
 	.all{
 		display:flex;
 		flex-direction:column;
-		justify-content: center;
+		justify-content:space-between;
 		align-self: center;
-		background-color:white;
-		
+		background-color:#f7f7f7;
+		min-height:100vh;
 		
 		
 		
@@ -138,12 +138,15 @@
 	.detail_img{
 		width: 95%;
 		border-radius: 10px;
-		height: 600rpx;
+		height: 620rpx;
 		padding: 20rpx;
 		margin: 0 auto; /* 水平居中 */
+		// position: fixed;
+		// top:100rpx;
+		
 	}
 	.textbox{
-		background-color:#f7f7f7;
+		background-color:white;
 		border-radius: 10px;
 		width: 95%;
 		height: 300rpx;

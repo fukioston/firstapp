@@ -11,13 +11,13 @@
 						"buttons":[
 							{
 								"float":"left",
-								"fontSrc":"./static/iconfont.ttf",
-								"text":"\ue69d"
+								"fontSrc":"./static/font/iconfont.ttf",
+								"text":"\ue6e4"
 							},
 							{
 								"float":"right",
-								"fontSrc":"./static/iconfont.ttf",
-								"text":"\ue622"
+								"fontSrc":"./static/font/iconfont.ttf",
+								"text":"\ue727"
 							}
 						]
 					}
@@ -136,6 +136,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/talk/talk",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -162,10 +171,10 @@
 			// 	"text": "分类"
 			// },
 			{
-				"pagePath": "pages/upload/upload",
-				"iconPath":"static/tabbar/upload.png",
-				"selectedIconPath":"static/tabbar/uploadSelected.png",
-				"text": "上传商品"
+				"pagePath": "pages/talk/talk",
+				"iconPath":"static/tabbar/sey-talk-a.png",
+				"selectedIconPath":"static/tabbar/sey-talk-b.png",
+				"text": "消息"
 			},
 			{
 				"pagePath": "pages/my/my",

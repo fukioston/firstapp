@@ -15,6 +15,6 @@
 <style>
 	/*每个页面公共css */
 	@import './common/uni.css';
-	@import './common/iconfont.css';
+	@import './static/font/iconfont.css';
 	@import './common/common.css';
 </style>
