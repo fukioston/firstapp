@@ -27,7 +27,7 @@
 			return {
 				_id:"",
 				details:[],
-				imgUrl: "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity3.jpg",
+				imgUrl: "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity2.jpg",
 				 introduction: "你到了毫无东西的页面",
 				 name: "你到了毫无东西的页面",
 				nprice: "11",
@@ -46,28 +46,6 @@
 							text: '购物车',
 							info: 2
 						}],
-					    buttonGroup: [{
-					    		text: '加入购物车',
-					    		backgroundColor: 'linear-gradient(90deg, #FFCD1E, #FF8A18)',
-					    		color: '#fff'
-					    	},
-					    	{
-					    		text: '立即购买',
-					    		backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
-					    		color: '#fff'
-					    	}
-					    ],
-					    customButtonGroup: [{
-					    		text: '加入购物车',
-					    		backgroundColor: 'linear-gradient(90deg, #1E83FF, #0053B8)',
-					    		color: '#fff'
-					    	},
-					    	{
-					    		text: '立即购买',
-					    		backgroundColor: 'linear-gradient(90deg, #60F3FF, #088FEB)',
-					    		color: '#fff'
-					    	}
-					    ],
 					    customButtonGroup1: [{
 					    	text: '立即购买',
 					    	backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
@@ -95,13 +73,13 @@
 							_id:this._id
 						}
 					}).then(res=>{
-						// this.details=res.result.data
-						var tem=res.result.data
-						this.imgUrl=tem[0].imgUrl
-						 this.introduction=tem[0].introduction
-						 this.name=tem[0].name
-						this.nprice=tem[0].nprice
-						this.oprice=tem[0].oprice
+						this.details=res.result.data
+						console.log(this.details[0].introduction)
+						this.introduction=this.details[0].introduction
+						 this.name=this.details[0].name
+						this.nprice=this.details[0].nprice
+						this.oprice=this.details[0].oprice
+						this.imgUrl=this.details[0].imgUrl
 						
 					})
 				

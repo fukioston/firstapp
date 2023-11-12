@@ -122,7 +122,7 @@
             "mode" : "hash"
         },
         "devServer" : {
-            "https" : false
+            "https" : true
         },
         "title" : "南开大学二手网站"
     }
