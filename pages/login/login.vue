@@ -34,7 +34,6 @@ export default {
     };
   },
   methods: {
-	  
 	  ...mapActions(['Recordusername']),
 	  tosignup(){
 		  uni.navigateTo({

@@ -1,12 +1,12 @@
+
 <template>
 	<view class="homepage">
 		<view class="bar">
 			<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>
 		</view>
-		<view class="setting-corns">这里是一些设置</view>
 		<view class="user-center">
-			<view class="ima">
+			<view class="ima" @click="set_info">
 				<image class='avatar' 
 				:src="user.avatar"
 				 alt="../../static/image/travel/personal/tx.png"
@@ -151,6 +151,11 @@
 							url:'/pages/my/my'
 						})
 					}
+				},
+				set_info(){
+					uni.navigateTo({
+						url:'/pages/userinfo/userinfo'
+					});
 				},
 				...mapActions(['Deleteusername'])
 			}
