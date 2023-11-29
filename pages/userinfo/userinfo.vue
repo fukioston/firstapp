@@ -27,6 +27,7 @@
 		data() {
 			return {
 				userinfos:{
+					id:''
 					graph:'',
 					name:'',
 					introduction:''
@@ -34,7 +35,7 @@
 			}
 		},
 		onLoad(){
-				userinfos;
+				userinfos;//这里应该使用登录后vuex储存的变量
 		},
 		methods: {
 			select(e){
@@ -54,7 +55,30 @@
 						fail(e){
 							console.log('上传失败：',e)
 						}
-		}
+			},
+			onSubmit(){
+				uniCloud.callFunction({
+					name:"save_userinfo",
+					data:{
+						userinfos:this.userinfos
+					}
+				}).then(res=>{
+					if(res.result.state){
+						uni.showToast({
+										title: '保存成功',
+										icon: 'none',
+										duration: 2000 
+									});
+					}
+					else{
+						uni.showToast({
+										title: '保存失败',
+										icon: 'none',
+										duration: 2000 
+									});
+					}
+				});
+			}
 	}
 </script>
 

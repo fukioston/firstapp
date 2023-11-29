@@ -10,6 +10,7 @@ exports.main = async (event, context) => {
 	let data=res.data;
 	for(let i=0,length=data.length;i<length;i++ ){
 		if(data[i].username==event.username&&data[i].password==event.password){
+			console.log(data[i]);
 			return {"statu":2,"username":event.username};
 		}
 	}

@@ -19,7 +19,7 @@ exports.main = async (event, context) => {
 			return {"statu":1};//1表示已经存在该用户名
 		}
 	}
-	
+	//需要添加一个用户信息的数据库
 	collection.add(event);
 	//返回数据给客户端
 	return {"statu":2};//2表示成功添加
