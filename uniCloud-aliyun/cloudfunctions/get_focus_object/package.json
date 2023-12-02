@@ -1,0 +1,7 @@
+{
+  "name": "get_focus_object",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
