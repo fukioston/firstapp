@@ -163,6 +163,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/focus/focus",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

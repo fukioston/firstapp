@@ -32,21 +32,21 @@
 			
 		</view>
 		<view class="list">
-			<view class="item">
+			<view class="item" @click="to_focus">
 				<view class="text">
 					<text>0</text>
 					<text>关注</text>
 				</view>
 				
 			</view>
-			<view class="item">
+			<view class="item" @click="to_fans">
 				<view class="text">
 					<text>0</text>
 					<text>粉丝</text>
 				</view>
 				
 			</view>
-			<view class="item">
+			<view class="item" @click="to_items">
 				<view class="text">
 					<text>0</text>
 					<text>我的商品</text>
@@ -157,6 +157,11 @@
 						url:'/pages/userinfo/userinfo'
 					});
 				},
+				to_focus(){
+					uni.navigateTo({
+						url:'/pages/focus/focus'
+					});
+				}
 				...mapActions(['Deleteusername'])
 			}
 		};
