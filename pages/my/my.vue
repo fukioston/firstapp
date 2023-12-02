@@ -1,7 +1,7 @@
 
 <template>
 	<view class="homepage">
-<!-->
+<!--
 Focus	List
 Fans	List
 Graph	Graph
@@ -12,7 +12,7 @@ Pub_num	Int
 State	Bool
 History	List
 User_mes	String
-<!-->
+-->
 		<view class="bar">
 			<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>
@@ -173,7 +173,7 @@ User_mes	String
 					uni.navigateTo({
 						url:'/pages/focus/focus'
 					});
-				}
+				},
 				...mapActions(['Deleteusername'])
 			}
 		};

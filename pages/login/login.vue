@@ -1,6 +1,6 @@
 <template>
   <view class="login-page">
-	  <!-->
+	  <!--
 	  Focus	List
 	  Fans	List
 	  Graph	Graph
@@ -11,7 +11,7 @@
 	  State	Bool
 	  History	List
 	  User_mes	String
-	  <!-->
+	  -->
 	  <view class="logo">
 		  <image src="../../static/img/loginlogo.png"></image>
 	  </view>

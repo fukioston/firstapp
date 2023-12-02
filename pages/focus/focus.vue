@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<!-->已经获取focus<!-->
+		<!--已经获取focus-->
 	</view>
 </template>
 
@@ -8,7 +8,7 @@
 	export default {
 		data() {
 			return {
-				focus=[];
+				focus:[]
 			}
 		},
 		onLoad(){
@@ -20,7 +20,7 @@
 			}).then(res=>{
 				this.focus=res.result;
 			});
-		}
+		},
 		methods: {
 			
 		}

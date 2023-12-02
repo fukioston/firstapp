@@ -27,7 +27,7 @@
 		data() {
 			return {
 				userinfos:{
-					id:''
+					id:'',
 					graph:'',
 					name:'',
 					introduction:''
