@@ -4,21 +4,21 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
 	state:{
-		Nowusername:''
+		Nowuser:''
 	},
 	mutations:{
 		LOGIN(state,username){
-			state.Nowusername=username
+			state.Nowuser=username
 		},
 		LOGOUT(state){
-			state.Nowusername=''
+			state.Nowuser=''
 		}
 	},
 	actions:{
-		Recordusername(context,username){
+		Recorduser(context,username){
 			context.commit('LOGIN',username)
 		},
-		Deleteusername(context){
+		Deleteuser(context){
 			context.commit('LOGOUT')
 		}
 	}

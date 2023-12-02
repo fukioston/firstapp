@@ -1,6 +1,18 @@
 
 <template>
 	<view class="homepage">
+<!-->
+Focus	List
+Fans	List
+Graph	Graph
+User_name	String
+Sell_num	Int
+Buy_num	Int
+Pub_num	Int
+State	Bool
+History	List
+User_mes	String
+<!-->
 		<view class="bar">
 			<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>
@@ -130,7 +142,7 @@
 			},
 			onShow(){
 				if(this.$store.state.Nowusername!=""){
-					this.user.name=this.$store.state.Nowusername;
+					this.user.name=this.$store.state.Nowuser.user_name;
 					this.login_logout="点击此处退出登录";
 				}
 				else{
@@ -140,13 +152,13 @@
 			methods: {
 				tologin_logout(){
 						
-					if(this.$store.state.Nowusername==''){
+					if(this.$store.state.Nowuser==''){
 						uni.navigateTo({
 							url:"/pages/login/login"
 						});
 					}
 					else{
-						this.$store.state.Nowusername='';
+						this.$store.state.Nowuser='';
 						uni.reLaunch({
 							url:'/pages/my/my'
 						})

@@ -1,5 +1,17 @@
 <template>
   <view class="login-page">
+	  <!-->
+	  Focus	List
+	  Fans	List
+	  Graph	Graph
+	  User_name	String
+	  Sell_num	Int
+	  Buy_num	Int
+	  Pub_num	Int
+	  State	Bool
+	  History	List
+	  User_mes	String
+	  <!-->
 	  <view class="logo">
 		  <image src="../../static/img/loginlogo.png"></image>
 	  </view>
@@ -64,7 +76,15 @@ export default {
 				  			})
 			  }
 			  else{
-				  this.Recordusername(res.result.username);
+				  if(res.result.statu==3){
+				  				  uni.showToast({
+				  				  				title: '加载用户信息错误',
+				  				  				icon: 'none',
+				  				  				duration: 2000 
+				  				  			});
+				  }
+				  else{
+				  this.Recorduser(res.result.user);
 				  // uni.showToast({
 				  // 				title: '登陆成功:'+this.$store.state.Nowusername,
 				  // 				icon: 'success',
@@ -73,7 +93,7 @@ export default {
 							uni.switchTab({
 								url:'/pages/my/my'
 							});
-							
+					}
 			  }
 			  
 		  }

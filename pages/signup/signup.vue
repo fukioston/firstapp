@@ -1,5 +1,17 @@
 <template>
 	<view class="back">
+		<!-->
+		Focus	List
+		Fans	List
+		Graph	Graph
+		User_name	String
+		Sell_num	Int
+		Buy_num	Int
+		Pub_num	Int
+		State	Bool
+		History	List
+		User_mes	String
+		<!-->
 		<view class="login-form">
 			<view class="title">
 				<image class="textlogo" src="../../static/img/loginlogo2.png"></image>

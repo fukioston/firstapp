@@ -11,7 +11,6 @@
 				focus=[];
 			}
 		},
-			
 		onLoad(){
 			uniCloud.callFunction({
 				name:"get_focus_object",
