@@ -8,12 +8,13 @@
 			:style="'width:'+itemW+';'"
 			@click="get_details(item._id)"
 		>
-			<image 
-			class='commodity-img' 
-			:src="item.imgUrl"
-			 mode=""
-			 :style="'height:'+bigH+';'"
-			></image>
+			<image v-if="item.imgUrl && item.imgUrl.length > 0"
+			  class='commodity-img' 
+			  :src="item.imgUrl[0]"
+			  mode=""
+			  :style="'height:'+bigH+';'">
+			</image>
+
 			
 			<view class='commodity-content'>
 				<text class='commodity-name' :style="'font-size:'+nameSize+';'">{{item.name}}</text>

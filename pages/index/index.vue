@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<IndexSwiper></IndexSwiper>
+		<IndexSwiper :dataList='datalist2'></IndexSwiper>
 		
 		<card cardTitle="猜您喜欢"></card>
 		<CommodityList :dataList='dataList'>ss</CommodityList>
@@ -16,7 +16,11 @@
 	export default {
 		data() {
 			return {
-				
+				datalist2:[
+				    "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity2.jpg",
+					 "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/cloudstorage/ed17ba31-28c2-4967-ad23-a59b941b91b7.png",
+					  "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/cloudstorage/ed17ba31-28c2-4967-ad23-a59b941b91b7.png"
+				],
 				dataList:[]
 			}
 		},

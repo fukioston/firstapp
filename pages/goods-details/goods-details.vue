@@ -1,8 +1,9 @@
 <template>
 	<view class='all'>
 		<view>
-		<image class='detail_img'
-		:src="imgUrl" ></image>
+			<IndexSwiper 
+			class="detail_img"
+			:dataList='imglist'></IndexSwiper>
 		<view class="textbox">
 			
 			<view class="name">
@@ -22,11 +23,14 @@
 </template>
 
 <script>
+	import IndexSwiper from '@/components/index/IndexSwiper.vue'
 	export default {
 		data() {
 			return {
 				_id:"",
 				details:[],
+				imglist:["https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity2.jpg",
+				"https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity2.jpg"],
 				imgUrl: "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity2.jpg",
 				 introduction: "你到了毫无东西的页面",
 				 name: "你到了毫无东西的页面",
@@ -79,7 +83,8 @@
 						 this.name=this.details[0].name
 						this.nprice=this.details[0].nprice
 						this.oprice=this.details[0].oprice
-						this.imgUrl=this.details[0].imgUrl
+						this.imglist=this.details[0].imgUrl
+						
 						
 					})
 				
@@ -95,7 +100,10 @@
 				    this.options[2].info++
 				  }
 			
-		}
+		},
+		components:{
+			IndexSwiper,
+		},
 	}
 </script>
 
