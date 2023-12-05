@@ -15,10 +15,10 @@
 				/>
 		</uni-forms-item>
 		<uni-forms-item label="用户昵称" required>
-			<uni-easyinput  v-model="userinfos.name" :placeholder=userinfos.user_name />
+			<uni-easyinput  v-model="userinfos.name" :placeholder="userinfos.user_name" />
 		</uni-forms-item>
 		<uni-forms-item label="个人介绍" required>
-			<uni-easyinput  v-model="userinfos.user_mes" :placeholder=userinfos.user_mes />
+			<uni-easyinput  v-model="userinfos.user_mes" :placeholder="userinfos.user_mes" />
 		</uni-forms-item>
 		</uni-forms>	
 		<button class="uploadBtn"   @click="onSubmit">保存</button>
@@ -29,41 +29,41 @@
 		data() {
 			return {
 				userinfos:{
-		focus:[],
-		fans:[],
-		graph:null,
-		user_name:'',
-		sell_num:0,
-		buy_num:0,
-		pub_num:0,
-		state:false,
-		history:[],
-		user_mes:''
-	}
+		        focus:[],
+				fans:[],
+				graph:null,
+				user_name:'',
+				sell_num:0,
+				buy_num:0,
+				pub_num:0,
+				state:false,
+				history:[],
+				user_mes:''
+	            }
 			}
 		},
-		onLoad(){
-				this.userinfos=this.$store.state.Nowuser;//这里应该使用登录后vuex储存的变量
+		onShow(){
+			this.userinfos=this.$store.state.Nowuser;
+			console.log(this.userinfos);//这里应该使用登录后vuex储存的变量
 		},
 		methods: {
 			select(e){
-							console.log('选择文件：',e)
-						},
-						// 获取上传进度
-						progress(e){
-							console.log('上传进度：',e)
-						},
-						
-						// 上传成功
-						success(e){
-							console.log('上传成功')
-						},
-						
-						// 上传失败
-						fail(e){
-							console.log('上传失败：',e)
-						}
+				console.log('选择文件：',e)
+			},			
+			// 获取上传进度
+			progress(e){
+				console.log('上传进度：',e)
 			},
+			
+			// 上传成功
+			success(e){
+				console.log('上传成功')
+			},
+			
+			// 上传失败
+			fail(e){
+				console.log('上传失败：',e)
+			},			
 			onSubmit(){
 				uniCloud.callFunction({
 					name:"save_userinfo",
@@ -88,7 +88,8 @@
 					
 				});
 			}
-	}
+	},
+}
 </script>
 
 <style>

@@ -15,7 +15,7 @@
 			uniCloud.callFunction({
 				name:"get_focus_object",
 				data:{
-					user:$store.state.Nowuser
+					user:this.$store.state.Nowuser
 				}
 			}).then(res=>{
 				this.focus=res.result;

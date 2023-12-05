@@ -14,13 +14,13 @@ History	List
 User_mes	String
 -->
 		<view class="bar">
-			<u-navbar :placeholder="true" bgColor="#efeefd">
-			</u-navbar>
+			<!--<u-navbar :placeholder="true" bgColor="#efeefd">
+			</u-navbar>-->
 		</view>
 		<view class="user-center">
 			<view class="ima" @click="set_info">
 				<image class='avatar' 
-				:src="user.avatar"
+				:src="user.graph[0].path"
 				 alt="../../static/image/travel/personal/tx.png"
 				>
 			</view>
@@ -28,10 +28,13 @@ User_mes	String
 				<view class="userId">
 					<image src="../../static/image/travel/personal/id.png">
 					<view class="number">
-						<text>{{user.name}}</text>
+						<text>{{user.user_name}}</text>
 						<text>复制</text>
 					</view>
 				</view>
+				      <view class="card-content">
+				        <text>{{ user.user_mes }}</text>
+				      </view>
 				<view class="log" @click="tologin_logout">{{login_logout}}</view>
 			</view>
 			
@@ -39,21 +42,21 @@ User_mes	String
 		<view class="list">
 			<view class="item" @click="to_focus">
 				<view class="text">
-					<text>0</text>
+					<text>{{focus_num}}</text>
 					<text>关注</text>
 				</view>
 				
 			</view>
 			<view class="item" @click="to_fans">
 				<view class="text">
-					<text>0</text>
+					<text>{{fans_num}}</text>
 					<text>粉丝</text>
 				</view>
 				
 			</view>
 			<view class="item" @click="to_items">
 				<view class="text">
-					<text>0</text>
+					<text>{{user.sell_num}}</text>
 					<text>我的商品</text>
 				</view>
 			
@@ -106,10 +109,6 @@ User_mes	String
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 						
 				</view>
-				
-				<view>
-					{{user}}
-				</view>
 			
 			</view>
 			
@@ -126,23 +125,38 @@ User_mes	String
 					value: 1,
 					value1: 0,
 					user: {
-						name: "游客", // 用户名
-						avatar: "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity3.jpg", // 头像图片路径
-						bio: "个人简介" // 个人简介
+						focus:[],
+						fans:[],
+						graph:[{path:"../../static/image/travel/personal/tx.png"}],
+						user_name:'',
+						sell_num:0,
+						buy_num:0,
+						pub_num:0,
+						state:false,
+						history:[],
+						user_mes:''
 					},
-					login_logout:""
+					login_logout:"",
+					focus_num:0,
+					fans_num:0
 				};
 			},
 			computed:{
 				...mapState(['Nowuser'])
 			},
-			onLoad(){
+			onShow(){
 				if(this.$store.state.Nowuser.user_name!=""&&this.$store.state.Nowuser.user_name!=null){
-					this.user.name=this.$store.state.Nowuser.user_name;
+					this.user=this.$store.state.Nowuser;
 					this.login_logout="点击此处退出登录";
 				}
 				else{
 					this.login_logout="您还未登录，点击此处登录";
+				}
+				if(this.user.focus){
+				this.focus_num=this.user.focus.length;
+				}
+				if(this.user.fans){
+					this.fans_num=this.user.fans.length;
 				}
 			},
 			methods: {
@@ -154,7 +168,7 @@ User_mes	String
 					}
 					else{
 						this.$store.state.Nowuser='';
-					    this.user.name=this.$store.state.Nowuser.user_name;
+					    this.user.user_name=this.$store.state.Nowuser.user_name;
 						uni.reLaunch({
 							url:'/pages/my/my'
 						})
@@ -166,11 +180,20 @@ User_mes	String
 					});
 				},
 				to_focus(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
 					uni.navigateTo({
 						url:'/pages/focus/focus'
 					});
+					}
 				},
-				...mapActions(['Deleteusername'])
+				...mapActions(['Deleteuser'])
 			}
 		};
 	</script>

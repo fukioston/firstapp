@@ -46,7 +46,7 @@ export default {
     };
   },
   methods: {
-	  ...mapActions(['Recordusername']),
+	  ...mapActions(['Recorduser']),
 	  tosignup(){
 		  uni.navigateTo({
 		  	url:"/pages/signup/signup"

@@ -67,6 +67,14 @@
 						icon: 'none',
 						duration: 2000
 					})
+					/*if(mes.result.statu==2){
+						setTimeout(() => {
+						            // 使用 uni.navigateTo 跳转到目标页面
+						            uni.navigateTo({
+						              url: '/pages/login/login'
+						            });
+						          }, 1000);
+					}*/
 				});
 			}
 		}

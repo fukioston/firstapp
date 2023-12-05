@@ -6,9 +6,13 @@ exports.main = async (event, context) => {
 	console.log('event : ', event)
 	let res=await collection.get();
 	let data=res.data;
-	for(int i=0;i<data.length;i++){
-		if(data[i]._id==event._id){
-			let res = await collection.doc(event._id).set(event);
+	for(let i=0;i<data.length;i++){
+		console.log(data[i].user_name);
+		console.log(event.userinfos.user_name);
+		if(data[i].user_name==event.userinfos.user_name){
+			let info=event.userinfos;
+			delete info._id;
+			let res = await collection.doc(data[i]._id).set(info);
 			console.log(JSON.stringify(res))
 			//改变数据库内容
 			return {state:"success"};

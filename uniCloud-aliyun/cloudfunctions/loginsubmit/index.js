@@ -1,7 +1,7 @@
 'use strict';
 const db=uniCloud.database();
 const collection=db.collection("users-pw");
-const collection2=db.collection("users-info");
+const collection2=db.collection("user-info");
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	if(event.username==""){
@@ -13,8 +13,8 @@ exports.main = async (event, context) => {
 	let data2=res2.data;
 	for(let i=0,length=data.length;i<length;i++ ){
 		if(data[i].username==event.username&&data[i].password==event.password){
-			console.log(data[i]);
-			for(int u=0;u<data2.length;u++){
+			for(let u=0;u<data2.length;u++){
+				//console.log(data2[u]);
 				if(data2[u].user_name==data[i].username){
 			        return {"statu":2,"user":data2[u]};
 				}
