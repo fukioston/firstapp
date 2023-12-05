@@ -30,12 +30,12 @@ exports.main = async (event, context) => {
 		fans:[],
 		graph:null,
 		user_name:event.username,
-		sell_num:0;
-		buy_num:0;
-		pub_num:0;
-		state:false;
-		history:[];
-		user_mes:'';
+		sell_num:0,
+		buy_num:0,
+		pub_num:0,
+		state:false,
+		history:[],
+		user_mes:''
 	});
 	//返回数据给客户端
 	return {"statu":2};//2表示成功添加

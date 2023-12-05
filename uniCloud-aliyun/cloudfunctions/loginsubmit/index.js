@@ -1,7 +1,7 @@
 'use strict';
 const db=uniCloud.database();
 const collection=db.collection("users-pw");
-const collection=db.collection("users-info");
+const collection2=db.collection("users-info");
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	if(event.username==""){

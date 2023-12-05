@@ -1,22 +1,24 @@
 
 <template>
 	<uni-section  title="您的个人信息" type="line">
-		<uni-file-picker 
-		    class='picker'
-			v-model="userinfos.graph" 
-			fileMediatype="image" 
-			mode="grid" 
-			@select="select" 
-			@progress="progress" 
-			@success="success" 
-			@fail="fail" 
-		/>
 		<uni-forms class="infoinput" ref="baseForm"  label-position="top">
+		<uni-forms-item label="您的头像" required>
+				<uni-file-picker 
+				    class='picker'
+					v-model="userinfos.graph" 
+					fileMediatype="image" 
+					mode="grid" 
+					@select="select" 
+					@progress="progress" 
+					@success="success" 
+					@fail="fail" 
+				/>
+		</uni-forms-item>
 		<uni-forms-item label="用户昵称" required>
-			<uni-easyinput  v-model="userinfos.name" placeholder=userinfos.name />
+			<uni-easyinput  v-model="userinfos.name" :placeholder=userinfos.user_name />
 		</uni-forms-item>
 		<uni-forms-item label="个人介绍" required>
-			<uni-easyinput  v-model="userinfos.introduction" placeholder=userinfos.introduction />
+			<uni-easyinput  v-model="userinfos.user_mes" :placeholder=userinfos.user_mes />
 		</uni-forms-item>
 		</uni-forms>	
 		<button class="uploadBtn"   @click="onSubmit">保存</button>
@@ -27,15 +29,21 @@
 		data() {
 			return {
 				userinfos:{
-					id:'',
-					graph:'',
-					name:'',
-					introduction:''
-				}
+		focus:[],
+		fans:[],
+		graph:null,
+		user_name:'',
+		sell_num:0,
+		buy_num:0,
+		pub_num:0,
+		state:false,
+		history:[],
+		user_mes:''
+	}
 			}
 		},
 		onLoad(){
-				userinfos;//这里应该使用登录后vuex储存的变量
+				this.userinfos=this.$store.state.Nowuser;//这里应该使用登录后vuex储存的变量
 		},
 		methods: {
 			select(e){
@@ -77,6 +85,7 @@
 										duration: 2000 
 									});
 					}
+					
 				});
 			}
 	}

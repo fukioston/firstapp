@@ -25,19 +25,12 @@ User_mes	String
 				>
 			</view>
 			<view class="info">
-				<view class="nick">
-					<text>{{ user.name }}</text>
-			
-					
-				</view>
-				<view class="grade">
-				</view>
 				<view class="userId">
 					<image src="../../static/image/travel/personal/id.png">
-						<view class="number">
-							<text>111</text>
-							<text>复制</text>
-						</view>
+					<view class="number">
+						<text>{{user.name}}</text>
+						<text>复制</text>
+					</view>
 				</view>
 				<view class="log" @click="tologin_logout">{{login_logout}}</view>
 			</view>
@@ -111,9 +104,12 @@ User_mes	String
 					<image class="icon" src="../../static/image/travel/personal/pic07.png">
 						<text>设置</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
+						
 				</view>
 				
-				
+				<view>
+					{{user}}
+				</view>
 			
 			</view>
 			
@@ -138,10 +134,10 @@ User_mes	String
 				};
 			},
 			computed:{
-				...mapState(['Nowusername'])
+				...mapState(['Nowuser'])
 			},
-			onShow(){
-				if(this.$store.state.Nowusername!=""){
+			onLoad(){
+				if(this.$store.state.Nowuser.user_name!=""&&this.$store.state.Nowuser.user_name!=null){
 					this.user.name=this.$store.state.Nowuser.user_name;
 					this.login_logout="点击此处退出登录";
 				}
@@ -151,7 +147,6 @@ User_mes	String
 			},
 			methods: {
 				tologin_logout(){
-						
 					if(this.$store.state.Nowuser==''){
 						uni.navigateTo({
 							url:"/pages/login/login"
@@ -159,6 +154,7 @@ User_mes	String
 					}
 					else{
 						this.$store.state.Nowuser='';
+					    this.user.name=this.$store.state.Nowuser.user_name;
 						uni.reLaunch({
 							url:'/pages/my/my'
 						})
