@@ -4,7 +4,9 @@
 		<uni-forms class="infoinput" ref="baseForm"  label-position="top">
 		<uni-forms-item label="您的头像" required>
 				<uni-file-picker 
+				    limit="1"
 				    class='picker'
+					title="上传您的头像" 
 					v-model="userinfos.graph" 
 					fileMediatype="image" 
 					mode="grid" 

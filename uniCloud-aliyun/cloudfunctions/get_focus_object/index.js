@@ -7,19 +7,21 @@ exports.main = async (event, context) => {
 	let res=await collection.get();
 	let data=res.data;
 	let ob_list=[];
-	for(let i=0;i<data.length;i++){
-		if(data[i].user_name==event.user.user_name){
-			let focus=data[i].focus;
-			for(let u=0;u<focus.length;u++){
-				for(let j=0;j<data.length;j++){
-				    if(data[j].username==focus[u]){
-						ob_list.push(data[j]);
-					}
-				}
+	let str_list=event.user.focus;
+	for(let i=0;i<str_list.length;i++){
+		for(let j=0;j<data.length;j++){
+			if(data[j].user_name==str_list[i]){
+				ob_list.push(data[j]);
+				break;
 			}
-			return {state:'1',focus:ob_list};
+		}
+		if(ob_list.length==i){
+			break;
+		}
+		else{
+			return {state:0,focus:[]};
 		}
 	}
-	return {state:0,focus:'fail'};
+	return {state:1,focus:ob_list};
 	//返回数据给客户端
 };
