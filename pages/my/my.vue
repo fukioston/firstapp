@@ -152,6 +152,7 @@ User_mes	String
 				else{
 					this.login_logout="您还未登录，点击此处登录";
 				}
+				console.log(this.user);
 				if(this.user.focus){
 				this.focus_num=this.user.focus.length;
 				}
@@ -167,17 +168,42 @@ User_mes	String
 						});
 					}
 					else{
-						this.$store.state.Nowuser='';
-					    this.user.user_name=this.$store.state.Nowuser.user_name;
-						uni.reLaunch({
-							url:'/pages/my/my'
-						})
+						uniCloud.callFunction({
+							name:'logout',
+							data:this.user
+						}).then(res=>{
+							if(res.result.state){
+								this.user.user_name=this.$store.state.Nowuser.user_name;
+							    this.$store.state.Nowuser='';
+							    uni.reLaunch({
+							    	url:'/pages/my/my'
+							    })
+							}
+							else{
+								uni.showToast({
+									title:"退出登陆失败",
+									icon:"error",
+									duration:2000
+								});
+							}
+						});
+						
 					}
 				},
 				set_info(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
 					uni.navigateTo({
 						url:'/pages/userinfo/userinfo'
 					});
+						
+					}
 				},
 				to_focus(){
 					if(this.user.user_name==''||this.user.user_name==null){
@@ -190,6 +216,20 @@ User_mes	String
 					else{
 					uni.navigateTo({
 						url:'/pages/focus/focus'
+					});
+					}
+				},
+				to_fans(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					uni.navigateTo({
+						url:'/pages/fans/fans'
 					});
 					}
 				},

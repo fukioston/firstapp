@@ -32,7 +32,7 @@ exports.main = async (event, context) => {
 	collection2.add({
 		focus:[],
 		fans:[],
-		graph:null,
+		graph:[{path:"../../static/image/travel/personal/tx.png"}],
 		user_name:event.username,
 		sell_num:0,
 		buy_num:0,

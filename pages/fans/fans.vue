@@ -1,36 +1,36 @@
 <template>
 	<view class="content">
-		<!--已经获取focus-->
+		<!--已经获取fans-->
 		<view class="bar">
 			<!--<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>-->
 		</view>
-		<Focu class="focus" v-for="(item, index) in focus" :key="index" :msg="item">
+		<Fan class="fans" v-for="(item, index) in fans" :key="index" :msg="item">
 			
-		</Focu>
+		</Fan>
 	</view>
 </template>
 
 <script>
-	import Focu from "../../components/common/user_display.vue"
+	import Fan from "../../components/common/user_display.vue"
 	export default {
 		data() {
 			return {
-				focus:[]
+				fans:[]
 			}
 		},
 		components:{
-			Focu
+			Fan
 		},
 		onShow(){
 			uniCloud.callFunction({
-				name:"get_focus_object",
+				name:"get_fans_object",
 				data:{
 					user:this.$store.state.Nowuser
 				}
 			}).then(res=>{
 				if(res.result.state==0){
-					this.focus=[];
+					this.fans=[];
 					uni.showToast({
 						title:"加载关注失败",
 						icon:"error",
@@ -38,8 +38,8 @@
 					});
 				}
 				else{
-				this.focus=res.result.focus;
-				console.log(this.focus);
+				this.fans=res.result.fans;
+				console.log(this.fans);
 				}
 			});
 		},
@@ -50,7 +50,7 @@
 </script>
 
 <style>
-	.focus{
+	.fans{
 		height:125rpx;
 	}
 

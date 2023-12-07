@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
 		if(data[i].user_name==event.userinfos.user_name){
 			let info=event.userinfos;
 			delete info._id;
-			let res = await collection.doc(data[i]._id).set(info);
+			let res = await collection.doc(data[i]._id).update(info);
 			console.log(JSON.stringify(res))
 			//改变数据库内容
 			return {state:"success"};

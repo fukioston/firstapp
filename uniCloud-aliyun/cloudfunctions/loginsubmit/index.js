@@ -16,6 +16,9 @@ exports.main = async (event, context) => {
 			for(let u=0;u<data2.length;u++){
 				//console.log(data2[u]);
 				if(data2[u].user_name==data[i].username){
+					let res = await collection2.doc(data2[u]._id).update({state:true});
+					console.log(JSON.stringify(res))
+					data2[u].state=true;
 			        return {"statu":2,"user":data2[u]};
 				}
 			}

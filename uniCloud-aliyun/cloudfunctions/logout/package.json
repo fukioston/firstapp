@@ -1,0 +1,7 @@
+{
+  "name": "logout",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

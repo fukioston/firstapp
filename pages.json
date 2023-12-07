@@ -165,10 +165,21 @@
         }
         ,{
             "path" : "pages/focus/focus",
+			"style" : 
+			{
+				"navigationBarTitleText": "我的关注",
+				"navigationBarBackgroundColor": "#7e0c6e",
+				"enablePullDownRefresh": false
+			}
+            
+        }
+        ,{
+            "path" : "pages/fans/fans",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "我的粉丝",
+                            "enablePullDownRefresh": false,
+                            "navigationBarBackgroundColor": "#7e0c6e"
             }
             
         }

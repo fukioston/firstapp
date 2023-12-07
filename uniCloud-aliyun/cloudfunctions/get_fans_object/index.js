@@ -7,7 +7,7 @@ exports.main = async (event, context) => {
 	let res=await collection.get();
 	let data=res.data;
 	let ob_list=[];
-	let str_list=event.user.focus;
+	let str_list=event.user.fans;
 	console.log(str_list);
 	for(let i=0;i<str_list.length;i++){
 		for(let j=0;j<data.length;j++){
@@ -20,9 +20,9 @@ exports.main = async (event, context) => {
 			continue;
 		}
 		else{
-			return {state:0,focus:[]};
+			return {state:0,fans:[]};
 		}
 	}
-	return {state:1,focus:ob_list};
+	return {state:1,fans:ob_list};
 	//返回数据给客户端
 };
