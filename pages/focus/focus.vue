@@ -5,7 +5,7 @@
 			<!--<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>-->
 		</view>
-		<Focu class="focus" v-for="(item, index) in focus" :key="index" :msg="item">
+		<Focu class="focus" @to_other="to_other" v-for="(item, index) in focus" :key="index" :msg="item">
 			
 		</Focu>
 	</view>
@@ -44,7 +44,13 @@
 			});
 		},
 		methods: {
-			
+			to_other(msg){
+				const str=JSON.stringify(msg);
+				console.log("next "+msg.user_name);
+				uni.navigateTo({
+					url:"pages/other/other?data=" + encodeURIComponent(str)
+				});
+			}
 		}
 	}
 </script>
