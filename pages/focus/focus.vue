@@ -6,7 +6,6 @@
 			</u-navbar>-->
 		</view>
 		<Focu class="focus" @to_other="to_other" v-for="(item, index) in focus" :key="index" :msg="item">
-			
 		</Focu>
 	</view>
 </template>
@@ -42,13 +41,22 @@
 				console.log(this.focus);
 				}
 			});
+			if(this.$store.state.Nowuser==''||!this.$store.state.Nowuser){
+				uni.showToast({
+					title:'您还没有登录',
+					duration:2000,
+					icon:'error'
+				})
+			}
 		},
 		methods: {
 			to_other(msg){
+				console.log(1);
+				console.log(msg);
 				const str=JSON.stringify(msg);
 				console.log("next "+msg.user_name);
 				uni.navigateTo({
-					url:"pages/other/other?data=" + encodeURIComponent(str)
+					url:"/pages/other/other?data=" + encodeURIComponent(str)
 				});
 			}
 		}

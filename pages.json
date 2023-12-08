@@ -120,7 +120,24 @@
             }
             
         }
-        
+        ,{
+            "path" : "pages/focus/other_focus",
+            "style" :   
+            {	"navigationBarTitleText": "TA的关注",
+                "enablePullDownRefresh": false,
+            	"navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        }
+		,{
+		    "path" : "pages/fans/other_fans",
+		    "style" :   
+		    {	"navigationBarTitleText": "TA的粉丝",
+		        "enablePullDownRefresh": false,
+		    	"navigationBarBackgroundColor": "#7e0c6e"
+		    }
+		    
+		}
             
         
         ,{
