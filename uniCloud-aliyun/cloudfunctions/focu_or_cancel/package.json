@@ -1,0 +1,7 @@
+{
+  "name": "focu_or_cancel",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

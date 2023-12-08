@@ -28,15 +28,15 @@ User_mes	String
 					<image src="../../static/image/travel/personal/id.png">
 					<view class="number">
 						<text>{{user.user_name}}</text>
-						<text>复制</text>
+						<text @click='copy'>复制</text>
 					</view>
 				</view>
 				      <view class="card-content">
 				        <text>{{ user.user_mes }}</text>
 				      </view>
-				<view class="log" @click="tologin_logout">{{login_logout}}</view>
 			</view>
-			
+			<button class='cancel' v-if='iffocued' @click="focu_or_cancel('cancel')">已关注</button>
+			<button class='focu' v-else @click="focu_or_cancel('focu')">关注</button>
 		</view>
 		<view class="list">
 			<view class="item" @click="to_focus">
@@ -56,7 +56,7 @@ User_mes	String
 			<view class="item" @click="to_items">
 				<view class="text">
 					<text>{{user.sell_num}}</text>
-					<text>我的商品</text>
+					<text>TA的商品</text>
 				</view>
 			
 			</view>
@@ -121,19 +121,29 @@ User_mes	String
 	export default {
 		data() {
 			return {
-				user:'',
+				user: {
+					focus:[],
+					fans:[],
+					graph:[{path:"../../static/image/travel/personal/tx.png"}],
+					user_name:'',
+					sell_num:0,
+					buy_num:0,
+					pub_num:0,
+					state:false,
+					history:[],
+					user_mes:''
+				},
 				focus_num:0,
+				iffocued:false,
 				fans_num:0,
-				
 			}
 		},
 		onLoad(options){
 			console.log(options);
 			if(options){
-			this.user=JSON.parse(decodeURIComponent(options.data));
-			}
-			else{
-				this.user='';
+				if(options.data){
+					this.user=JSON.parse(decodeURIComponent(options.data));
+				}
 			}
 			if(this.user.focus){
 			this.focus_num=this.user.focus.length;
@@ -141,20 +151,88 @@ User_mes	String
 			if(this.user.fans){
 				this.fans_num=this.user.fans.length;
 			}
+			let foculist=this.$store.state.Nowuser.focus;
+			console.log(foculist);
+			for(let i in foculist){
+				console.log(foculist[i]);
+				console.log(this.user.user_name);
+				if(foculist[i]==this.user.user_name){
+					this.iffocued=true;
+				}
+			}
+			if(this.user.user_name==''||!this.user){
+				uni.showToast({
+					title:'并未指定用户',
+					duration:2000,
+					icon:'error'
+				})
+			}
 		},
 		methods: {
 			to_focus(){
-				console.log(1);
-				uni.navigateTo({
-					url:'/pages/focus/other_focus?data='+encodeURIComponent(JSON.stringify(this.user))
-				});
+				if(this.user.user_name==''||!this.user){
+					uni.showToast({
+						title:'并未指定用户',
+						duration:2000,
+						icon:'error'
+					})
+				}
+				else{
+					console.log(1);
+					uni.navigateTo({
+						url:'/pages/focus/other_focus?data='+encodeURIComponent(JSON.stringify(this.user))
+					});
+				}
 			},
 			to_fans(){
-				console.log(1);
-				uni.navigateTo({
-					url:'/pages/fans/other_fans?data='+encodeURIComponent(JSON.stringify(this.user))
+				if(this.user.user_name==''||!this.user){
+					uni.showToast({
+						title:'并未指定用户',
+						duration:2000,
+						icon:'error'
+					})
+				}
+				else{
+					console.log(1);
+					uni.navigateTo({
+						url:'/pages/fans/other_fans?data='+encodeURIComponent(JSON.stringify(this.user))
+					});
+				}
+				
+			},
+			copy(){
+				if(this.user.user_name==''||this.user.user_name==null){
+					uni.showToast({
+						title:'您还没有登录',
+						icon:'error',
+						duration:2000
+					})
+				}
+				else{
+				
+				uni.setClipboardData({
+				        data:this.user.user_name,//要被复制的内容
+				        success:()=>{//复制成功的回调函数
+				          uni.showToast({//提示
+				            title:'复制成功'
+				          })
+				        }
+				      });
+				}
+			},
+			focu_or_cancel(order){
+				uniCloud.callFunction({
+					name:'focu_or_cancel',
+					data:{
+						fir:this.user,
+						sec:this.$store.state.Nowuser,
+						order:order
+					}
+				}).then(res=>{
+					//需要修改
 				});
 			}
+			
 		}
 	}
 </script>
@@ -477,5 +555,19 @@ User_mes	String
 			}
 		}
 
+	}
+	.focu{
+		background-color: #E9E9FF;
+		width:150rpx;
+		font-size: 27rpx;
+		font-family:Times;
+		border-radius: 40rpx;
+	}
+	.cancel{
+		width:150rpx;
+		font-size: 27rpx;
+		font-family:Times;
+		background-color: #999999;
+		border-radius: 40rpx;
 	}
 </style>

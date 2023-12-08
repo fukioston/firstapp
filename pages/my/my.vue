@@ -29,7 +29,7 @@ User_mes	String
 					<image src="../../static/image/travel/personal/id.png">
 					<view class="number">
 						<text>{{user.user_name}}</text>
-						<text>复制</text>
+						<text @click="copy">复制</text>
 					</view>
 				</view>
 				      <view class="card-content">
@@ -57,7 +57,7 @@ User_mes	String
 			<view class="item" @click="to_items">
 				<view class="text">
 					<text>{{user.sell_num}}</text>
-					<text>TA的商品</text>
+					<text>我的商品</text>
 				</view>
 			
 			</view>
@@ -231,6 +231,26 @@ User_mes	String
 					uni.navigateTo({
 						url:'/pages/fans/fans'
 					});
+					}
+				},
+				copy(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					
+					uni.setClipboardData({
+					        data:this.user.user_name,//要被复制的内容
+					        success:()=>{//复制成功的回调函数
+					          uni.showToast({//提示
+					            title:'复制成功'
+					          })
+					        }
+					      });
 					}
 				},
 				...mapActions(['Deleteuser'])

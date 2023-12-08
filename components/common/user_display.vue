@@ -12,6 +12,9 @@
 				</view>
 			</view>
 			      <view class="card-content">
+					  
+					  <view v-if="state" class="green-dot" ></view>
+					  <view v-else class="gray-dot"></view>
 			        <text>{{ msg.user_mes }}</text>
 			      </view>
 		</view>
@@ -26,7 +29,7 @@
 		name:"user_display",
 		data() {
 			return {
-				
+				state:this.msg.state
 			};
 		},
 		methods:{
@@ -57,6 +60,7 @@
 		height: 100rpx;
 		width: 100rpx;
 	  margin-right: 30rpx; /* 设置图像容器的右边距 */
+	  margin-left: 15rpx;
 	}
 	
 	.avatar {
@@ -83,7 +87,26 @@
 	}
 	
 	.card-content {
+		text-align: left;
+		display: flex;
+		align-items: left;
 	  margin-top: 10rpx; /* 调整卡片内容的顶部边距 */
-	  color: #666;
+	  color: #b1b1b1;
 	}
+	.green-dot {
+		margin-top: 17rpx;
+		margin-right:10rpx;
+	    width: 20rpx;
+	    height: 20rpx;
+	    border-radius: 50%; /* 使其呈圆形 */
+		background-color: #00ff00;
+	  }
+	  .gray-dot {
+		  margin-top: 17rpx;
+		  margin-right:10rpx;
+	      width: 20rpx;
+	      height: 20rpx;
+	      border-radius: 50%; /* 使其呈圆形 */
+		  background-color: #666;
+	    }
 </style>
