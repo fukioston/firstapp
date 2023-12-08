@@ -1,5 +1,5 @@
 <template>
-	<view class="user-center" @click="goto_other">
+	<view class="user-center" @click="send_para">
 		<view class="ima">
 			<image class='avatar' 
 			:src="msg.graph[0].path"
@@ -26,23 +26,12 @@
 		name:"user_display",
 		data() {
 			return {
-				user:{
-					focus:[],
-					fans:[],
-					graph:[{path:"../../static/image/travel/personal/tx.png"}],
-					user_name:'',
-					sell_num:0,
-					buy_num:0,
-					pub_num:0,
-					state:false,
-					history:[],
-					user_mes:''
-				}
+				
 			};
 		},
 		methods:{
-			goto_other(){
-				console.log("goto"+msg.user_name);
+			send_para(){
+				this.$emit("to_other");
 			}
 		}
 	}

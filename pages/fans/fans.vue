@@ -5,7 +5,7 @@
 			<!--<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>-->
 		</view>
-		<Fan class="fans" v-for="(item, index) in fans" :key="index" :msg="item">
+		<Fan class="fans" @to_other="to_other" v-for="(item, index) in fans" :key="index" :msg="item">
 			
 		</Fan>
 	</view>
@@ -32,7 +32,7 @@
 				if(res.result.state==0){
 					this.fans=[];
 					uni.showToast({
-						title:"加载关注失败",
+						title:"加载粉丝失败",
 						icon:"error",
 						duration:2000
 					});
@@ -44,7 +44,13 @@
 			});
 		},
 		methods: {
-			
+			to_other(msg){
+				const str=JSON.stringify(msg);
+				console.log("next "+msg.user_name);
+				uni.navigateTo({
+					url:"pages/other/other?data=" + encodeURIComponent(str)
+				});
+			}
 		}
 	}
 </script>

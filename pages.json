@@ -183,6 +183,8 @@
             }
             
         }
+
+
         ,{
             "path" : "pages/pay/pay",
             "style" :                                                                                    
@@ -322,6 +324,16 @@
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/other/other",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "TA的个人信息",
+                            "enablePullDownRefresh": false,
+                            "navigationBarBackgroundColor": "#7e0c6e"
             }
             
         }
