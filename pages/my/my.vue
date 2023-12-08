@@ -151,6 +151,8 @@ User_mes	String
 				}
 				else{
 					this.login_logout="您还未登录，点击此处登录";
+					let user=uniCloud.getCurrentUserInfo();
+					console.log(user)
 				}
 				console.log(this.user);
 				if(this.user.focus){

@@ -63,6 +63,16 @@
 					nickname: "",
 					password: "",
 					password2: "",
+					phone:"",
+					focus:[],
+					fans:[],
+					graph:[],
+					sell_num:0,
+					buy_num:0,
+					pub_num:0,
+					history:[],
+					state:false,
+					user_mes:"",
 					captcha: ""
 				},
 				rules,
@@ -114,7 +124,10 @@
 			},
 			submitForm(params) {
 				uniIdCo.registerUser(this.formData).then(e => {
-						this.loginSuccess(e)
+						//this.loginSuccess(e)
+						console.log(e.uid)
+						
+						
 					})
 					.catch(e => {
 						console.log(e.message);
