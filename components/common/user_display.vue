@@ -31,7 +31,7 @@
 		},
 		methods:{
 			send_para(){
-				this.$emit("to_other");
+				this.$emit("to_other",this.msg);
 			}
 		}
 	}

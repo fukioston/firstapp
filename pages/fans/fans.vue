@@ -42,13 +42,20 @@
 				console.log(this.fans);
 				}
 			});
+			if(this.$store.state.Nowuser==''||!this.$store.state.Nowuser){
+				uni.showToast({
+					title:'您还没有登录',
+					duration:2000,
+					icon:'error'
+				})
+			}
 		},
 		methods: {
 			to_other(msg){
 				const str=JSON.stringify(msg);
 				console.log("next "+msg.user_name);
 				uni.navigateTo({
-					url:"pages/other/other?data=" + encodeURIComponent(str)
+					url:"/pages/other/other?data=" + encodeURIComponent(str)
 				});
 			}
 		}

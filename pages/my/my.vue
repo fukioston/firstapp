@@ -57,7 +57,7 @@ User_mes	String
 			<view class="item" @click="to_items">
 				<view class="text">
 					<text>{{user.sell_num}}</text>
-					<text>我的商品</text>
+					<text>TA的商品</text>
 				</view>
 			
 			</view>
