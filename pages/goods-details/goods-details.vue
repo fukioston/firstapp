@@ -38,18 +38,21 @@
 				oprice: "11",
 				options: [{
 							icon: 'headphones',
-							text: '客服'
-						}, {
-							icon: 'shop',
-							text: '店铺',
-							info: 2,
-							infoBackgroundColor:'#007aff',
-							infoColor:"red"
-						}, {
-							icon: 'cart',
-							text: '购物车',
-							info: 2
-						}],
+							text: '联系卖家'
+						// 
+						}, 
+						// {
+						// 	icon: 'shop',
+						// 	text: '店铺',
+						// 	info: 2,
+						// 	infoBackgroundColor:'#007aff',
+						// 	infoColor:"red"
+						// }, {
+						// 	icon: 'cart',
+						// 	text: '购物车',
+						// 	info: 2
+						// }
+						],
 					    customButtonGroup1: [{
 					    	text: '立即购买',
 					    	backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
@@ -70,7 +73,6 @@
 		
 		methods: {
 			get_details(){
-				
 				uniCloud.callFunction({
 					name:"get_details",
 					data:{
@@ -78,7 +80,6 @@
 						}
 					}).then(res=>{
 						this.details=res.result.data
-						console.log(this.details[0].introduction)
 						this.introduction=this.details[0].introduction
 						 this.name=this.details[0].name
 						this.nprice=this.details[0].nprice
@@ -96,8 +97,12 @@
 				    })
 				  },
 				  buttonClick (e) {
-				    console.log(e)
-				    this.options[2].info++
+				    if (e.index === 0) { // 假设 "立即购买" 是第一个按钮
+					console.log('ssss')
+				    uni.navigateTo({
+				        url: '/pages/pay/pay?'+this._id
+				    });
+				            }
 				  }
 			
 		},

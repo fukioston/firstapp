@@ -121,9 +121,7 @@
 		initVueI18n
 	} from '@dcloudio/uni-i18n'
 	import messages from './i18n/index.js'
-	const {
-		t
-	} = initVueI18n(messages)
+	let t = null
 
 	export default {
 		name: 'UniDatetimePicker',
@@ -399,11 +397,10 @@
 			}
 		},
 		created() {
-			// if (this.form && this.formItem) {
-			// 	this.$watch('formItem.errMsg', (newVal) => {
-			// 		this.localMsg = newVal
-			// 	})
-			// }
+			if(!t) {
+				const  vueI18n = initVueI18n(messages)
+				t = vueI18n.t
+			}
 		},
 		mounted() {
 			this.platform()
@@ -516,6 +513,7 @@
 				setTimeout(() => {
 					this.popup = false
 					this.$emit('maskClick', this.value)
+					this.$refs.mobile.close()
 				}, 20)
 			},
 			setEmit(value) {
@@ -541,8 +539,8 @@
 						}
 					}
 				}
-				
-				
+
+
 				this.$emit('change', value)
 				this.$emit('input', value)
 				this.$emit('update:modelValue', value)
@@ -782,7 +780,9 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
+	$uni-primary: #007aff !default;
+
 	.uni-date {
 		/* #ifndef APP-NVUE */
 		width: 100%;
@@ -941,14 +941,14 @@
 	}
 
 	.popup-x-footer text:hover {
-		color: #007aff;
+		color: $uni-primary;
 		cursor: pointer;
 		opacity: 0.8;
 	}
 
 	.popup-x-footer .confirm {
 		margin-left: 20px;
-		color: #007aff;
+		color: $uni-primary;
 	}
 
 	.uni-date-changed {
