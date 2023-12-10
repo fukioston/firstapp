@@ -100,7 +100,7 @@
 				    if (e.index === 0) { // 假设 "立即购买" 是第一个按钮
 					console.log('ssss')
 				    uni.navigateTo({
-				        url: '/pages/pay/pay?'+this._id
+				        url: '/pages/pay/pay?_id='+this._id+'&nprice='+this.nprice
 				    });
 				            }
 				  }
