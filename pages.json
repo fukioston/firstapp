@@ -370,6 +370,35 @@
             }
             
         }
+        ,{
+            "path" : "pages/my_goods/my_goods",
+            "style" :
+            {
+                "navigationBarTitleText": "我的商品",
+                            "enablePullDownRefresh": false,
+                            "navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        },
+		{
+		    "path" : "pages/my_goods/other_goods",
+		    "style" :
+		    {
+		        "navigationBarTitleText": "TA的商品",
+		                    "enablePullDownRefresh": false,
+		                    "navigationBarBackgroundColor": "#7e0c6e"
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/update_my_item/update_my_item",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

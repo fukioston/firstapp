@@ -55,8 +55,8 @@ User_mes	String
 			</view>
 			<view class="item" @click="to_items">
 				<view class="text">
-					<text>{{user.sell_num}}</text>
-					<text>TA的商品</text>
+					<text>{{user.pub_num}}</text>
+					<text>商品</text>
 				</view>
 			
 			</view>
@@ -198,8 +198,22 @@ User_mes	String
 						url:'/pages/fans/other_fans?data='+encodeURIComponent(JSON.stringify(this.user))
 					});
 				}
-				
 			},
+			to_items(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'未指定',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+						const str=JSON.stringify(this.user);
+					uni.navigateTo({
+						url:'/pages/my_goods/other_goods?data='+encodeURIComponent(str)
+					});
+					}
+				},
 			copy(){
 				if(this.user.user_name==''||this.user.user_name==null){
 					uni.showToast({

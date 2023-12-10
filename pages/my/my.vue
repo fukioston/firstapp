@@ -54,10 +54,10 @@ User_mes	String
 				</view>
 				
 			</view>
-			<view class="item" @click="to_items">
+			<view class="item" @click="to_goods">
 				<view class="text">
-					<text>{{user.sell_num}}</text>
-					<text>我的商品</text>
+					<text>{{user.pub_num}}</text>
+					<text>商品</text>
 				</view>
 			
 			</view>
@@ -253,6 +253,20 @@ User_mes	String
 					          })
 					        }
 					      });
+					}
+				},
+				to_goods(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					uni.navigateTo({
+						url:'/pages/my_goods/my_goods'
+					});
 					}
 				},
 				...mapActions(['Deleteuser'])

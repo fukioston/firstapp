@@ -52,7 +52,7 @@
 		},
 		methods: {
 			to_other(msg){
-				if(msg.user_name==this.$store.state.Nowuser){
+				if(msg.user_name==this.$store.state.Nowuser.user_name){
 					uni.switchTab({
 						url:"/pages/my/my"
 					});
