@@ -53,11 +53,18 @@
 			to_other(msg){
 				console.log(1);
 				console.log(msg);
-				const str=JSON.stringify(msg);
-				console.log("next "+msg.user_name);
-				uni.navigateTo({
-					url:"/pages/other/other?data=" + encodeURIComponent(str)
-				});
+				if(msg.user_name==this.$store.state.Nowuser.user_name){
+					uni.switchTab({
+						url:"/pages/my/my"
+					});
+				}
+				else{
+					const str=JSON.stringify(msg);
+					console.log("next "+msg.user_name);
+					uni.navigateTo({
+						url:"/pages/other/other?data=" + encodeURIComponent(str)
+					});
+				}
 			}
 		}
 	}

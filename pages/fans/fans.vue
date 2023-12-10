@@ -52,6 +52,11 @@
 		},
 		methods: {
 			to_other(msg){
+				if(msg.user_name==this.$store.state.Nowuser){
+					uni.switchTab({
+						url:"/pages/my/my"
+					});
+				}
 				const str=JSON.stringify(msg);
 				console.log("next "+msg.user_name);
 				uni.navigateTo({

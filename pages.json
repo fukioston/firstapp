@@ -361,6 +361,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/fresh-other/fresh-other",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -229,7 +229,11 @@ User_mes	String
 						order:order
 					}
 				}).then(res=>{
-					//需要修改
+					console.log(1);
+					const str=JSON.stringify(this.user);
+					uni.navigateTo({
+						url:"/pages/fresh-other/fresh-other?data=" + encodeURIComponent(str)
+					});
 				});
 			}
 			
