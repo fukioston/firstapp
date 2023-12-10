@@ -19,7 +19,7 @@ User_mes	String
 		</view>
 		<view class="user-center">
 			<view class="ima" @click="set_info">
-				<image class='avatar' 
+				<image class='avatar'
 				:src="user.graph[0].path"
 				 alt="../../static/image/travel/personal/tx.png"
 				>
@@ -28,7 +28,7 @@ User_mes	String
 				<view class="userId">
 					<image src="../../static/image/travel/personal/id.png">
 					<view class="number">
-						<text>{{user.user_name}}</text>
+						<text>{{user.nick_name}}</text>
 						<text @click="copy">复制</text>
 					</view>
 				</view>
@@ -134,7 +134,9 @@ User_mes	String
 						pub_num:0,
 						state:false,
 						history:[],
-						user_mes:''
+						user_mes:'',
+						nick_name:'',
+						user_id:''
 					},
 					login_logout:"",
 					focus_num:0,
@@ -151,8 +153,6 @@ User_mes	String
 				}
 				else{
 					this.login_logout="您还未登录，点击此处登录";
-					let user=uniCloud.getCurrentUserInfo();
-					console.log(user)
 				}
 				console.log(this.user);
 				if(this.user.focus){
@@ -166,7 +166,7 @@ User_mes	String
 				tologin_logout(){
 					if(this.$store.state.Nowuser==''){
 						uni.navigateTo({
-							url:"/pages/login/login"
+							url:"/uni_modules/uni-id-pages/pages/login/login-withpwd"
 						});
 					}
 					else{

@@ -17,7 +17,7 @@
 				/>
 		</uni-forms-item>
 		<uni-forms-item label="用户昵称" required>
-			<uni-easyinput  v-model="userinfos.name" :placeholder="userinfos.user_name" />
+			<uni-easyinput  v-model="userinfos.nick_name" :placeholder="userinfos.nick_name" />
 		</uni-forms-item>
 		<uni-forms-item label="个人介绍" required>
 			<uni-easyinput  v-model="userinfos.user_mes" :placeholder="userinfos.user_mes" />

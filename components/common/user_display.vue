@@ -8,7 +8,7 @@
 		<view class="info">
 			<view class="userId">
 				<view class="number">
-					<text>{{msg.user_name}}</text>
+					<text>{{msg.nick_name}}</text>
 				</view>
 			</view>
 			      <view class="card-content">

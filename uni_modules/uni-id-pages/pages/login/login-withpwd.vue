@@ -35,6 +35,7 @@
 </template>
 
 <script>
+	import {mapActions} from "vuex";
 	import mixin from '@/uni_modules/uni-id-pages/common/login-page.mixin.js';
 	const uniIdCo = uniCloud.importObject("uni-id-co", {
 		errorOptions: {
@@ -42,6 +43,7 @@
 		}
 	})
 	export default {
+		
 		mixins: [mixin],
 		data() {
 			return {
@@ -65,6 +67,7 @@
 			// #endif
 		},
 		methods: {
+			...mapActions(['Recorduser']),
 			// 页面跳转，找回密码
 			toRetrievePwd() {
 				let url = '/uni_modules/uni-id-pages/pages/retrieve/retrieve'
@@ -106,6 +109,8 @@
 				}
 
 				if (this.needAgreements && !this.agree) {
+					console.log('here1');
+					this.Recorduser(res.result.user);
 					return this.$refs.agreements.popup(this.pwdLogin)
 				}
 
@@ -121,9 +126,25 @@
 				} else {
 					data.username = this.username
 				}
-
 				uniIdCo.login(data).then(e => {
-					this.loginSuccess(e)
+					uniCloud.callFunction({
+						name:'get_user_info',
+						data:{uid:e.uid}
+					}).then(mes=>{
+						if(mes.result.state){
+							console.log(1);
+							this.Recorduser(mes.result.user);
+						    this.loginSuccess(e);
+							console.log(1);
+						}
+						else{
+							uni.showToast({
+								title:'载入用户错误',
+								duration:2000,
+								icon:'error'
+							});
+						}
+					});
 				}).catch(e => {
 					if (e.errCode == 'uni-id-captcha-required') {
 						this.needCaptcha = true

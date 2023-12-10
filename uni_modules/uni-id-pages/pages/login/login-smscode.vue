@@ -67,6 +67,7 @@
 					"code": this.code,
 					"captcha": this.captcha
 				}).then(e => {
+					console.log(e);
 					this.loginSuccess(e)
 				}).catch(e => {
 					if (e.errCode == 'uni-id-captcha-required') {

@@ -123,17 +123,32 @@
 				})
 			},
 			submitForm(params) {
+				let uid='';
 				uniIdCo.registerUser(this.formData).then(e => {
 						//this.loginSuccess(e)
-						console.log(e.uid)
-						
-						
+						console.log(e.uid);
+						uniCloud.callFunction({
+							name:'add_user_info',
+							data:{uid:e.uid}
+						}).then(res=>{
+							if(res.result.state){
+								this.toLogin();
+							}
+							else{
+								uni.showToast({
+									title:'加入用户信息错误',
+									icon:'error',
+									duration:2000
+								})
+							}
+						});
+						uid=e.uid;
 					})
 					.catch(e => {
 						console.log(e.message);
 						//更好的体验：登录错误，直接刷新验证码
 						this.$refs.captcha.getImageCaptcha()
-					})
+					});
 			},
 			navigateBack() {
 				uni.navigateBack()
