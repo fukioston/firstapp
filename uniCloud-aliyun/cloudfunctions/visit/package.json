@@ -1,0 +1,7 @@
+{
+  "name": "visit",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

@@ -399,6 +399,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/visitors/visitors",
+            "style" :
+            {
+                "navigationBarTitleText": "我的访客",
+                            "enablePullDownRefresh": false,
+                            "navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

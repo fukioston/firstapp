@@ -11,7 +11,7 @@ const store = new Vuex.Store({
 			state.Nowuser=username
 		},
 		LOGOUT(state){
-			state.Nowuser=''
+			state.Nowuser='';
 		},
 		Load(state){
 			let Nowuser=uni.getStorageSync('Nowuser');
@@ -32,6 +32,7 @@ const store = new Vuex.Store({
 			context.commit('Load');
 		},
 		Deleteuser(context){
+			uni.setStorageSync('Nowuser','');
 			context.commit('LOGOUT')
 		}
 	}

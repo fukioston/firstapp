@@ -62,8 +62,8 @@ User_mes	String
 			
 			</view>
 			<view class="item">
-				<view class="text">
-					<text>0</text>
+				<view class="text" @click="to_visitors">
+					<text>{{visitor_num}}</text>
 					<text>访客</text>
 				</view>
 			</view>
@@ -136,8 +136,10 @@ User_mes	String
 						history:[],
 						user_mes:'',
 						nick_name:'',
-						user_id:''
+						user_id:'',
+						visitors:[]
 					},
+					visitor_num:0,
 					login_logout:"",
 					focus_num:0,
 					fans_num:0
@@ -162,6 +164,9 @@ User_mes	String
 				if(this.user.fans){
 					this.fans_num=this.user.fans.length;
 				}
+				if(this.user.visitors){
+					this.visitor_num=this.user.visitors.length;
+				}
 			},
 			methods: {
 				tologin_logout(){
@@ -176,8 +181,7 @@ User_mes	String
 							data:this.user
 						}).then(res=>{
 							if(res.result.state){
-								this.user.user_name=this.$store.state.Nowuser.user_name;
-							    this.$store.state.Nowuser='';
+								this.Deleteuser();
 							    uni.reLaunch({
 							    	url:'/pages/my/my'
 							    })
@@ -233,6 +237,20 @@ User_mes	String
 					else{
 					uni.navigateTo({
 						url:'/pages/fans/fans'
+					});
+					}
+				},
+				to_visitors(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					uni.navigateTo({
+						url:'/pages/visitors/visitors'
 					});
 					}
 				},

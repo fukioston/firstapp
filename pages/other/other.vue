@@ -60,9 +60,9 @@ User_mes	String
 				</view>
 			
 			</view>
-			<view class="item">
+			<view class="item" @click="to_visitors">
 				<view class="text">
-					<text>0</text>
+					<text>{{visitor_num}}</text>
 					<text>访客</text>
 				</view>
 			</view>
@@ -118,6 +118,8 @@ User_mes	String
 
 
 <script>
+	
+	import {mapActions,mapState} from "vuex";
 	export default {
 		data() {
 			return {
@@ -133,13 +135,16 @@ User_mes	String
 					history:[],
 					user_mes:''
 				},
+				visitor_num:0,
 				focus_num:0,
 				iffocued:false,
 				fans_num:0,
 			}
 		},
+		computed:{
+			...mapState(['Nowuser'])
+		},
 		onLoad(options){
-			console.log(options);
 			if(options){
 				if(options.data){
 					this.user=JSON.parse(decodeURIComponent(options.data));
@@ -152,10 +157,7 @@ User_mes	String
 				this.fans_num=this.user.fans.length;
 			}
 			let foculist=this.$store.state.Nowuser.focus;
-			console.log(foculist);
 			for(let i in foculist){
-				console.log(foculist[i]);
-				console.log(this.user.user_name);
 				if(foculist[i]==this.user.user_name){
 					this.iffocued=true;
 				}
@@ -168,7 +170,31 @@ User_mes	String
 				})
 			}
 		},
+		onShow(){
+			console.log(this.user.user_name);
+			console.log(this.$store.state.Nowuser.user_name);
+			if(this.user.user_name){
+				if(this.$store.state.Nowuser.user_name){
+					uniCloud.callFunction({
+						name:'visit',
+						data:{
+							fir:this.user,
+							sec:this.$store.state.Nowuser
+						}
+					}).then(res=>{});
+				}
+			}
+			this.visitor_num=this.user.visitors.length;
+			console.log(this.visitor_num);
+		},
 		methods: {
+			to_visitors(){
+				uni.showToast({
+					title:'不可以查看别人的访客哦',
+					icon:"error",
+					duration:2000
+				})
+			},
 			to_focus(){
 				if(this.user.user_name==''||!this.user){
 					uni.showToast({
