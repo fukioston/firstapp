@@ -134,7 +134,7 @@ export default {
 .confirm-payment button {
   width: 100%;
   padding: 10px;
-  background-color: #f60;
+  background-color: #7e0c6e;
   color: #fff;
   border: none;
   border-radius: 4px;
