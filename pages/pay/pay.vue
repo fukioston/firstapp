@@ -25,16 +25,18 @@
 
     <!-- 确认支付按钮 -->
     <view class="confirm-payment">
-      <button>确认付款</button>
+      <button @click="confirmPayment">确认付款</button>
     </view>
   </view>
 </template>
 
 <script>
+	import uniIm from '@/uni_modules/uni-im/lib/main.js';
 export default {
   data() {
     return {
 		item_id:"",
+		buyer_id:"",
 		nprice:"",
       paymentMethods: [
         // 示例数据，实际应该从后端获取
@@ -47,6 +49,7 @@ export default {
   onLoad(e) {
   	
   	this.item_id = e._id;
+	this.buyer_id=uniCloud.getCurrentUserInfo().uid
 	this.nprice = e.nprice ;
 	console.log(e.nprice)
   	// #ifdef APP-PLUS  
@@ -55,6 +58,30 @@ export default {
   	// #endif
   	
   },
+  methods: {
+    // ... 其他方法 ...
+  
+    confirmPayment() {
+      uniCloud.callFunction({
+      	name:"upload_order",
+      	data:{
+      		item_id:this.item_id,
+      		buyer_id:this.buyer_id,
+      	}
+      	
+      }).then(res=>{
+      	console.log(res)
+      	uni.showToast({
+      		title: '购买成功',
+      		
+      	})
+		
+      						
+      });
+	  console.log(this.buyer_id)
+    }
+  }
+
 };
 </script>
 
