@@ -2,14 +2,15 @@ const db=uniCloud.database()
 const goods=db.collection("goods")
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
-	let {name,fileUrl,introduction,oprice,nprice}=event
+	let {name,imgUrl,introduction,oprice,nprice,upload_id}=event
 	return await goods.add({
 		
 			name,
-			fileUrl,
+			imgUrl,
 			introduction,
 			oprice,
-			nprice
+			nprice,
+			upload_id
 		
 	})
 	//返回数据给客户端

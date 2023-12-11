@@ -96,10 +96,11 @@
 								name:"upload-item",
 								data:{
 									name:this.itemname,
-									fileUrl:this.fileUrl,
+									imgUrl:this.fileUrl,
 									introduction:this.introduction,
 									oprice:this.oprice,
 									nprice:this.nprice,
+									upload_id:uniCloud.getCurrentUserInfo().uid
 								}
 								
 							}).then(res=>{
@@ -167,6 +168,7 @@
 	.uploadBtn{
 		width: 95%;
 		margin: 0 auto;
+		background-color: #7e0c6e;
 		
 	}
 </style>
