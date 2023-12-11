@@ -143,11 +143,6 @@
 				conversation_id,
 				user_id
 			}) {
-				// 初始化会话列表
-				// console.log('初始化会话列表',{
-				// 	conversation_id,
-				// 	user_id,
-				// });
 				
 				await this.loadMore()
 				if (conversation_id) {
@@ -158,8 +153,6 @@
 					const currentConversation = await uniIm.conversation.get({
 						friend_uid: user_id
 					})
-					// console.log('currentConversation', currentConversation);
-					// 当前用户给对方发个消息
 					this.toChat(currentConversation.id)
 				} else {
 					if (this.isWidescreen) {
@@ -177,6 +170,10 @@
 				}
 			},
 			async toChat(param) {
+				const currentConversation = await uniIm.conversation.get({
+					friend_uid:param
+				});
+				console.log('currentConversation', currentConversation);
 				this.chatInfoIsShow = false;
 				let conversation_id = ''
 				if (typeof param == 'string') {
