@@ -12,11 +12,24 @@ const store = new Vuex.Store({
 		},
 		LOGOUT(state){
 			state.Nowuser=''
+		},
+		Load(state){
+			let Nowuser=uni.getStorageSync('Nowuser');
+			if(Nowuser){
+				state.Nowuser=Nowuser;
+			}
+			else{
+				state.Nowuser='';
+			}
 		}
 	},
 	actions:{
 		Recorduser(context,username){
-			context.commit('LOGIN',username)
+			context.commit('LOGIN',username);
+			uni.setStorageSync('Nowuser',username);
+		},
+		getlocalUser(context){
+			context.commit('Load');
 		},
 		Deleteuser(context){
 			context.commit('LOGOUT')

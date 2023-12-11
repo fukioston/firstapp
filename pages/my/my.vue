@@ -147,6 +147,7 @@ User_mes	String
 				...mapState(['Nowuser'])
 			},
 			onShow(){
+				this.getlocalUser();
 				if(this.$store.state.Nowuser.user_name!=""&&this.$store.state.Nowuser.user_name!=null){
 					this.user=this.$store.state.Nowuser;
 					this.login_logout="点击此处退出登录";
@@ -269,7 +270,7 @@ User_mes	String
 					});
 					}
 				},
-				...mapActions(['Deleteuser'])
+				...mapActions(['Deleteuser','getlocalUser'])
 			}
 		};
 	</script>
