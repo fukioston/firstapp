@@ -35,7 +35,8 @@ exports.main = async (event, context) => {
 		user_mes:'',
 		user_id:event.uid,
 		nick_name:nickname,
-		visitors:[]
+		visitors:[],
+		orders:[]
 	});
 	return {state:true};
 	//返回数据给客户端

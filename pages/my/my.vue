@@ -88,7 +88,7 @@ User_mes	String
 				</view>
 			</view>
 			<view class="set">
-				<view>
+				<view @click="goto_order">
 					<image class="icon" src="../../static/image/travel/personal/pic04.png">
 						<text>我的订单</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
@@ -167,6 +167,12 @@ User_mes	String
 				if(this.user.visitors){
 					this.visitor_num=this.user.visitors.length;
 				}
+				uniCloud.callFunction({
+					name:'load_order',
+					data:{
+						user:this.user
+					}
+				}).then(res=>{});
 			},
 			methods: {
 				tologin_logout(){
@@ -287,6 +293,11 @@ User_mes	String
 						url:'/pages/my_goods/my_goods'
 					});
 					}
+				},
+				goto_order(){
+					uni.navigateTo({
+						url:'/pages/my_order/my_order'
+					});
 				},
 				...mapActions(['Deleteuser','getlocalUser'])
 			}

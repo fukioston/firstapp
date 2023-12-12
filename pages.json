@@ -409,6 +409,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/my_order/my_order",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的订单",
+                            "enablePullDownRefresh": false,
+                            "navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
