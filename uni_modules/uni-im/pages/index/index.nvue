@@ -433,15 +433,15 @@
 				conversation_id,
 				user_id
 			}) {
-				// 初始化会话列表
-				// console.log('初始化会话列表',{
-				// 	conversation_id,
-				// 	user_id,
-				// });
+				初始化会话列表
+				console.log('初始化会话列表',{
+					conversation_id,
+					user_id,
+				});
 				
 				await this.loadMore()
 				if (conversation_id) {
-					// console.log('conversation_id', conversation_id);
+					console.log('conversation_id', conversation_id);
 					this.toChat(conversation_id)
 				} else if (user_id) {
 					//创建会话

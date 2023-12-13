@@ -27,10 +27,7 @@
 							:title.native="`选择${item.title}，并发送`"
 						></uni-im-icons>
 					</view>
-					<label class="code-model" style="flex-direction: row;margin-left: 10px;">
-						<text>代码模式：</text>
-						<switch style="transform: scale(0.8) translateX(-10px);" @change="isCodeText = $event.detail.value"></switch>
-					</label>
+					<!--  -->
 				</view>
 				<view class="answer-msg" v-if="answerMsgIndex !== false">
 					<text class="answer-msg-text">{{getNicknameByUid(msgList[answerMsgIndex].from_uid)}}：{{msgList[answerMsgIndex].body}}</text>
@@ -49,7 +46,7 @@
 			<template v-if="!isWidescreen">
 				<view v-if="showInputBox" class="input-box">
 					<!-- 切换为语音模式 -->
-					<uni-im-icons @click="changeSoundIsShow" :code="soundIsShow?'e69f':'e684'" size="30" class="icon"></uni-im-icons>
+					<!-- <uni-im-icons @click="changeSoundIsShow" :code="soundIsShow?'e69f':'e684'" size="30" class="icon"></uni-im-icons> -->
 					<view class="input-box-conetnt">
 						<view class="textarea-box">
 							<textarea
@@ -462,19 +459,19 @@
 			uniIm.currentConversationId = false
 			// console.log('beforeDestroy');
 			// 关闭sound播放
-			uniIm.audioContext.stop()
+			
 		},
 		beforeDestroy() {
 			//页面销毁之前销毁 全局变量 正在聊天的用户的id
 			uniIm.currentConversationId = false
 			// console.log('beforeDestroy');
 			// 关闭sound播放
-			uniIm.audioContext.stop()
+			
 		},
 		onHide() {
 			uniIm.currentConversationId = false
 			// 关闭sound播放
-			uniIm.audioContext.stop()
+			
 		},
 		async onLoad(param) {
 			//调用load方法，因为pc宽屏时本页面是以组件形式展示。如$refs.chatView.loadconversation_id()执行
@@ -485,7 +482,7 @@
 				this.answerMsgIndex = false
 				// conversation_id = "single_eff0518ad35e16a8a025cc8af03e0388"
 				
-				// console.log('conversation_id',conversation_id);
+				 // console.log('conversation_id',conversation_id);
 				this.conversation = await uniIm.conversation.get(param)
 				// this.conversation.call_list = []
 				// console.log('this.conversation',this.conversation)

@@ -88,6 +88,7 @@ import uniIm from '@/uni_modules/uni-im/lib/main.js';
 					});
 				} else {
 					// 若为窄屏，则打开新窗体，在新窗体打开详情页面
+					console.log('currentConversation', currentConversation.id);
 					uni.navigateTo({
 						url: '/uni_modules/uni-im/pages/chat/chat?conversation_id=' + currentConversation.id
 					});

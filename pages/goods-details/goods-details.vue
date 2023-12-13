@@ -182,6 +182,7 @@
 					conversation_id = uniImUtils.getConversationId(param ||
 					 	uniCloud.getCurrentUserInfo().uid)
 				} 
+				console.log(conversation_id)
 				uniIm.currentConversationId = conversation_id
 				if (this.isWidescreen) { //若为宽屏，则触发右侧详情页的自定义事件，通知右侧窗体刷新详情
 					this.$nextTick(() => {
