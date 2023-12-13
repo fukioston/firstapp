@@ -103,7 +103,7 @@ User_mes	String
 						<text>在线客服</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view>
+				<view @click="set_info">
 					<image class="icon" src="../../static/image/travel/personal/pic07.png">
 						<text>设置</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
@@ -156,6 +156,16 @@ User_mes	String
 				}
 				else{
 					this.login_logout="您还未登录，点击此处登录";
+				}
+				console.log(this.user);
+				if(this.user.user_id){
+					uniCloud.callFunction({
+						name:"get_user_info",
+						data:{uid:this.user.user_id}
+					}).then(res=>{
+						this.user=res.result.user;
+						this.Recorduser(this.user);
+					});
 				}
 				console.log(this.user);
 				if(this.user.focus){
@@ -299,7 +309,7 @@ User_mes	String
 						url:'/pages/my_order/my_order'
 					});
 				},
-				...mapActions(['Deleteuser','getlocalUser'])
+				...mapActions(['Deleteuser','getlocalUser','Recorduser'])
 			}
 		};
 	</script>
