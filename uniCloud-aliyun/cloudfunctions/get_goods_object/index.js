@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
 	let data2=res2.data;
 			console.log(event);
 	for(let i=0;i<data.length;i++){
-		if(data[i].user_name==event.user.user_name){
+		if(data[i].upload_id==event.user.uid){
 			list.push(data[i]);
 		}
 	}
