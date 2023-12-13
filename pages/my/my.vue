@@ -103,7 +103,7 @@ User_mes	String
 						<text>在线客服</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view>
+				<view @click="set_info">
 					<image class="icon" src="../../static/image/travel/personal/pic07.png">
 						<text>设置</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">

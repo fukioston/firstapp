@@ -205,5 +205,9 @@
 
 	button {
 		margin-top: 15px;
+		// background-color: #7e0c6e;
+	}
+	.uni-btn{
+		background-color: #7e0c6e;
 	}
 </style>
