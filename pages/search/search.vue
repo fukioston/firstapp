@@ -26,8 +26,8 @@
 				<view class='f-color'>热门搜索</view>
 			</view>
 			<view>
-				<view class='search-name f-color'>四件套</view>
-				<view class='search-name f-color'>面膜</view>
+				<view class='search-name f-color'@tap='toSearchList("南开")'>南开</view>
+				<view class='search-name f-color'@tap='toSearchList("大衣")'>大衣</view>
 			</view>
 		</view>
 		

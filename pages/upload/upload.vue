@@ -1,7 +1,8 @@
 <template>
 	<view class="container">
 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">可上传商品详情(暂未完全实现)</text>
+			<text class="uni-h6">可上传商品详情(暂未完全实现)bug
+			不填也可以上传，多个图片只显示一个</text>
 		</uni-card>
 		
 		<uni-section title="上传图片" type="line">

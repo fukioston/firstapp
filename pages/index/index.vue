@@ -21,10 +21,16 @@
 					 "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/cloudstorage/ed17ba31-28c2-4967-ad23-a59b941b91b7.png",
 					  "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/cloudstorage/ed17ba31-28c2-4967-ad23-a59b941b91b7.png"
 				],
-				dataList:[]
+				dataList:[],
+				currentpage:0
 			}
 		},
-		
+		async onReachBottom() {
+			this.currentpage+=1;
+				const res = this.getAll();
+				console.log(res);
+
+				},
 		onLoad() {
 			this.getAll();
 			uni.getPushClientId({
@@ -34,6 +40,7 @@
 				}
 			})
 			uni.onPushMessage(res=>{
+				
 				console.log(res)
 			})
 				
@@ -66,11 +73,11 @@
 				uniCloud.callFunction({
 					name:"GetCommodity",
 					data:{
-						name:'haha'
+						page:this.currentpage,
 					}
 				}).then(res=>{
 					console.log(res)
-					this.dataList=res.result.data
+					 this.dataList = this.dataList.concat(res.result.data);
 				})
 			},
 		}

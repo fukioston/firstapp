@@ -5,6 +5,7 @@
 			"style": {
 				"navigationBarTitleText": "南开大学二手平台",
 				"navigationBarBackgroundColor": "#7e0c6e",
+				"onReachBottonDistance":50  ,  // 距离底部50px时，触发onReachBottom事件
 			"app-plus":{
 					"scrollIndicator":"none",
 					"titleNView":{
