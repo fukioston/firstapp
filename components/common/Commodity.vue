@@ -69,15 +69,23 @@ export default {
 </script>
 
 <style scoped>
-.commodity{
+.commodity {
 	display: flex;
-	align-items: space-around;
-	justify-content: space-around;
+	align-items: space-between;
+	justify-content: space-between;
 	background-color: aliceblue;
-	padding: 3rpx;
-	
-	
+	padding: 3rpx; /* 注意这里应该是 'px' 而不是 'rpx' */
 }
+
+.commodity::after {
+	content: '';
+	flex: 1;
+}
+
+.commodity > *:only-child {
+	flex-grow: 0;
+}
+
 .commodity-item{
 	padding-bottom:20rpx;
 	border:1px solid gray;

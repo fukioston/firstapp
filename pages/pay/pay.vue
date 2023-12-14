@@ -1,6 +1,9 @@
 <template>
   <view class="payment-page">
     <!-- 头部：用户信息 -->
+	<uni-card :is-shadow="false" is-full>
+		<text class="uni-h6">支付(无营业执照无法申请，故模拟支付)</text>
+	</uni-card>
     <view class="header">
       <view class="user-info">
         <view>付款信息</view>

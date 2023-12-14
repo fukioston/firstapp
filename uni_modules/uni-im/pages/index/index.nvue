@@ -76,11 +76,11 @@
 			<!-- 聊天窗口 -->
 			<view id="chat-view-box">
 				<template v-if="!showContactsView && currentConversationId">
-					<view id="chat-header" v-if="!showContactsView">
+					<!-- <view id="chat-header" v-if="!showContactsView"> -->
 						<!-- 群标题 -->
-						<text :selectable="true">{{currentConversation.title}}</text>
-						<uni-icons @click="showChatInfo" class="more" type="more-filled" size="20"></uni-icons>
-					</view>
+						<!-- <text :selectable="true">{{currentConversation.title}}</text> -->
+						<!-- <uni-icons @click="showChatInfo" class="more" type="more-filled" size="20"></uni-icons> -->
+					<!-- </view> -->
 					<view id="chat-view">
 						<chat-view ref="chat-view"></chat-view>
 					</view>
@@ -285,13 +285,13 @@
 				joinGroup
 			} = param
 			
-			let version = "2023-05-22-01"
-			// 发布新版本后，清理旧版本下的storage避免脏数据引发问题
-			let lastVersion = uni.getStorageSync('uni-im-storage-version')
-			if (lastVersion && lastVersion != version) {
-				uni.setStorageSync('uni-im-storage-version', version)
-				uni.clearStorage()
-			}
+			// let version = "2023-05-22-01"
+			// // 发布新版本后，清理旧版本下的storage避免脏数据引发问题
+			// let lastVersion = uni.getStorageSync('uni-im-storage-version')
+			// if (lastVersion && lastVersion != version) {
+			// 	uni.setStorageSync('uni-im-storage-version', version)
+			// 	uni.clearStorage()
+			// }
 
 			let {
 				tokenExpired
@@ -338,29 +338,29 @@
 			 * 在本页面链接传递参数 joinGroup=group_id即可申请加入群，
 			 * 比如：http://localhost:8082/#/uni_modules/uni-im/pages/index/index?joinGroup=xxx
 			 */ 
-			if(joinGroup){
-				let group_id = joinGroup
-				// #ifdef H5
-				//删除地址栏的token，且不刷新页面
-				history.pushState({}, '', '/#/');
-				// #endif
-				console.log('group_id',group_id);
-				db.collection('uni-im-group-join').add({
-					group_id,
-					"message":''
-				}).then((res) => {
-					console.log("res: ",res);
-					uni.showToast({
-						icon: 'none',
-						title: '已申请'
-					})
-				}).catch((err) => {
-					uni.showModal({
-						content: err.message || '请求服务失败',
-						showCancel: false
-					})
-				})
-			}
+			// if(joinGroup){
+			// 	let group_id = joinGroup
+			// 	// #ifdef H5
+			// 	//删除地址栏的token，且不刷新页面
+			// 	history.pushState({}, '', '/#/');
+			// 	// #endif
+			// 	console.log('group_id',group_id);
+			// 	db.collection('uni-im-group-join').add({
+			// 		group_id,
+			// 		"message":''
+			// 	}).then((res) => {
+			// 		console.log("res: ",res);
+			// 		uni.showToast({
+			// 			icon: 'none',
+			// 			title: '已申请'
+			// 		})
+			// 	}).catch((err) => {
+			// 		uni.showModal({
+			// 			content: err.message || '请求服务失败',
+			// 			showCancel: false
+			// 		})
+			// 	})
+			// }
 		},
 		async onReady() {
 			// #ifdef H5
@@ -394,7 +394,6 @@
 				return data
 			},
 			clickMenu(data) {
-				// console.log('79879789798898798978789', data);
 				this.dynamicComponentName = data.componentName
 
 				if (data.title) {
@@ -466,21 +465,21 @@
 					}
 				}
 			},
-			search(e) {
-				// console.log("search-e: " + JSON.stringify(e));
-				uni.showToast({
-					title: '加好友功能入口，暂时在左侧菜单的通讯录中',
-					icon: 'none',
-					duration: 3000
-				});
-			},
-			addUser() {
-				uni.showToast({
-					title: '加好友功能入口，暂时在左侧菜单的通讯录中',
-					icon: 'none',
-					duration: 3000
-				});
-			},
+			// search(e) {
+			// 	// console.log("search-e: " + JSON.stringify(e));
+			// 	uni.showToast({
+			// 		title: '加好友功能入口，暂时在左侧菜单的通讯录中',
+			// 		icon: 'none',
+			// 		duration: 3000
+			// 	});
+			// },
+			// addUser() {
+			// 	uni.showToast({
+			// 		title: '加好友功能入口，暂时在左侧菜单的通讯录中',
+			// 		icon: 'none',
+			// 		duration: 3000
+			// 	});
+			// },
 			async toChat(param) {
 				this.chatInfoIsShow = false;
 				// console.log('param',param);
@@ -517,14 +516,14 @@
 			showChatInfo() {
 				this.chatInfoIsShow = !this.chatInfoIsShow
 			},
-			toUcenter() {
-				uni.navigateTo({
-					url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo?showLoginManage=true',
-					complete(e) {
-						console.log("e: " + JSON.stringify(e));
-					}
-				})
-			},
+			// toUcenter() {
+			// 	uni.navigateTo({
+			// 		url: '/uni_modules/uni-id-pages/pages/userinfo/userinfo?showLoginManage=true',
+			// 		complete(e) {
+			// 			console.log("e: " + JSON.stringify(e));
+			// 		}
+			// 	})
+			// },
 			friendlyTime(timestamp) {
 				return uniImUtils.toFriendlyTime(timestamp)
 			},

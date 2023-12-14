@@ -3,12 +3,15 @@
 		<view>
 			<IndexSwiper class="detail_img" :dataList='imglist'></IndexSwiper>
 			<view class="textbox">
-
+				<view>
+					<text class='nprice'>¥{{nprice}}</text>
+					<text class='oprice'>¥{{oprice}}</text>
+				</view>
 				<view class="name">
 					<text>{{name}}</text>
 				</view>
 				<view class="introduction">
-					<text>介绍：{{introduction}}</text>
+					<text>{{introduction}}</text>
 				</view>
 			</view>
 		</view>
@@ -310,17 +313,17 @@
 	}
 
 	.goods-carts {
-		// /* #ifndef APP-NVUE */
-		// display: flex;
-		// /* #endif */
-		// flex-direction: column;
+		
 		position: fixed;
-		// left: 0;
-		// right: 0;
-		// #ifdef H5 */
-		// left: var(--window-left);
-		// right: var(--window-right);
-		/* #endif
-		bottom: 0;
+		
+	}
+	.oprice{
+		text-decoration: line-through;
+		font-size:40rpx;
+		color:#999999;
+	}
+	.nprice{
+		font-size:40rpx;
+		color:red;
 	}
 </style>
