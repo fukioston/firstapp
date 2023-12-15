@@ -63,7 +63,7 @@
 				}]
 			}
 		},
-		 async onLoad(param) {
+		 onLoad(param) {
 			let {
 				token,
 				user_id,
@@ -71,7 +71,17 @@
 				joinGroup
 			} = param
 			this._id = param._id;
-			this.get_details()
+			this.get_details().then(res => {
+							this.details = res
+							this.introduction = this.details[0].introduction
+							this.name = this.details[0].name
+							this.nprice = this.details[0].nprice
+							this.oprice = this.details[0].oprice
+							this.imglist = this.details[0].imgUrl
+							this.upload_id = this.details[0].upload_id
+						})
+			//this.get_details()
+			
 			// #ifdef APP-PLUS  
 			var webView = this.$mp.page.$getAppWebview();
 			webView.setTitleNViewSearchInputText(param._id);
@@ -205,21 +215,19 @@
 				this.chatInfoIsShow = !this.chatInfoIsShow
 			},
 			get_details() {
+				return new Promise((resolve, reject) => {
 				uniCloud.callFunction({
 					name: "get_details",
 					data: {
 						_id: this._id
+					},
+					success: (res) => {
+					resolve(res.result.data)
+					},
+					fail: (err) => {
+						reject(err)
 					}
-				}).then(res => {
-					this.details = res.result.data
-					this.introduction = this.details[0].introduction
-					this.name = this.details[0].name
-					this.nprice = this.details[0].nprice
-					this.oprice = this.details[0].oprice
-					this.imglist = this.details[0].imgUrl
-					this.upload_id = this.details[0].upload_id
-
-
+				})
 				})
 
 			},

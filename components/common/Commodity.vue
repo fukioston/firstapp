@@ -77,10 +77,10 @@ export default {
 	padding: 3rpx; /* 注意这里应该是 'px' 而不是 'rpx' */
 }
 
-.commodity::after {
+/* .commodity::after {
 	content: '';
 	flex: 1;
-}
+} */
 
 .commodity > *:only-child {
 	flex-grow: 0;

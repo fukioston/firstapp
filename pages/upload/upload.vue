@@ -10,14 +10,14 @@
 				<uni-file-picker 
 				limit="8" 
 				title="最多选择8张图片" 
-				:source-type="sourceType"
 				v-model="imageValue" 
 				fileMediatype="image" 
 					mode="grid" 
 					@select="select" 
 					@progress="progress" 
 					@success="success" 
-					@fail="fail" >
+					@fail="fail" 
+					@delete="d">
 					</uni-file-picker>
 			</view>
 		</uni-section>
@@ -103,7 +103,8 @@
 									introduction:this.introduction,
 									oprice:this.oprice,
 									nprice:this.nprice,
-									upload_id:uniCloud.getCurrentUserInfo().uid
+									upload_id:uniCloud.getCurrentUserInfo().uid,
+									graph:this.imageValue
 								}
 								
 							}).then(res=>{
@@ -117,22 +118,33 @@
 						
 						},
 			
+			
 			upload(){
 				this.$refs.files.upload()
 			},
 			select(e){
+				console.log(this.imageValue[0])
 							console.log('选择文件：',e)
+			
 						},
 						// 获取上传进度
 						progress(e){
 							console.log('上传进度：',e)
 						},
+						d(e){
+							console.log('删除：',e)
+							 var index = this.fileUrl.indexOf(e.tempFilePath);
+							    if (index > -1) {
+							        this.fileUrl.splice(index, 1);
+							    }
+							    console.log(this.fileUrl);
+						},
 						
 						// 上传成功
 						success(e){
 							console.log('上传成功')
-							this.fileUrl=e.tempFilePaths
-							console.log(fileUrl)
+							this.fileUrl = this.fileUrl.concat(e.tempFilePaths);
+								console.log(this.fileUrl);
 						},
 						
 						// 上传失败
