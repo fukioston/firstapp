@@ -52,18 +52,7 @@
 							"align": "left",
 							"autoFocus": false,
 							"borderRadius": "15px"
-						},
-						"buttons": [
-							{
-								"float": "right",
-								"color": "#636263",
-								"text": "筛选",
-								"fontSize": "14px",
-								"width":"60px"
-								
-							}
-							
-						]
+						}
 					}
 				}
             }

@@ -35,9 +35,9 @@ export default {
 				shopList:{
 				    currentIndex:0,
 					data:[
-						{name:"暂无",status:1},
-						{name:"暂无",status:0},
-						{name:"暂无",status:0}
+						{name:"价格",status:1},
+						{name:"名称",status:0},
+						
 					]
 				},
 				dataList:[]
@@ -48,31 +48,31 @@ export default {
 			CommodityList
 		},
 		mounted(){
-			this.getData();
+			this.getData().then(res=>{
+				this.dataList=res
+			})
 		},
 		methods: {
 			//请求数据数据
 			getData(){
-				uniCloud.callFunction({
-					name:"Search",
-					data:{
-							goods_name:this.keyword,
-							
-					}
-				}).then(res=>{
-					console.log(res)
-					this.dataList=res.result.data
+				return new Promise((resolve, reject) => {
+					uniCloud.callFunction({
+						name:"Search",
+						data:{
+								goods_name:this.keyword,
+								
+						},
+						success:(res)=>{
+							resolve(res.result.data)
+						},
+						fail: (err) => {
+							reject(err)
+										}
+					})
+				
 				})
-				// $http.request({
-				// 	url:"/goods/search",
-				// 	data:{
-				// 		goods_name:this.keyword,
-				// 		pprice:"desc"
-				// 	}
-				// }).then((res)=>{
-				// 	console.log(res)
-				// 	this.dataList = res;
-				// })
+	
+				
 			},
 			changTab(index){
 				//索引值
