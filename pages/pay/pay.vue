@@ -109,14 +109,18 @@ export default {
       	
       }).then(res=>{
       	console.log(res)
-		uni.showToast({
-			title: '购买成功',
-			
-		})
-		uni.switchTab({
-			url:'/pages/index/index'
-		})
-		console.log(res)
+			uni.showToast({
+							title: '购买成功',
+							duration: 2000,
+							icon: "none"
+						});
+						
+					
+			setTimeout(function() {
+							uni.switchTab({
+								url: '/pages/index/index'
+							});
+					}, 1000)
       	
   		
       						
