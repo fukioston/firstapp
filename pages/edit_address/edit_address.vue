@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view class="container" v-if="dataLoaded">
 		<uni-section  title="输入地址相关信息" type="line">
 			<uni-forms class="textinput" ref="baseForm"  label-position="top">
 			<uni-forms-item label="收件人" required>
@@ -29,6 +29,7 @@
 				number:"",
 				_id:"",
 				details:[],
+				dataLoaded:false,
 			}
 		},
 		methods: {
@@ -74,6 +75,7 @@
 				this.name=this.details[0].name
 				this.address=this.details[0].address
 				this.number=this.details[0].number
+				this.dataLoaded=true
 				})
 				},
 				

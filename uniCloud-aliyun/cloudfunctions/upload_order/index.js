@@ -2,10 +2,10 @@ const db=uniCloud.database()
 const order=db.collection("order")
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
-	let {item_id,buyer_id}=event
+	let {item_id,buyer_id,addr}=event
 	return await order.add({
 		
-			item_id,buyer_id
+			item_id,buyer_id,addr
 		
 	})
 	//返回数据给客户端
