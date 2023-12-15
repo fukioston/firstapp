@@ -93,7 +93,7 @@ User_mes	String
 						<text>我的订单</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view>
+				<view @click="goto_history">
 					<image class="icon" src="../../static/image/travel/personal/pic03.png">
 						<text>浏览记录</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
@@ -168,6 +168,9 @@ User_mes	String
 					});
 				}
 				console.log(this.user);
+				if(this.user.graph.length==0){
+					this.user.graph.push({path:"../../static/image/travel/personal/tx.png"});
+				}
 				if(this.user.focus){
 				this.focus_num=this.user.focus.length;
 				}
@@ -182,7 +185,8 @@ User_mes	String
 					data:{
 						user:this.user
 					}
-				}).then(res=>{});
+				}).then(res=>{
+				});
 			},
 			methods: {
 				tologin_logout(){
@@ -290,6 +294,21 @@ User_mes	String
 					      });
 					}
 				},
+				goto_history(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					uni.navigateTo({
+						url:"/pages/history/history"
+					});
+					}
+					
+				},
 				to_goods(){
 					if(this.user.user_name==''||this.user.user_name==null){
 						uni.showToast({
@@ -305,9 +324,18 @@ User_mes	String
 					}
 				},
 				goto_order(){
-					uni.navigateTo({
-						url:'/pages/my_order/my_order'
-					});
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}else{
+						uni.navigateTo({
+							url:'/pages/my_order/my_order'
+						});
+					}
+					
 				},
 				...mapActions(['Deleteuser','getlocalUser','Recorduser'])
 			}
