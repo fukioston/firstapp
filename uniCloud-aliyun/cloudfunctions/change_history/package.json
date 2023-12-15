@@ -1,0 +1,7 @@
+{
+  "name": "change_history",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

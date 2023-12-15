@@ -22,6 +22,7 @@
 </template>
 
 <script>
+	import {mapActions,mapState} from "vuex";
 	import IndexSwiper from '@/components/index/IndexSwiper.vue'
 	import uniImUtils from '@/uni_modules/uni-im/common/utils.js';
 	import uniIm from '@/uni_modules/uni-im/lib/main.js';
@@ -72,6 +73,20 @@
 				joinGroup
 			} = param
 			this._id = param._id;
+			uniCloud.callFunction({
+				name:'change_history',
+				data:{
+					user:this.$store.state.Nowuser,
+					good_id:this._id
+				}
+			}).then(res=>{
+				if(res.result.state){
+					console.log('right history');
+				}
+				else{
+					console.log("wrong history");
+				}
+			});
 			this.get_details().then(res => {
 							this.details = res
 							this.introduction = this.details[0].introduction
@@ -251,6 +266,22 @@
 						url: '/pages/pay/pay?_id=' + this._id + '&nprice=' + this.nprice
 					});
 				}
+			},
+			add_cansole_collection(option){//参数为true则添加，参数为false则取消
+				uniCloud.callFunction({
+					name:'add_collection',
+					data:{
+						option:option,
+						item_id:this._id,
+						user:this.$store.state.Nowuser
+					}
+				}).then(res=>{
+					if(res.result.state){
+						console.log('收藏成功');
+					}else{
+						console.log('收藏失败');
+					}
+				});
 			}
 
 		},

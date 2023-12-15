@@ -69,7 +69,7 @@ User_mes	String
 			</view>
 		</view>
 		<view class="infos">
-			<view class="tool">
+			<view class="tool" @click="still_none">
 				<view>
 					<image src="../../static/image/travel/personal/member.png">
 						<text>我的公会</text>
@@ -98,12 +98,17 @@ User_mes	String
 						<text>浏览记录</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
+				<view @click="goto_collection">
+					<image class="icon" src="../../static/image/travel/personal/collection.jpg">
+						<text>我的收藏</text>
+						<image class="right" src="../../static/image/travel/personal/Clipped.png">
+				</view>
 				<view @click="goto_address">
 					<image class="icon" src="../../static/image/travel/personal/地址.png">
 						<text>我的地址</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view @click="set_info">
+				<view @click="set_pw">
 					<image class="icon" src="../../static/image/travel/personal/pic07.png">
 						<text>设置</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
@@ -188,6 +193,27 @@ User_mes	String
 				}).then(res=>{});
 			},
 			methods: {
+				goto_collection(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					uni.navigateTo({
+						url:'/pages/collection/collection'
+					});
+					}
+				},
+				still_none(){
+					uni.showToast({
+						title:'当前功能仍在开发中',
+						duration:2000,
+						icon:'error'
+					});
+				},
 				tologin_logout(){
 					if(this.$store.state.Nowuser==''){
 						uni.navigateTo({

@@ -8,11 +8,11 @@
 		<view class="info">
 			<view class="good_id">
 				<view class="good_name">
-					<text>{{msg.name}}</text>
+					<text>{{get_showdata(msg.name)}}</text>
 				</view>
 			</view>
 			      <view class="card-content">
-			        <text>{{ msg.introduction }}</text>
+			        <text>{{ get_showdata(msg.introduction) }}</text>
 			      </view>
 		</view>
 	</view>	
@@ -32,6 +32,14 @@
 		methods:{
 			send_para(){
 				this.$emit("to_good",this.msg);
+			},
+			get_showdata(a){
+				if(a.length>15){
+					return a.substring(0,15)+"...";
+				}
+				else{
+					return a;
+				}
 			}
 		}
 	}

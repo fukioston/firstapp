@@ -31,7 +31,7 @@
 			}
 			else{
 				uniCloud.callFunction({
-					name:"get_history_object",
+					name:"get_collection",
 					data:{
 						user:this.$store.state.Nowuser
 					}
@@ -45,11 +45,13 @@
 						});
 					}
 					else{
-					this.goods=res.result.goods.reverse();
+					this.goods=res.result.goods;
 					console.log(this.goods);
 					}
 				});
 			}
+			
+			
 		},
 		methods: {
 			to_goods(msg){
