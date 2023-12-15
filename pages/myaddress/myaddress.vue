@@ -58,7 +58,18 @@ export default {
 		 			_id:contact
 		 		}
 		 	}).then(res=>{
-		 		console.log(res)
+		 		uni.showToast({
+		 						title: '删除成功',
+		 						duration: 1500,
+		 						icon: "none"
+		 					});
+		 					
+		 				
+		 		setTimeout(function() {
+		 						uni.navigateTo({
+		 							url: '/pages/myaddress/myaddress'
+		 						});
+		 				}, 1000)
 		 	})
 		 },
     editContact(contact) {

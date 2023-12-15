@@ -53,9 +53,17 @@
 							}).then(res=>{
 								console.log(res)
 								uni.showToast({
-									title: '修改成功',
-									
-								})
+												title: '修改成功',
+												duration: 1500,
+												icon: "none"
+											});
+											
+										
+								setTimeout(function() {
+												uni.navigateTo({
+													url: '/pages/myaddress/myaddress'
+												});
+										}, 1000)
 						
 							})
 						
