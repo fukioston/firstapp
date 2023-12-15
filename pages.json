@@ -409,6 +409,34 @@
             }
             
         }
+        ,{
+            "path" : "pages/myaddress/myaddress",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的地址",
+                "enablePullDownRefresh": false,
+				 "navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        }
+        ,{
+            "path" : "pages/edit_address/edit_address",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/add_address/add_address",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

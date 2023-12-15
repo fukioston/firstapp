@@ -93,14 +93,14 @@ User_mes	String
 						<text>我的订单</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view>
+				<view >
 					<image class="icon" src="../../static/image/travel/personal/pic03.png">
 						<text>浏览记录</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view>
-					<image class="icon" src="../../static/image/travel/personal/pic07.png">
-						<text>在线客服</text>
+				<view @click="goto_address">
+					<image class="icon" src="../../static/image/travel/personal/地址.png">
+						<text>我的地址</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
 				<view @click="set_info">
@@ -307,6 +307,11 @@ User_mes	String
 				goto_order(){
 					uni.navigateTo({
 						url:'/pages/my_order/my_order'
+					});
+				},
+				goto_address(){
+					uni.navigateTo({
+						url:'/pages/myaddress/myaddress'
 					});
 				},
 				...mapActions(['Deleteuser','getlocalUser','Recorduser'])
