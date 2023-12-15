@@ -103,7 +103,8 @@
 									introduction:this.introduction,
 									oprice:this.oprice,
 									nprice:this.nprice,
-									upload_id:uniCloud.getCurrentUserInfo().uid
+									upload_id:uniCloud.getCurrentUserInfo().uid,
+									graph:this.imageValue
 								}
 								
 							}).then(res=>{
@@ -122,6 +123,7 @@
 				this.$refs.files.upload()
 			},
 			select(e){
+				console.log(this.imageValue[0])
 							console.log('选择文件：',e)
 			
 						},

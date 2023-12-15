@@ -53,13 +53,15 @@
 	export default {
 		data() {
 			return {
-				good:{}
+				good:{},
+				sourceType: ['album', 'camera'],
 			}
 		},
 		onLoad(options){
 			if(options){
 				if(options.data){
 					this.good=JSON.parse(decodeURIComponent(options.data));
+					console.log(this.good)
 				}
 			}
 		},

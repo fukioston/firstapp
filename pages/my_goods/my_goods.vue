@@ -56,7 +56,6 @@
 		methods: {
 			to_goods(msg){
 				const str=JSON.stringify(msg);
-				console.log("next "+msg.user_name);
 				uni.navigateTo({
 					url:"/pages/update_my_item/update_my_item?data="+encodeURIComponent(str)
 				});
