@@ -21,19 +21,6 @@
 					</uni-file-picker>
 			</view>
 		</uni-section>
-	<!-- 	<uni-section title="只选择视频" type="line">
-			<view class="example-body">
-				<uni-file-picker limit="1" file-mediatype="video" title="最多选择1个视频" :source-type="sourceType"></uni-file-picker>
-			</view>
-		</uni-section>
-		<uni-section title="自定义图片和视频选择的来源" type="line">
-			<view class="example-body">
-				<uni-file-picker limit="9" title="从相册选图" :source-type="['album']"></uni-file-picker>
-			</view>
-			<view class="example-body">
-				<uni-file-picker limit="9" title="使用相机" file-mediatype="video" :source-type="['camera']"></uni-file-picker>
-			</view>
-		</uni-section> -->
 		<uni-section  title="输入商品相关信息" type="line">
 			<uni-forms class="textinput" ref="baseForm"  label-position="top">
 			<uni-forms-item label="商品名" required>
@@ -93,6 +80,21 @@
 		},
 		methods: {
 			onSubmit(){
+				if (this.fileUrl.length === 0) {
+				            uni.showToast({
+				                title: '请至少选择一张图片',
+				                icon: 'none'
+				            });
+				            return; // 阻止进一步执行
+				        }
+
+				if (!this.itemname || !this.introduction || !this.oprice || !this.nprice) {
+				            uni.showToast({
+				                title: '请填写所有必填项',
+				                icon: 'none'
+				            });
+				            return; // 阻止进一步执行
+				        }
 							uniCloud.callFunction({
 								name:"upload-item",
 								data:{
@@ -130,6 +132,7 @@
 						success(e){
 							console.log('上传成功')
 							this.fileUrl=e.tempFilePaths
+							console.log(fileUrl)
 						},
 						
 						// 上传失败
