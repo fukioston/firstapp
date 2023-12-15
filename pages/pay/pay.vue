@@ -19,18 +19,35 @@
 
     <!-- 支付方式列表 -->
     <view class="payment-methods">
-      <view class="payment-method" v-for="method in paymentMethods" :key="method.id">
+    <!--  <view class="payment-method" v-for="method in paymentMethods" :key="method.id">
         <view class="method-name">{{ method.name }}</view>
         <view class="method-detail">{{ method.detail }}</view>
         <view class="select-icon">选择标记</view>
-      </view>
+		
+      </view> -->
+	  <view class="payment-amount">
+	  		<view class="amount-label">支付方式：</view>
+	    <uni-data-select v-model="paymentMethods"
+		:localdata="paymentMethods">
+	    			</uni-data-select>
+	  	
+	    </view>
+	 <view class="payment-amount">
+		<view class="amount-label">地址：</view>
+		<!-- <view class="amount-value">¥{{nprice}}</view> -->
+	   <uni-data-select>
+	   			</uni-data-select>
+	 	
+	   </view>
+	  	
     </view>
-
     <!-- 确认支付按钮 -->
     <view class="confirm-payment">
       <button @click="confirmPayment">确认付款</button>
     </view>
+	 
   </view>
+  
 </template>
 
 <script>
@@ -41,11 +58,10 @@ export default {
 		item_id:"",
 		buyer_id:"",
 		nprice:"",
+		value:0,
       paymentMethods: [
-        // 示例数据，实际应该从后端获取
-        { id: 1, name: '微信支付', detail: '微信安全支付' },
-        { id: 2, name: '支付宝支付', detail: '支付宝安全支付' },
-        // 添加更多支付方式...
+         { value: 0, text: '微信支付' },
+        { value: 1, text: '支付宝支付' },
       ]
     };
   },
