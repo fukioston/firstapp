@@ -31,7 +31,7 @@
 			}
 			else{
 				uniCloud.callFunction({
-					name:"get_goods_object",
+					name:"get_history_object",
 					data:{
 						user:this.$store.state.Nowuser
 					}
@@ -55,10 +55,8 @@
 		},
 		methods: {
 			to_goods(msg){
-				const str=JSON.stringify(msg);
-				console.log("next "+msg.user_name);
 				uni.navigateTo({
-					url:"/pages/update_my_item/update_my_item?data="+encodeURIComponent(str)
+					url:"/pages/goods-details/goods-details?_id="+msg._id
 				});
 			}
 		}

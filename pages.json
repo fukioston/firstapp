@@ -319,6 +319,15 @@
     }
 }
 ,{
+    "path": "pages/history/history",
+    "style" :
+    {
+        "navigationBarTitleText": "历史记录",
+                    "enablePullDownRefresh": false,
+                    "navigationBarBackgroundColor": "#7e0c6e"
+    }
+}
+,{
     "path": "uni_modules/uni-im/pages/userList/userList",
     "style": {
         "enablePullDownRefresh": false,

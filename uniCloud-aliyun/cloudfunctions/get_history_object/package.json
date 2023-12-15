@@ -1,0 +1,7 @@
+{
+  "name": "get_history_object",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
