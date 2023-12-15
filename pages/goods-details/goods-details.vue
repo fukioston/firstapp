@@ -1,5 +1,5 @@
 <template>
-	<view class='all'>
+	<view class='all' v-if="dataLoaded">
 		<view>
 			<IndexSwiper class="detail_img" :dataList='imglist'></IndexSwiper>
 			<view class="textbox">
@@ -39,6 +39,7 @@
 				nprice: "11",
 				oprice: "11",
 				upload_id: "",
+				dataLoaded:false,
 				options: [{
 						icon: 'headphones',
 						text: '联系卖家'
@@ -78,7 +79,8 @@
 							this.nprice = this.details[0].nprice
 							this.oprice = this.details[0].oprice
 							this.imglist = this.details[0].imgUrl
-							this.upload_id = this.details[0].upload_id
+							this.upload_id = this.details[0].upload_id,
+							this.dataLoaded = true;
 						})
 			//this.get_details()
 			
@@ -125,7 +127,7 @@
 				}
 				this.showContactsView = false
 			})
-
+				
 		},
 		async onReady() {
 			// #ifdef H5

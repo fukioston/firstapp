@@ -1,5 +1,5 @@
 <template>
-  <view class="payment-page">
+  <view class="payment-page" v-if="dataLoaded">
     <!-- 头部：用户信息 -->
 	<uni-card :is-shadow="false" is-full>
 		<text class="uni-h6">支付(无营业执照无法申请，故模拟支付)</text>
@@ -27,18 +27,27 @@
       </view> -->
 	  <view class="payment-amount">
 	  		<view class="amount-label">支付方式：</view>
-	    <uni-data-select v-model="paymentMethods"
+	    <uni-data-select 
 		:localdata="paymentMethods">
 	    			</uni-data-select>
-	  	
 	    </view>
+	
 	 <view class="payment-amount">
-		<view class="amount-label">地址：</view>
+		<view class="amount-label">地址信息：</view>
+		<view class="example-body">
+						<uni-combox :candidates="addresses" 
+						placeholder="请选择地址信息" 
+						v-model="addr"></uni-combox>
+					</view>
 		<!-- <view class="amount-value">¥{{nprice}}</view> -->
-	   <uni-data-select>
-	   			</uni-data-select>
+	   <!-- <uni-data-select class="addr"
+		:localdata="addresses">
+	   			</uni-data-select> -->
 	 	
 	   </view>
+	   <uni-card :is-shadow="false" is-full>
+	   	<text class="uni-h6">地址信息可自行输入也可选择</text>
+	   </uni-card>
 	  	
     </view>
     <!-- 确认支付按钮 -->
@@ -55,50 +64,79 @@
 export default {
   data() {
     return {
+		candidates: ['北京', '南京', '东京', '武汉', '天津', '上海', '海口'],
+						addr: '',
 		item_id:"",
 		buyer_id:"",
 		nprice:"",
 		value:0,
+		dataLoaded:false,
+		addresses: [
+         
+      ],
       paymentMethods: [
          { value: 0, text: '微信支付' },
         { value: 1, text: '支付宝支付' },
       ]
     };
   },
-  onLoad(e) {
-  	
-  	this.item_id = e._id;
-	this.buyer_id=uniCloud.getCurrentUserInfo().uid
-	this.nprice = e.nprice ;
-	console.log(e.nprice)
-  	// #ifdef APP-PLUS  
-  	var webView = this.$mp.page.$getAppWebview();  
-  	webView.setTitleNViewSearchInputText(e._id);
-  	// #endif
-  	
-  },
   methods: {
     // ... 其他方法 ...
-  
+  	get_myaddress(){
+  		console.log(uniCloud.getCurrentUserInfo().uid)
+  		uniCloud.callFunction({
+  			name:"get_myaddress",
+  			data:{
+  				user_id:uniCloud.getCurrentUserInfo().uid
+  			}
+  		}).then(res=>{
+			var a=res.result.data;
+			console.log(a)
+  			 this.addresses = a.map(item=> item.name+" "+item.address+"  "+item.number); 
+			 console.log(this.addresses)
+  			 // this.addresses = res.result.data;
+			 
+  		})
+  	},
     confirmPayment() {
       uniCloud.callFunction({
       	name:"upload_order",
       	data:{
       		item_id:this.item_id,
       		buyer_id:this.buyer_id,
+			addr:this.addr,
       	}
       	
       }).then(res=>{
       	console.log(res)
-      	uni.showToast({
-      		title: '购买成功',
-      		
-      	})
-		
+		uni.showToast({
+			title: '购买成功',
+			
+		})
+		uni.switchTab({
+			url:'/pages/index/index'
+		})
+		console.log(res)
+      	
+  		
       						
       });
-	  console.log(this.buyer_id)
-    }
+  	  console.log(this.buyer_id)
+    },
+  onLoad(e) {
+  	
+  	this.item_id = e._id;
+	this.get_myaddress()
+	this.buyer_id=uniCloud.getCurrentUserInfo().uid
+	this.nprice = e.nprice ;
+  	// #ifdef APP-PLUS  
+  	var webView = this.$mp.page.$getAppWebview();  
+  	webView.setTitleNViewSearchInputText(e._id);
+  	// #endif
+	this.dataLoaded = true;
+  	
+  },
+ 
   }
 
 };
@@ -185,5 +223,8 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+.addr{
+	font-size: 1rpx;
 }
 </style>

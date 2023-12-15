@@ -1,5 +1,5 @@
 <template>
-  <view class="contact-list">
+  <view class="contact-list" v-if="dataLoaded">
     <view 
       v-for="(contact, index) in contacts" 
       :key="index" 
@@ -17,7 +17,7 @@
       </view>
 	  
     </view>
-	<button class="add-contact-button">+ 添加地址信息</button>
+	<button class="add-contact-button"@click="addContact()">+ 添加地址信息</button>
   </view>
 </template>
 
@@ -29,7 +29,8 @@ export default {
         // { name: '张三', number: '13433303673' ,address:'南开大学泰达校区'},
         // { name: '李四', number: '12231213712',address:'南开大学津南校区' },
         // ... 其他联系人数据
-      ]
+      ],
+	  dataLoaded:false,
     };
   },
   onLoad(e){
@@ -46,12 +47,20 @@ export default {
 	  	}).then(res=>{
 	  		console.log(res)
 	  		 this.contacts = res.result.data;
+			 this.dataLoaded = true;
 	  	})
 	  },
 	  deleteContact(contact)
 	  {
-		  console.log('删除地址：', contact);
-	  },
+		 uniCloud.callFunction({
+		 		name:"delete_address",
+		 		data:{
+		 			_id:contact
+		 		}
+		 	}).then(res=>{
+		 		console.log(res)
+		 	})
+		 },
     editContact(contact) {
       // 实现编辑联系人的逻辑
       console.log('编辑地址：', contact);
@@ -59,7 +68,15 @@ export default {
 	  	url:'/pages/edit_address/edit_address?_id='+contact+""
 	  })
 	  
-    }
+    },
+	addContact() {
+	  // 实现编辑联系人的逻辑
+	  console.log('添加地址：');
+	  uni.navigateTo({
+	  	url:'/pages/add_address/add_address'
+	  })
+	  
+	}
   }
 };
 </script>
