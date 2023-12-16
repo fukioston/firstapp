@@ -53,13 +53,7 @@ User_mes	String
 				</view>
 				
 			</view>
-			<view class="item" @click="to_items">
-				<view class="text">
-					<text>{{user.pub_num}}</text>
-					<text>商品</text>
-				</view>
 			
-			</view>
 			<view class="item" @click="to_visitors">
 				<view class="text">
 					<text>{{visitor_num}}</text>
@@ -67,58 +61,18 @@ User_mes	String
 				</view>
 			</view>
 		</view>
-		<view class="infos">
-			<view class="tool">
-				<view>
-					<image src="../../static/image/travel/personal/member.png">
-						<text>我的公会</text>
-				</view>
-				<view>
-					<image src="../../static/image/travel/personal/shop.png">
-						<text>道具商城</text>
-				</view>
-				<view>
-					<image src="../../static/image/travel/personal/house.png">
-						<text>我的房间</text>
-				</view>
-				<view>
-					<image src="../../static/image/travel/personal/money.png">
-						<text>我的钱包</text>
-				</view>
-			</view>
-			<view class="set">
-				<view>
-					<image class="icon" src="../../static/image/travel/personal/pic04.png">
-						<text>我的订单</text>
-						<image class="right" src="../../static/image/travel/personal/Clipped.png">
-				</view>
-				<view>
-					<image class="icon" src="../../static/image/travel/personal/pic03.png">
-						<text>浏览记录</text>
-						<image class="right" src="../../static/image/travel/personal/Clipped.png">
-				</view>
-				<view>
-					<image class="icon" src="../../static/image/travel/personal/pic07.png">
-						<text>在线客服</text>
-						<image class="right" src="../../static/image/travel/personal/Clipped.png">
-				</view>
-				<view>
-					<image class="icon" src="../../static/image/travel/personal/pic07.png">
-						<text>设置</text>
-						<image class="right" src="../../static/image/travel/personal/Clipped.png">
-						
-				</view>
-			
-			</view>
-			
-		</view>
-
+		<view>
+			<view class="message"><text>TA的商品</text></view>
+			<Goods class="goods" @to_good="to_goods" v-for="(item, index) in goods" :key="index" :msg="item">
+			</Goods>
+        </view>
 	</view>
 </template>
 
 
 <script>
 	
+	import Goods from "../../components/common/goods_display.vue"
 	import {mapActions,mapState} from "vuex";
 	export default {
 		data() {
@@ -135,11 +89,15 @@ User_mes	String
 					history:[],
 					user_mes:''
 				},
+				goods:[],
 				visitor_num:0,
 				focus_num:0,
 				iffocued:false,
 				fans_num:0,
 			}
+		},
+		components:{
+			Goods
 		},
 		computed:{
 			...mapState(['Nowuser'])
@@ -171,6 +129,7 @@ User_mes	String
 			}
 		},
 		onShow(){
+			if(this.user){
 			console.log(this.user.user_name);
 			console.log(this.$store.state.Nowuser.user_name);
 			if(this.user.user_name){
@@ -185,7 +144,25 @@ User_mes	String
 				}
 			}
 			this.visitor_num=this.user.visitors.length;
-			console.log(this.visitor_num);
+			uniCloud.callFunction({
+				name:"get_goods_object",
+				data:{
+					user:this.user
+				}
+			}).then(res=>{
+				if(res.result.state==0){
+					this.goods=[];
+					uni.showToast({
+						title:"加载商品失败",
+						icon:"error",
+						duration:2000
+					});
+				}
+				else{
+				this.goods=res.result.goods;
+				console.log(this.goods);
+				}
+			});}
 		},
 		methods: {
 			to_visitors(){
@@ -225,7 +202,7 @@ User_mes	String
 					});
 				}
 			},
-			to_items(){
+			/*to_items(){
 					if(this.user.user_name==''||this.user.user_name==null){
 						uni.showToast({
 							title:'未指定',
@@ -239,7 +216,7 @@ User_mes	String
 						url:'/pages/my_goods/other_goods?data='+encodeURIComponent(str)
 					});
 					}
-				},
+				},*/
 			copy(){
 				if(this.user.user_name==''||this.user.user_name==null){
 					uni.showToast({
@@ -274,6 +251,11 @@ User_mes	String
 					uni.navigateTo({
 						url:"/pages/fresh-other/fresh-other?data=" + encodeURIComponent(str)
 					});
+				});
+			},
+			to_goods(msg){
+				uni.navigateTo({
+					url:"/pages/goods-details/goods-details?_id="+msg._id
 				});
 			}
 			
@@ -317,6 +299,7 @@ User_mes	String
 		}
 
 		.user-center {
+			margin-top:10rpx;
 			padding: 0 42rpx 28rpx 32rpx;
 			display: flex;
 			align-items: center;
@@ -385,6 +368,7 @@ User_mes	String
 				}
 
 				.userId {
+					
 					width: 220rpx;
 					display: flex;
 					background: #F5F5FF;
@@ -434,7 +418,7 @@ User_mes	String
 			box-sizing: border-box;
 
 			.item {
-				width: 25%;
+				width: 33%;
 				display: flex;
 				justify-content: space-evenly;
 				align-items: center;
@@ -613,5 +597,24 @@ User_mes	String
 		font-family:Times;
 		background-color: #999999;
 		border-radius: 40rpx;
+	}
+	.goods{
+		height:125rpx;
+	}
+	.message{
+		>text{
+		    border-top-style:solid;
+			border-bottom-style:solid;
+		    border-color: "#7e0c6e";
+		    border-width: 3rpx ;
+			width:90%;
+			font-family: Simhei;
+			text-align: center;
+		}
+		justify-content: center;
+		margin-top:20rpx;
+		justify-content: space-evenly;
+		display: flex;
+		align-items: center;
 	}
 </style>
