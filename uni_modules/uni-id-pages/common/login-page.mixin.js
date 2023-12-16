@@ -6,7 +6,7 @@ const mixin = {
 	data() {
 		return {
 			config,
-			uniIdRedirectUrl: '',
+			uniIdRedirectUrl: '/pages/index/index',
 			isMounted: false
 		}
 	},
