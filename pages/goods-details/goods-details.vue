@@ -77,6 +77,7 @@
 				joinGroup
 			} = param
 			this._id = param._id;
+			this.iscollected();
 			uniCloud.callFunction({
 				name:'change_history',
 				data:{
@@ -253,7 +254,20 @@
 
 			},
 			iscollected(){
-				
+				uniCloud.callFunction({
+					name:'iscollection',
+					data:{
+						item_id:this._id,
+						user:uniCloud.getCurrentUserInfo().uid
+					}
+				}).then(res=>{
+					console.log(res)
+					if(res.result.state==true)
+					{
+						this.customButtonGroup1[0].text = "取消收藏"
+					}
+					
+				});
 			},
 			onClick(e) {
 				if (e.content.text == "查看卖家") {
