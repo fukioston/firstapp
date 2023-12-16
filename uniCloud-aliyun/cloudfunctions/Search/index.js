@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
         if(status2==2)sort2='desc';
     }
 	// 'nprice',sort1,
-    let res = await goods.orderBy('nprice',sort1).orderBy('nprice',sort1).orderBy('name',sort2)
+    let res = await goods.orderBy('nprice',sort1).orderBy('name',sort2)
 .where({
         name: new RegExp(goods_name, "ig")
 		// ,

@@ -95,6 +95,13 @@
 				            });
 				            return; // 阻止进一步执行
 				        }
+						if (isNaN(+this.oprice) || isNaN(+this.nprice)) {
+						            uni.showToast({
+						                title: '请输入有效的价格',
+						                icon: 'none'
+						            });
+						            return; // 阻止进一步执行
+									}
 							uniCloud.callFunction({
 								name:"upload-item",
 								data:{
