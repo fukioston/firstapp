@@ -11,7 +11,7 @@
 					<view class='iconfont icon-shangjiantou up'
 						:class=' item.status ===1 ? "f-active-color":"" '
 					></view>
-					<view class='iconfont icon-xiajiantou down'
+					<view class='iconfont icon-xiajiantou1 down'
 						:class=' item.status ===2 ? "f-active-color":"" '
 					></view>
 				</view>
@@ -36,7 +36,7 @@ export default {
 				    currentIndex:0,
 					data:[
 						{name:"价格",status:1},
-						{name:"名称",status:0},
+						{name:"名称",status:1},
 						
 					]
 				},
@@ -55,11 +55,15 @@ export default {
 		methods: {
 			//请求数据数据
 			getData(){
+				
+				
 				return new Promise((resolve, reject) => {
 					uniCloud.callFunction({
 						name:"Search",
 						data:{
 								goods_name:this.keyword,
+								status1:this.shopList.data[0].status,
+								status2:this.shopList.data[1].status,
 								
 						},
 						success:(res)=>{
@@ -76,18 +80,19 @@ export default {
 			},
 			changTab(index){
 				//索引值
-				let idx = this.shopList.currentIndex;
-				//具体哪一个对象
-				let item = this.shopList.data[idx];
-				if( idx == index ){
-					return item.status = item.status === 1 ? 2:1;
-				}
-				//新的值
-				let newItem = this.shopList.data[index];
-				item.status = 0;
-				this.shopList.currentIndex = index;
-				newItem.status = 1;
+				let currentItem = this.shopList.data[index];
 				
+				    // 切换当前项的状态
+				    if (currentItem.status === 1) {
+				        currentItem.status = 2;
+				    } else if (currentItem.status === 2) {
+				        currentItem.status = 1;
+				    } else {
+				        currentItem.status = 1; // 如果当前状态为0，设置为1
+				    }
+					this.getData().then(res=>{
+						this.dataList=res
+					})
 			}
 		}
 	}
@@ -115,9 +120,9 @@ export default {
 	left:0;
 }
 .up{
-	top:-34rpx;
+	top:-44rpx;
 }
 .down{
-	top:-24rpx;
+	top:-20rpx;
 }
 </style>
