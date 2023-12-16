@@ -5,7 +5,7 @@
 			<!--<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>-->
 		</view>
-		<Order class="orders" v-for="(item, index) in orders" :key="index" :msg="item">
+		<Order class="orders" @to_order="to_order" v-for="(item, index) in orders" :key="index" :msg="item">
 			
 		</Order>
 	</view>
@@ -14,7 +14,7 @@
 <script>
 	import Order from "../../components/common/order_display.vue"
 	export default {
-		data() {
+		data(){
 			return {
 				orders:[]
 			}
@@ -52,16 +52,10 @@
 			}
 		},
 		methods: {
-			to_other(msg){
-				if(msg.user_name==this.$store.state.Nowuser.user_name){
-					uni.switchTab({
-						url:"/pages/my/my"
-					});
-				}
+			to_order(msg){
 				const str=JSON.stringify(msg);
-				console.log("next "+msg.user_name);
 				uni.navigateTo({
-					url:"/pages/other/other?data=" + encodeURIComponent(str)
+					url:"/pages/order-details/order-details?data=" + encodeURIComponent(str)
 				});
 			}
 		}

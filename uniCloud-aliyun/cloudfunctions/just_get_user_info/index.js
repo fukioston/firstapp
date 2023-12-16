@@ -6,6 +6,8 @@ exports.main = async (event, context) => {
 	let res=await collection.get();
 	let data=res.data;
 	for(let i=0,length=data.length;i<length;i++){
+		console.log(data[i].user_id);
+		console.log(event.user_id);
 		if(data[i].user_id==event.user_id){
 			return {state:true,user:data[i]};
 		}

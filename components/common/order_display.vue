@@ -1,20 +1,23 @@
 <template>
-	<view class="order-center">
-		<view class="info">
-			<view class="orderId">
-				<view class="number">
-					<text>订单号：{{msg._id}}</text>
-				</view>
-			</view>
-			<view class="orderId">
-				<view class="number">
-					<text>买家号：{{msg.buyer_id}}</text>
-				</view>
-			</view>
-			      <view class="card-content">
-			        <text>商品号：{{ msg.item_id }}</text>
-			      </view>
+	<view class="order-center" @click="goto_order">
+		<view class="ima">
+			<image class='avatar'
+			:src="this.imgurl"
+			>
 		</view>
+			<view class="info">
+				<view class="orderId">
+					<view class="number">
+						<text>订单号：{{msg._id}}</text>
+					</view>
+				</view>
+				<view class="orderId">
+					<view class="number">
+						<text>商品名称：{{this.good.name}}</text>
+					</view>
+				</view>
+			</view>
+		
 	</view>	
 </template>
 
@@ -23,12 +26,41 @@
 		props:{
 			msg:Object
 		},
-		name:"order_display",
 		data() {
-			
+			return{
+				imgurl:'',
+			good:''
+			}
 		},
+		name:"order_display",
+		
+		mounted(){
+			uniCloud.callFunction({
+				name:'get_item',
+				data:{
+					good_id:this.msg.item_id,
+					imgurl:''
+				}
+			}).then(res=>{
+				console.log(res.result);
+				if(res.result.state){
+				this.good=res.result.good;
+				this.imgurl=this.good.imgUrl[0];
+				}
+				else{
+				uni.showToast({
+					title:'载入订单信息错误',
+					duration:2000,
+					icon:'error'
+				})
+				}
+			});
+		},
+		
 		methods:{
-			
+			goto_order(){
+				this.$emit("to_order",{good:this.good,order:this.msg});
+			}
 		}
 	}
 </script>
@@ -38,7 +70,7 @@
 	  text-align: left;
 	  display: flex;
 	  align-items: left;
-	  padding: 15rpx; /* 调整内边距 */
+	  padding: 10rpx; /* 调整内边距 */
 	  border-bottom: 1rpx solid #eee; /* 添加底部边框 */
 	
 	  /* 添加悬停效果 */
