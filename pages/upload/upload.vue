@@ -80,6 +80,15 @@
 		},
 		methods: {
 			onSubmit(){
+				if(uniCloud.getCurrentUserInfo().uid)
+				{
+					uni.showToast({
+					    title: '你还没有登陆！',
+					    icon: 'none'
+					});
+					 return; // 阻止进一步执行
+				}
+				
 				if (this.fileUrl.length === 0) {
 				            uni.showToast({
 				                title: '请至少选择一张图片',
@@ -159,6 +168,7 @@
 						// 上传成功
 						success(e){
 							console.log('上传成功')
+							// console.log()
 							this.fileUrl = this.fileUrl.concat(e.tempFilePaths);
 								console.log(this.fileUrl);
 						},
@@ -169,7 +179,7 @@
 						}
 		},
 		 onLoad() {
-		    // uni.hideTabBar();
+		    
 		  }
 	}
 </script>
