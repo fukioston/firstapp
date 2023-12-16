@@ -14,11 +14,6 @@
 								"float":"left",
 								"fontSrc":"./static/font/iconfont.ttf",
 								"text":"\ue6e4"
-							},
-							{
-								"float":"right",
-								"fontSrc":"./static/font/iconfont.ttf",
-								"text":"\ue727"
 							}
 						]
 					}
@@ -465,17 +460,11 @@
 				"selectedIconPath":"static/tabbar/indexSelected.png",
 				"text": "首页"
 			}, 
-			// {
-			// 	"pagePath": "pages/list/list",
-			// 	"iconPath":"static/tabbar/list.png",
-			// 	"selectedIconPath":"static/tabbar/listSelected.png",
-			// 	"text": "分类"
-			// },
 			{
-				"pagePath": "uni_modules/uni-im/pages/index/index",
-				"iconPath":"static/tabbar/sey-talk-a.png",
-				"selectedIconPath":"static/tabbar/sey-talk-b.png",
-				"text": "消息"
+				"pagePath": "pages/upload/upload",
+				"iconPath":"static/tabbar/upload.png",
+				"selectedIconPath":"static/tabbar/uploadSelected.png",
+				"text": "上传商品"
 			},
 			{
 				"pagePath": "pages/my/my",

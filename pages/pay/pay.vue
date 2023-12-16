@@ -46,7 +46,7 @@
 	 	
 	   </view>
 	   <uni-card :is-shadow="false" is-full>
-	   	<text class="uni-h6">地址信息可自行输入也可选择</text>
+	   	<text class="uni-h6">地址信息可自行输入也可选择，顺序：收件人，地址，联系电话，用空格分割。</text>
 	   </uni-card>
 	  	
     </view>

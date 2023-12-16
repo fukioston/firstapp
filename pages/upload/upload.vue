@@ -104,7 +104,8 @@
 									oprice:this.oprice,
 									nprice:this.nprice,
 									upload_id:uniCloud.getCurrentUserInfo().uid,
-									graph:this.imageValue
+									graph:this.imageValue,
+									type:1
 								}
 								
 							}).then(res=>{

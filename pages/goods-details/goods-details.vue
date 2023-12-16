@@ -15,7 +15,7 @@
 				</view>
 			</view>
 		</view>
-
+<!-- <image src="../../static/uni.png"></image> -->
 		<uni-goods-nav class="test" :fill="true" :options="options" :button-group="customButtonGroup1" @click="onClick"
 			@buttonClick="buttonClick" style="margin-top: 20px;" />
 	</view>
@@ -43,7 +43,7 @@
 				dataLoaded:false,
 				options: [{
 						icon: 'headphones',
-						text: '联系卖家'
+						text: '查看卖家'
 						// 
 					},
 					// {
@@ -59,6 +59,10 @@
 					// }
 				],
 				customButtonGroup1: [{
+					text: '收藏',
+					backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
+					color: '#fff'
+				},{
 					text: '立即购买',
 					backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
 					color: '#fff'
@@ -248,24 +252,58 @@
 				})
 
 			},
+			iscollected(){
+				
+			},
 			onClick(e) {
-				if (e.content.text == "联系卖家") {
+				if (e.content.text == "查看卖家") {
 
-					console.log(this.upload_id)
-					// /uni-im/pages/chat/chat?conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
-					//conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
-					this.toChat(this.upload_id)
+					// console.log(this.upload_id)
+					// // /uni-im/pages/chat/chat?conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
+					// //conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
+					// this.toChat(this.upload_id)
 				}
 
 
 			},
 			buttonClick(e) {
-				if (e.index === 0) { // 假设 "立即购买" 是第一个按钮
+				if (e.index === 1) { // 假设 "立即购买" 是第二个按钮
 					console.log('ssss')
 					uni.navigateTo({
 						url: '/pages/pay/pay?_id=' + this._id + '&nprice=' + this.nprice
 					});
+					
+					
+				
 				}
+				else
+				if (e.index === 0) { 
+					console.log(e)
+					var option=true;
+					if(this.customButtonGroup1[0].text == "取消收藏")
+					{
+						this.customButtonGroup1[0].text = "收藏";
+						option=false;
+						this.add_cansole_collection(option);
+						uni.showToast({
+										title: '取消收藏成功',
+										duration: 1000,
+										icon: "none"
+									});
+						
+					}
+					else{
+						this.customButtonGroup1[0].text = "取消收藏";
+						option=true;
+						this.add_cansole_collection(option);
+						uni.showToast({
+										title: '收藏成功',
+										duration: 1000,
+										icon: "none"
+									});
+						
+					}
+					}
 			},
 			add_cansole_collection(option){//参数为true则添加，参数为false则取消
 				uniCloud.callFunction({
