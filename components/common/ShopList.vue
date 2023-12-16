@@ -40,7 +40,8 @@ export default {
 						
 					]
 				},
-				dataList:[]
+				dataList:[],
+				currentpage:0
 			}
 		},
 		components:{
@@ -50,8 +51,13 @@ export default {
 		mounted(){
 			this.getData().then(res=>{
 				this.dataList=res
-			})
+			}),
+			
+			 window.addEventListener('scroll', this.handleScroll);
 		},
+		beforeDestroy() {
+		        window.removeEventListener('scroll', this.handleScroll);
+		    },
 		methods: {
 			//请求数据数据
 			getData(){
@@ -64,6 +70,7 @@ export default {
 								goods_name:this.keyword,
 								status1:this.shopList.data[0].status,
 								status2:this.shopList.data[1].status,
+								page:this.currentpage,
 								
 						},
 						success:(res)=>{
@@ -94,8 +101,32 @@ export default {
 						this.dataList=res
 					})
 			}
-		}
-	}
+			,
+			handleScroll() {
+			        if (this.throttleTimer) {
+			            return;
+			        }
+			
+			        this.throttleTimer = setTimeout(() => {
+			            this.throttleTimer = null;
+			            this.checkScrollBottom();
+			        }, 200);  // 200ms内只触发一次
+			    },
+			    checkScrollBottom() {
+			        const offset = 10;
+			        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			        const windowHeight = window.innerHeight;
+			        const scrollHeight = document.documentElement.scrollHeight;
+			
+			        if (scrollTop + windowHeight > scrollHeight - offset) {
+			            this.currentpage += 1;
+			            this.getData().then(res => {
+			                this.dataList = [...this.dataList, ...res];
+			            });
+			        }
+			    }
+				},
+				}
 </script>
 
 <style scoped>

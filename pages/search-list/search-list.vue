@@ -17,6 +17,7 @@
 			this.keyword = e.keyword;
 			// #ifdef APP-PLUS  
 			var webView = this.$mp.page.$getAppWebview();  
+			console.log(webView)
 			webView.setTitleNViewSearchInputText(e.keyword);
 			// #endif
 			
