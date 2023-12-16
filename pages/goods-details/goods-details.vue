@@ -40,6 +40,7 @@
 				nprice: "11",
 				oprice: "11",
 				upload_id: "",
+				type:1,
 				dataLoaded:false,
 				options: [{
 						icon: 'headphones',
@@ -100,7 +101,9 @@
 							this.oprice = this.details[0].oprice
 							this.imglist = this.details[0].imgUrl
 							this.upload_id = this.details[0].upload_id,
+							// this.type=this.details[0].type
 							this.dataLoaded = true;
+							
 						})
 			//this.get_details()
 			

@@ -7,5 +7,7 @@ exports.main = async (event, context) => {
 	console.log(page)
 	let res = await goods.skip(page*10).limit(10).get();
 	  return res;
-	
+	// let res = await goods.where({
+	//         type: 1  
+	//     }).skip(page * 10).limit(10).get();
 	}

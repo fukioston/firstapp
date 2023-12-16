@@ -37,7 +37,7 @@
 		    "style" :  { "navigationBarBackgroundColor": "#7e0c6e",
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false,
-				
+				"onReachBottonDistance":50  ,
 				"app-plus": {
 					"scrollIndicator":"none",
 					"titleNView": {
