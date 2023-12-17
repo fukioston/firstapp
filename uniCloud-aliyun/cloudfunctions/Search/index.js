@@ -21,8 +21,8 @@ exports.main = async (event, context) => {
     let res = await goods.orderBy('nprice',sort1).orderBy('name',sort2)
 .where({
         name: new RegExp(goods_name, "ig")
-		// ,
-		// type:1
+		,
+		type:1
     }).skip(page*10).limit(10).get();
     return res;
 }
