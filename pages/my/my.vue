@@ -18,7 +18,7 @@ User_mes	String
 			</u-navbar>-->
 		</view>
 		<view class="user-center">
-			<view class="ima" @click="set_info">
+			<view class="ima">
 				<image class='avatar'
 				:src="user.graph[0].path"
 				 alt="../../static/image/travel/personal/tx.png"
@@ -108,7 +108,7 @@ User_mes	String
 						<text>我的地址</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
-				<view @click="set_pw">
+				<view @click="set_info">
 					<image class="icon" src="../../static/image/travel/personal/pic07.png">
 						<text>设置</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
