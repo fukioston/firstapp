@@ -147,13 +147,13 @@
 			},
 			to_others(){
 				uniCloud.callFunction({
-					name:'get_user_info',
+					name:'just_get_user_info',
 					data:{
-						uid:this.upload_id
+						user_id:this.upload_id
 					}
 				}).then(res=>{
-					var msg=res.result.user
-					console.log(msg)
+					let msg=res.result.user
+					console.log("msg",msg)
 				const str=JSON.stringify(res.result.user)
 				uni.navigateTo({
 					url:"/pages/other/other?data="+encodeURIComponent(str)
