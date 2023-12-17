@@ -129,9 +129,8 @@ User_mes	String
 			}
 		},
 		onShow(){
+			console.log(this.user);
 			if(this.user){
-			console.log(this.user.user_name);
-			console.log(this.$store.state.Nowuser.user_name);
 			if(this.user.user_name){
 				if(this.$store.state.Nowuser.user_name){
 					uniCloud.callFunction({
