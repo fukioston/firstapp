@@ -5,7 +5,7 @@
 		<view class='search-item'>
 			<view class='search-title'>
 				<view class='f-color'>最近搜索</view>
-				<view class='iconfont icon-iconset0213' @tap='clearHistory'></view>
+				<view class='f-color' @tap='clearHistory'>清空</view>
 			</view>
 			<!-- 这里用v-if来渲染 -->
 			<view v-if='searchData.length > 0'>
