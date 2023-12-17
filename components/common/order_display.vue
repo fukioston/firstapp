@@ -91,7 +91,7 @@
 	.avatar {
 	  width: 120rpx;
 	  height: 120rpx;
-	  border-radius: 50%; /* 圆形头像效果，适用于正方形图片 */
+	  border-radius: 0%; /* 圆形头像效果，适用于正方形图片 */
 	}
 	
 	.info {
