@@ -45,6 +45,7 @@
 </template>
 
 <script>
+		import {mapActions,mapState} from "vuex";
 	export default {
 		data() {
 			return {
@@ -53,6 +54,7 @@
 				oprice:"",
 				nprice:"",
 				fileUrl:[],
+				upload_id:"",
 				sourceType: ['album', 'camera'],
 				imageStyles: {
 					width: 64,
@@ -60,6 +62,21 @@
 					border: {
 						radius: '50%'
 					}
+				},
+				user: {
+					focus:[],
+					fans:[],
+					graph:[{path:"../../static/image/travel/personal/tx.png"}],
+					user_name:'',
+					sell_num:0,
+					buy_num:0,
+					pub_num:0,
+					state:false,
+					history:[],
+					user_mes:'',
+					nick_name:'',
+					user_id:'',
+					visitors:[]
 				},
 				imageValue:[],
 				listStyles: {
@@ -78,13 +95,23 @@
 				
 			}
 		},
+		onShow(){
+			this.getlocalUser();
+			if(this.$store.state.Nowuser.user_name!=""&&this.$store.state.Nowuser.user_name!=null){
+				this.upload_id=this.$store.state.Nowuser.user_id;
+				console.log("点击此处退出登录");
+			}
+			else{
+				console.log("点击此处退出登录1");
+			}
+			},
 		methods: {
 			onSubmit(){
-				if(uniCloud.getCurrentUserInfo().uid)
-				{
+				console.log(this.upload_id)
+				if(this.upload_id==""||this.upload_id==null){
 					uni.showToast({
 					    title: '你还没有登陆！',
-					    icon: 'none'
+					    icon:'error',
 					});
 					 return; // 阻止进一步执行
 				}
@@ -92,7 +119,7 @@
 				if (this.fileUrl.length === 0) {
 				            uni.showToast({
 				                title: '请至少选择一张图片',
-				                icon: 'none'
+				                icon:'error',
 				            });
 				            return; // 阻止进一步执行
 				        }
@@ -100,14 +127,14 @@
 				if (!this.itemname || !this.introduction || !this.oprice || !this.nprice) {
 				            uni.showToast({
 				                title: '请填写所有必填项',
-				                icon: 'none'
+				                icon:'error',
 				            });
 				            return; // 阻止进一步执行
 				        }
 						if (isNaN(+this.oprice) || isNaN(+this.nprice)) {
 						            uni.showToast({
 						                title: '请输入有效的价格',
-						                icon: 'none'
+						               icon:'error',
 						            });
 						            return; // 阻止进一步执行
 									}
@@ -129,7 +156,7 @@
 								uni.showToast({
 												title: '上传成功',
 												duration: 2000,
-												icon: "none"
+												icon: "success"
 											});
 											
 										
@@ -177,9 +204,12 @@
 						fail(e){
 							console.log('上传失败：',e)
 						}
+		
+		,
+		...mapActions(['Deleteuser','getlocalUser','Recorduser'])
 		},
 		 onLoad() {
-		    
+				
 		  }
 	}
 </script>
