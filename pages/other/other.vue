@@ -248,7 +248,7 @@ User_mes	String
 				}).then(res=>{
 					console.log(1);
 					const str=JSON.stringify(this.user);
-					uni.navigateTo({
+					uni.redirectTo({
 						url:"/pages/fresh-other/fresh-other?data=" + encodeURIComponent(str)
 					});
 				});
