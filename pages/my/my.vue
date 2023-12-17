@@ -363,6 +363,14 @@ User_mes	String
 					
 				},
 				goto_address(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+						return }
+						
 					uni.navigateTo({
 						url:'/pages/myaddress/myaddress'
 					});
