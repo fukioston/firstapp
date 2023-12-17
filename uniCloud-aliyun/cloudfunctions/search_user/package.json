@@ -1,0 +1,7 @@
+{
+  "name": "search_user",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

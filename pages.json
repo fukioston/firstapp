@@ -171,7 +171,19 @@
 			{
 				"navigationBarTitleText": "我的关注",
 				"navigationBarBackgroundColor": "#7e0c6e",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"app-plus":{
+						"scrollIndicator":"none",
+						"titleNView":{
+							"buttons":[
+								{
+									"float":"right",
+									"fontSrc":"./static/font/iconfont.ttf",
+									"text":"\ue6e4"
+								}
+							]
+					}
+				}
 			}
             
         }
@@ -448,6 +460,38 @@
                 "navigationBarTitleText": "订单信息",
                             "enablePullDownRefresh": false,
                             "navigationBarBackgroundColor": "#7e0c6e"
+            }
+            
+        }
+        ,{
+            "path" : "pages/search_user/search_user",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"scrollIndicator":"none",
+					"titleNView": {
+						"searchInput":{
+							"placeholder":"",
+							"disabled": false,
+							"align": "left",
+							"autoFocus": true,
+							"borderRadius": "15px"
+						},
+						"buttons": [
+							{
+								"float": "right",
+								"color": "#636263",
+								"text": "搜索",
+								"fontSize": "14px",
+								"width":"60px"
+								
+							}
+							
+						]
+					}
+				}
             }
             
         }

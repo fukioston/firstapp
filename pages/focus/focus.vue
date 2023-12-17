@@ -49,6 +49,11 @@
 				})
 			}
 		},
+		onNavigationBarButtonTap:function(e){
+			uni.navigateTo({
+				url:"/pages/search_user/search_user"
+			});
+		 },
 		methods: {
 			to_other(msg){
 				console.log(1);
@@ -66,6 +71,7 @@
 					});
 				}
 			}
+			
 		}
 	}
 </script>
