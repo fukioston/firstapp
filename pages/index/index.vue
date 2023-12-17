@@ -3,7 +3,7 @@
 		<IndexSwiper :dataList='datalist2'></IndexSwiper>
 		
 		<card cardTitle="猜您喜欢"></card>
-		<CommodityList :dataList='dataList'>ss</CommodityList>
+		<CommodityList class="clist" :dataList='dataList'>ss</CommodityList>
 	
 	</view>
 </template>
@@ -76,7 +76,6 @@
 						page:this.currentpage,
 					}
 				}).then(res=>{
-					console.log(res)
 					 this.dataList = this.dataList.concat(res.result.data);
 				})
 			},
@@ -90,6 +89,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		width:100%;
 	}
 
 	.logo {
@@ -99,6 +99,9 @@
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: 50rpx;
+	}
+	.clist{
+		width:95%;
 	}
 
 	.text-area {

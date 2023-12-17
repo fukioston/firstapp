@@ -70,35 +70,29 @@ export default {
 
 <style scoped>
 .commodity {
-	display: flex;
-	align-items: space-between;
-	justify-content: space-between;
-	background-color: aliceblue;
-	padding: 3rpx; /* 注意这里应该是 'px' 而不是 'rpx' */
+    display: flex;
+    align-items: space-between;
+    justify-content: space-between;
+    background-color: aliceblue;
+    padding: 3rpx;
+    width: 100%;
 }
 
-/* .commodity::after {
-	content: '';
-	flex: 1;
-} */
-
-.commodity > *:only-child {
-	flex-grow: 0;
+.commodity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 新增：使得子元素在这个容器中垂直居中 */
+    padding-bottom: 20rpx;
+	margin: 7rpx;
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 10px;
 }
 
-.commodity-item{
-	padding-bottom:20rpx;
-	border:1px solid gray;
-	background-color: white;
-	border-radius: 10px;
-	
-	
-}
-.commodity-img{
-	width:100%;
-	border-radius: 10px;
-	
-	
+.commodity-img {
+    width: 97%;
+    border-radius: 10px;
+    margin-top: 10rpx; /* 根据需要调整上边距 */
 }
 .commodity-content{
 	text-align: center;

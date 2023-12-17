@@ -41,12 +41,14 @@
 				oprice: "11",
 				upload_id: "",
 				type:1,
+				user_id:"",
 				dataLoaded:false,
 				options: [{
 						icon: 'headphones',
 						text: '查看卖家'
 						// 
 					},
+					
 					// {
 					// 	icon: 'shop',
 					// 	text: '店铺',
@@ -59,6 +61,21 @@
 					// 	info: 2
 					// }
 				],
+				user: {
+					focus:[],
+					fans:[],
+					graph:[{path:"../../static/image/travel/personal/tx.png"}],
+					user_name:'',
+					sell_num:0,
+					buy_num:0,
+					pub_num:0,
+					state:false,
+					history:[],
+					user_mes:'',
+					nick_name:'',
+					user_id:'',
+					visitors:[]
+				},
 				customButtonGroup1: [{
 					text: '收藏',
 					backgroundColor: 'linear-gradient(90deg, #FE6035, #EF1224)',
@@ -99,7 +116,15 @@
 							if(this.type==0)this.customButtonGroup1[1].text = "商品已下架"
 							this.dataLoaded = true;
 							
-						})
+						}),
+						this.getlocalUser();
+						if(this.$store.state.Nowuser.user_name!=""&&this.$store.state.Nowuser.user_name!=null){
+							this.user_id=this.$store.state.Nowuser.user_id;
+							console.log("点击此处退出登录");
+						}
+						else{
+							console.log("点击此处退出登录1");
+						}
 						// this.to_others()
 			},
 		methods: {
@@ -156,8 +181,14 @@
 			},
 			onClick(e) {
 				if (e.content.text == "查看卖家") {
-
-					console.log(this.upload_id)
+				if(this.user_id==""||this.user_id==null){
+					uni.showToast({
+					    title: '你还没有登陆！',
+					    icon:'error',
+					});
+					 return; // 阻止进一步执行
+				}
+					console.log(this.user_id)
 					this.to_others()
 					// // /uni-im/pages/chat/chat?conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
 					// //conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
@@ -168,7 +199,13 @@
 			},
 			buttonClick(e) {
 				if (e.index === 1) { // 假设 "立即购买" 是第二个按钮
-					console.log('ssss')
+					if(this.user_id==""||this.user_id==null){
+						uni.showToast({
+						    title: '你还没有登陆！',
+						    icon:'error',
+						});
+						 return; // 阻止进一步执行
+					}
 					if(this.type==0)
 					{
 						uni.showToast({
@@ -186,7 +223,13 @@
 				}
 				else
 				if (e.index === 0) { 
-					console.log(e)
+					if(this.user_id==""||this.user_id==null){
+						uni.showToast({
+						    title: '你还没有登陆！',
+						    icon:'error',
+						});
+						 return; // 阻止进一步执行
+					}
 					var option=true;
 					if(this.customButtonGroup1[0].text == "取消收藏")
 					{
@@ -228,7 +271,8 @@
 						console.log('收藏失败');
 					}
 				});
-			}
+			},
+			...mapActions(['Deleteuser','getlocalUser','Recorduser'])
 
 		},
 		components: {

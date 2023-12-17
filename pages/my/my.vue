@@ -104,7 +104,7 @@ User_mes	String
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
 				<view @click="goto_address">
-					<image class="icon" src="../../static/image/travel/personal/地址.png">
+					<image class="icon" src="../../static/image/travel/personal/addr.png">
 						<text>我的地址</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
