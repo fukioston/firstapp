@@ -69,8 +69,8 @@ User_mes	String
 			</view>
 		</view>
 		<view class="infos">
-			<view class="tool" @click="still_none">
-				<view>
+			<!-- <view class="tool" @click="still_none">
+				<!-- <view>
 					<image src="../../static/image/travel/personal/member.png">
 						<text>我的公会</text>
 				</view>
@@ -85,8 +85,8 @@ User_mes	String
 				<view>
 					<image src="../../static/image/travel/personal/money.png">
 						<text>我的钱包</text>
-				</view>
-			</view>
+				</view> -->
+			<!-- </view> -->
 			<view class="set">
 				<view @click="goto_order">
 					<image class="icon" src="../../static/image/travel/personal/pic04.png">
@@ -630,6 +630,7 @@ User_mes	String
 			.set {
 				width: 100%;
 				padding: 34rpx 24rpx 44rpx 34rpx;
+				margin-top: 60rpx;
 				background: #FFFFFF;
 				box-shadow: 0rpx 2rpx 28rpx 0rpx rgba(142, 146, 230, 0.2700);
 				border-radius: 28rpx;
