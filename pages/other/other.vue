@@ -602,11 +602,12 @@ User_mes	String
 		height:125rpx;
 	}
 	.message{
+		background-color: #fcfcfa;
 		>text{
 		    border-top-style:solid;
 			border-bottom-style:solid;
 		    border-color: "#7e0c6e";
-		    border-width: 3rpx ;
+		    border-width: 4rpx ;
 			width:90%;
 			font-family: Simhei;
 			text-align: center;
