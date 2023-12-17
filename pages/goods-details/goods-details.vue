@@ -100,6 +100,7 @@
 							this.dataLoaded = true;
 							
 						})
+						// this.to_others()
 			},
 		methods: {
 			get_details() {
@@ -118,6 +119,24 @@
 				})
 				})
 
+			},
+			to_others(){
+				uniCloud.callFunction({
+					name:'get_user_info',
+					data:{
+						uid:this.upload_id
+					}
+				}).then(res=>{
+					var msg=res.result.user
+					console.log(msg)
+				const str=JSON.stringify(res.result.user)
+				uni.navigateTo({
+					url:"/pages/other/other?data="+encodeURIComponent(str)
+				})
+				
+				
+				
+				})
 			},
 			iscollected(){
 				uniCloud.callFunction({
@@ -138,7 +157,8 @@
 			onClick(e) {
 				if (e.content.text == "查看卖家") {
 
-					// console.log(this.upload_id)
+					console.log(this.upload_id)
+					this.to_others()
 					// // /uni-im/pages/chat/chat?conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
 					// //conversation_id=single_cec629b1e29af0a4982a60a91f9ec83d
 					// this.toChat(this.upload_id)
