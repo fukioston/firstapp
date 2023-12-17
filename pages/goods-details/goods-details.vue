@@ -71,12 +71,6 @@
 			}
 		},
 		 onLoad(param) {
-			let {
-				token,
-				user_id,
-				conversation_id,
-				joinGroup
-			} = param
 			this._id = param._id;
 			this.iscollected();
 			uniCloud.callFunction({
@@ -101,144 +95,13 @@
 							this.oprice = this.details[0].oprice
 							this.imglist = this.details[0].imgUrl
 							this.upload_id = this.details[0].upload_id,
-							// this.type=this.details[0].type
+							this.type=this.details[0].type
+							if(this.type==0)this.customButtonGroup1[1].text = "商品已下架"
 							this.dataLoaded = true;
 							
 						})
-			//this.get_details()
-			
-			// #ifdef APP-PLUS  
-			var webView = this.$mp.page.$getAppWebview();
-			webView.setTitleNViewSearchInputText(param._id);
-			// #endif
-			let {
-				tokenExpired
-			} = uniCloud.getCurrentUserInfo()
-			if (!tokenExpired || tokenExpired < Date.now()) {
-				console.info('当前用户的登录状态无效，将自动跳转至登录页面。', param)
-				let url = '/uni_modules/uni-id-pages/pages/login/login-withpwd?uniIdRedirectUrl='
-				let paramString = '/uni_modules/uni-im/pages/index/index?'
-				for (let key in param) {
-					paramString += `${key}=${param[key]}&`
-				}
-				paramString = paramString.substring(0, paramString.length - 1) //携带参数，实现登录成功后 跳回首页时传回
-				url += encodeURIComponent(paramString)
-				return uni.reLaunch({
-					url
-				})
-			}
-			this.$nextTick(() => {
-				this.init({
-					user_id,
-					conversation_id
-				})
-			})
-			
-			this.onLoginSuccess = async () => {
-				this.init({
-					user_id,
-					conversation_id
-				})
-			}
-			
-			uni.$on('uni-id-pages-login-success', this.onLoginSuccess)
-			uni.$on('uni-im-toChat', param => {
-				if (param) {
-					// 关闭最后一次的会话id，防止切回后重新显示最后一次会话，而邮箱指定显示到某个会话
-					lastConversationId = false
-					this.toChat(param)
-				}
-				this.showContactsView = false
-			})
-				
-		},
-		async onReady() {
-			// #ifdef H5
-			let systemInfo = uni.getSystemInfoSync()
-			uniIm.systemInfo = systemInfo
-			// console.log('systemInfo',systemInfo);
-			if (!['edge', 'chrome', 'safari'].includes(systemInfo.browserName)) {
-				let newElement = document.createElement('div')
-				newElement.innerHTML = `
-				<div style="background: #fff9ea;color: #ff9a43;position: fixed;top: 0;left: 0;width: 100vw;padding: 15px;font-size: 18px;">
-					注意：本系统仅兼容chrome、edge、safari浏览器
-				</div>
-				`
-				document.body.appendChild(newElement)
-			}
-			// #endif
-		},
-		onUnload() {
-			uni.$off('uni-id-pages-login-success', this.onLoginSuccess)
-		},
-		onHide() {},
-		async loadMore() {
-			let data = await uniIm.conversation.loadMore()
-			return data
-		},
+			},
 		methods: {
-			async init({
-				conversation_id,
-				user_id
-			}) {
-				
-				await this.loadMore()
-				if (conversation_id) {
-					// console.log('conversation_id', conversation_id);
-					this.toChat(conversation_id)
-				} else if (user_id) {
-					//创建会话
-					const currentConversation = await uniIm.conversation.get({
-						friend_uid: user_id
-					})
-					this.toChat(currentConversation.id)
-				} else {
-					if (this.isWidescreen) {
-						let [firstConversation] = this.conversationList
-						if (firstConversation) {
-							this.currentConversation = await uniIm.conversation.get(firstConversation.id)
-							this.toChat(firstConversation.id)
-						} else {
-							// uni.showModal({
-							// 	content: '没有任何会话，请先到用户列表选择用户',
-							// 	showCancel: false
-							// });
-						}
-					}
-				}
-			},
-			async toChat(param) {
-				const currentConversation = await uniIm.conversation.get({
-					friend_uid:param
-				});
-				console.log('currentConversation', currentConversation);
-				this.chatInfoIsShow = false;
-				let conversation_id = ''
-				if (typeof param == 'string') {
-					console.log(param)
-					console.log(uniCloud.getCurrentUserInfo().uid)
-					conversation_id = uniImUtils.getConversationId(param ||
-					 	uniCloud.getCurrentUserInfo().uid)
-				} 
-				console.log(conversation_id)
-				uniIm.currentConversationId = conversation_id
-				if (this.isWidescreen) { //若为宽屏，则触发右侧详情页的自定义事件，通知右侧窗体刷新详情
-					this.$nextTick(() => {
-						let chatViewRef = this.$refs['chat-view']
-						if (chatViewRef) {
-							chatViewRef.load(conversation_id)
-						}
-					})
-				} else { // 若为窄屏，则打开新窗体，在新窗体打开详情页面
-					uni.navigateTo({
-						url: '/uni_modules/uni-im/pages/chat/chat?conversation_id=' + conversation_id,
-						animationDuration: 300
-					})
-				}
-			},
-			showChatInfo() {
-				this.chatInfoIsShow = !this.chatInfoIsShow
-			},
 			get_details() {
 				return new Promise((resolve, reject) => {
 				uniCloud.callFunction({
@@ -286,6 +149,14 @@
 			buttonClick(e) {
 				if (e.index === 1) { // 假设 "立即购买" 是第二个按钮
 					console.log('ssss')
+					if(this.type==0)
+					{
+						uni.showToast({
+						    title: '商品已下架！',
+						    icon: 'none'
+						});
+						return; // 阻止进一步执行
+					}
 					uni.navigateTo({
 						url: '/pages/pay/pay?_id=' + this._id + '&nprice=' + this.nprice
 					});
