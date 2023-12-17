@@ -99,6 +99,13 @@ export default {
   		})
   	},
     confirmPayment() {
+		if (!this.addr || this.paymentMethods.length === 0) {
+		    uni.showToast({
+		        title: '订单信息未填完整！',
+		        icon:'error',
+		    });
+		    return;
+		  }
       uniCloud.callFunction({
       	name:"upload_order",
       	data:{
