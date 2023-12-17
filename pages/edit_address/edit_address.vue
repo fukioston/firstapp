@@ -41,6 +41,13 @@
 				            });
 				            return; // 阻止进一步执行
 				        }
+						if (isNaN(+this.number)) {
+						            uni.showToast({
+						                title: '请输入有效的电话',
+						               icon:'error',
+						            });
+						            return; // 阻止进一步执行
+									}
 							uniCloud.callFunction({
 								name:"edit_address",
 								data:{
