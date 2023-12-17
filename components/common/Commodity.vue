@@ -46,7 +46,7 @@ export default {
 		//宽度
 		itemW:{
 			type:String,
-			default:"48%"
+			default:"45%"
 		},
 		//高度
 		bigH:{
@@ -71,7 +71,7 @@ export default {
 <style scoped>
 .commodity {
     display: flex;
-    align-items: space-between;
+    align-items: space-around;
     justify-content: space-between;
     background-color: aliceblue;
     padding: 3rpx;
@@ -83,7 +83,7 @@ export default {
     flex-direction: column;
     align-items: center; /* 新增：使得子元素在这个容器中垂直居中 */
     padding-bottom: 20rpx;
-	margin: 7rpx;
+	margin: 5rpx;
     border: 1px solid gray;
     background-color: white;
     border-radius: 10px;
