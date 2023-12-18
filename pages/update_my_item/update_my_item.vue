@@ -67,22 +67,29 @@
 		},
 		methods: {
 			onSubmit(){
-							uniCloud.callFunction({
-								name:"update-item",
-								data:{
-									good:this.good
-								}
+				if(!isNaN(parseFloat(this.good.nprice))&&!isNaN(parseFloat(this.good.oprice))){
+					uniCloud.callFunction({
+							name:"update-item",
+							data:{
+								good:this.good
+							}
+							
+						}).then(res=>{
+							console.log(res)
+							uni.showToast({
+								title: '更新成功',
 								
-							}).then(res=>{
-								console.log(res)
-								uni.showToast({
-									title: '更新成功',
-									
-								})
-						
 							})
-						
-						},
+					
+						});
+				}
+				else{
+					uni.showToast({
+						title: '价格必须设置为数字',
+						icon:'error'
+					})
+				}
+			},		
 			
 			upload(){
 				this.$refs.files.upload()

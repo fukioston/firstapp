@@ -19,7 +19,7 @@
 		<uni-forms-item label="用户昵称" required>
 			<uni-easyinput  v-model="userinfos.nick_name" :placeholder="userinfos.nick_name" />
 		</uni-forms-item>
-		<uni-forms-item label="个人介绍" required>
+		<uni-forms-item label="个人介绍" >
 			<uni-easyinput  v-model="userinfos.user_mes" :placeholder="userinfos.user_mes" />
 		</uni-forms-item>
 		</uni-forms>	
@@ -67,28 +67,38 @@
 				console.log('上传失败：',e)
 			},			
 			onSubmit(){
-				uniCloud.callFunction({
-					name:"save_userinfo",
-					data:{
-						userinfos:this.userinfos
-					}
-				}).then(res=>{
-					if(res.result.state){
-						uni.showToast({
-										title: '保存成功',
-										icon: 'none',
-										duration: 2000 
-									});
-					}
-					else{
-						uni.showToast({
-										title: '保存失败',
-										icon: 'none',
-										duration: 2000 
-									});
-					}
-					
-				});
+				if(this.userinfos.nick_name==''){
+					uni.showToast({
+									title: '昵称不能为空',
+									icon: 'none',
+									duration: 2000 
+								});
+				}
+				else{
+					uniCloud.callFunction({
+						name:"save_userinfo",
+						data:{
+							userinfos:this.userinfos
+						}
+					}).then(res=>{
+						if(res.result.state){
+							uni.showToast({
+											title: '保存成功',
+											icon: 'none',
+											duration: 2000 
+										});
+						}
+						else{
+							uni.showToast({
+											title: '保存失败',
+											icon: 'none',
+											duration: 2000 
+										});
+						}
+						
+					});
+				}
+				
 			}
 	},
 }
