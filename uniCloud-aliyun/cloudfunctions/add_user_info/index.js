@@ -7,7 +7,7 @@ const collection=db.collection("uni-id-users");
 const collection2=db.collection("user-info");
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
-	console.log(1);
+	console.log('add—userinfonow');
 	let res=await collection.get();
 	let data=res.data;
 	let username='';
