@@ -20,7 +20,7 @@ User_mes	String
 		<view class="user-center">
 			<view class="ima">
 				<image class='avatar'
-				:src="user.graph[0].path"
+				:src="path"
 				 alt="../../static/image/travel/personal/tx.png"
 				>
 			</view>
@@ -127,6 +127,7 @@ User_mes	String
 		export default {
 			data() {
 				return {
+					path:"../../static/image/travel/personal/tx.png",
 					value: 1,
 					value1: 0,
 					user: {
@@ -184,6 +185,12 @@ User_mes	String
 				}
 				if(this.user.visitors){
 					this.visitor_num=this.user.visitors.length;
+				}
+				if(this.user.graph.length<1){
+					this.path="../../static/image/travel/personal/tx.png";
+				}
+				else{
+					this.path=this.user.graph[0].path
 				}
 				uniCloud.callFunction({
 					name:'load_order',
