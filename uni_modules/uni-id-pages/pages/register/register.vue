@@ -126,7 +126,7 @@
 				let uid='';
 				uniIdCo.registerUser(this.formData).then(e => {
 						//this.loginSuccess(e)
-						console.log(e.uid);
+						console.log("newuid",e.uid);
 						uniCloud.callFunction({
 							name:'add_user_info',
 							data:{uid:e.uid}
