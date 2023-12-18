@@ -126,6 +126,7 @@
 					data.username = this.username
 				}
 				uniIdCo.login(data).then(e => {
+					console.log(e)
 					uniCloud.callFunction({
 						name:'get_user_info',
 						data:{uid:e.uid}

@@ -131,6 +131,7 @@
 							name:'add_user_info',
 							data:{uid:e.uid}
 						}).then(res=>{
+							console.log(res)
 							if(res.result.state){
 								this.toLogin();
 							}
