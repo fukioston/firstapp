@@ -22,7 +22,7 @@ exports.main = async (event, context) => {
 		return {state:false};
 	}
 	console.log('event : ', event)
-	await collection2.add({
+		collection2.add({
 		focus:[],
 		fans:[],
 		graph:[{path:"../../static/image/travel/personal/tx.png"}],
