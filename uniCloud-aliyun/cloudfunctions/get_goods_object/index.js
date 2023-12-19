@@ -6,7 +6,9 @@ const collection2=db.collection('user-info');
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	let list=[];
-	let res=await collection.get();
+	let res=await collection.where({
+	      type:1 
+	    }).get();
 	let data=res.data;
 	let res2=await collection2.get();
 	let data2=res2.data;
