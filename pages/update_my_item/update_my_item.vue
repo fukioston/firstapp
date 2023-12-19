@@ -67,29 +67,46 @@
 		},
 		methods: {
 			onSubmit(){
-				if(!isNaN(+this.good.nprice)&&!isNaN(+this.good.oprice)){
-					uniCloud.callFunction({
-							name:"update-item",
-							data:{
-								good:this.good
-							}
-							
-						}).then(res=>{
-							console.log(res)
-							uni.showToast({
-								title: '更新成功',
-								
-							})
-					
-						});
-					console.log(parseFloat(this.good.nprice));
-				}
-				else{
+				if(this.good.graph.length==0){
 					uni.showToast({
-						title: '价格必须设置为数字',
+						title: '您至少上传一张图片',
 						icon:'error'
 					})
+				}else{
+					if(this.good.name==''||this.good.introduction==''){
+						uni.showToast({
+							title: '商品信息不可为空',
+							icon:'error'
+						})
+					}
+					else{
+						if(!isNaN(+this.good.nprice)&&!isNaN(+this.good.oprice)){
+							uniCloud.callFunction({
+									name:"update-item",
+									data:{
+										good:this.good
+									}
+									
+								}).then(res=>{
+									console.log(res)
+									uni.showToast({
+										title: '更新成功',
+										
+									})
+							
+								});
+							console.log(parseFloat(this.good.nprice));
+						}
+						else{
+							uni.showToast({
+								title: '价格必须设置为数字',
+								icon:'error'
+							})
+						}
+					}
+					
 				}
+				
 			},		
 			
 			upload(){
