@@ -1,8 +1,5 @@
 <template>
 	<view>
-		<view :v-if="ifuser">
-			<User class="user" @to_other="to_other" :msg="user"></User>
-		</view>
 		<view class="order" :v-if="iforder">
 			<view class="line">
 				<view class="dot"></view>
@@ -25,7 +22,7 @@
 			</view>
 		</view>
 			
-		<view class="message"><text>您在此订单购买的物品 </text></view>
+		<view class="message"><text>您售出的商品 </text></view>
 		<view class="good" :v-if="ifgood">
 			<IndexSwiper class="detail_img" :dataList='good.imgUrl'></IndexSwiper>
 			<view class="textbox">
@@ -44,31 +41,26 @@
 </template>
 
 <script>
-	import User from '../../components/common/user_display.vue'
 	import IndexSwiper from '@/components/index/IndexSwiper.vue'
 	export default {
 		data() {
 			return {
 				good:'',
-				user:'',
 				order:'',
 				ifgood:false,
-				ifuser:false,
 				iforder:false
 			}
 		},
 		components:{
-			IndexSwiper,
-			User
+			IndexSwiper
 		},
 		onLoad(options){
 			if(options){
 				if(options.data){
 					let msg=JSON.parse(decodeURIComponent(options.data));
-					console.log(msg);
 					console.log("data",options.data);
+					console.log(msg);
 					this.good=msg.good;
-					console.log("data",msg.good);
 					if(this.good!=''){
 						this.ifgood=true;
 					}
@@ -76,21 +68,6 @@
 					if(this.order!=''){
 						this.iforder=true;
 					}
-					uniCloud.callFunction({
-						name:'just_get_user_info',
-						data:{user_id:this.good.upload_id}
-					}).then(res=>{
-						if(res.result.state){
-							this.user=res.result.user;
-							this.ifuser=true;
-						}else{
-							uni.showToast({
-								title:'卖家疑似跑路',
-								duration:2000,
-					icon:'error'
-							});
-						}
-					});
 				}
 				else{
 					uni.showToast({
@@ -109,20 +86,7 @@
 			}
 		},
 		methods: {
-			to_other(msg){
-				if(msg.user_name==this.$store.state.Nowuser.user_name){
-					uni.switchTab({
-						url:"/pages/my/my"
-					});
-				}
-				else{
-					const str=JSON.stringify(msg);
-					console.log("next "+msg.user_name);
-					uni.navigateTo({
-						url:"/pages/other/other?data=" + encodeURIComponent(str)
-					});
-				}
-			}
+			
 		}
 	}
 </script>

@@ -2,7 +2,7 @@
 	<view class="user-center" @click="send_para">
 		<view class="ima">
 			<image class='avatar' 
-			:src="msg.graph[0].path"
+			:src="this.path"
 			>
 		</view>
 		<view class="info">
@@ -29,8 +29,22 @@
 		name:"user_display",
 		data() {
 			return {
-				state:this.msg.state
+				state:this.msg.state,
+				path:''
 			};
+		},
+		mounted() {
+			if(this.msg.graph){
+				if(this.msg.graph.length<1){
+					this.path="../../static/image/travel/personal/tx.png";
+				}else{
+					this.path=this.msg.graph[0].path;
+				}
+			}
+			else{
+				this.path="../../static/image/travel/personal/tx.png";
+			}
+			
 		},
 		methods:{
 			send_para(){

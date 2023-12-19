@@ -42,9 +42,9 @@
 					imgurl:''
 				}
 			}).then(res=>{
-				console.log(res.result);
 				if(res.result.state){
 				this.good=res.result.good;
+				console.log(res.result.good);
 				this.imgurl=this.good.imgUrl[0];
 				}
 				else{
@@ -59,6 +59,7 @@
 		
 		methods:{
 			goto_order(){
+				console.log({good:this.good,order:this.msg});
 				this.$emit("to_order",{good:this.good,order:this.msg});
 			}
 		}

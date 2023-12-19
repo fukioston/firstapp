@@ -1,0 +1,7 @@
+{
+  "name": "get_selled_goods_object",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

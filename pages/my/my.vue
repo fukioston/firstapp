@@ -103,6 +103,11 @@ User_mes	String
 						<text>我的收藏</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
 				</view>
+				<view @click="goto_selled_goods">
+					<image class="icon" src="../../static/image/travel/personal/selled.png">
+						<text>已售出商品</text>
+						<image class="right" src="../../static/image/travel/personal/Clipped.png">
+				</view>
 				<view @click="goto_address">
 					<image class="icon" src="../../static/image/travel/personal/addr.png">
 						<text>我的地址</text>
@@ -352,6 +357,20 @@ User_mes	String
 					else{
 					uni.navigateTo({
 						url:'/pages/my_goods/my_goods'
+					});
+					}
+				},
+				goto_selled_goods(){
+					if(this.user.user_name==''||this.user.user_name==null){
+						uni.showToast({
+							title:'您还没有登录',
+							icon:'error',
+							duration:2000
+						})
+					}
+					else{
+					uni.navigateTo({
+						url:'/pages/my_goods/selled_goods'
 					});
 					}
 				},

@@ -29,7 +29,6 @@
 					user:this.$store.state.Nowuser
 				}
 			}).then(res=>{
-				console.log("result",res.result);
 				if(res.result.state==0){
 					this.orders=[];
 					uni.showToast({
@@ -40,7 +39,13 @@
 				}
 				else{
 				this.orders=res.result.orders;
-				console.log(this.orders);
+				if(this.orders.length==0){
+					uni.showToast({
+						title:"您还没有订单",
+						icon:"error",
+						duration:2000
+					});
+				}
 				}
 			});
 			if(this.$store.state.Nowuser==''||!this.$store.state.Nowuser){

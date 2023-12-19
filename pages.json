@@ -115,6 +115,24 @@
             
         }
 		,{
+		    "path" : "pages/my_goods/selled_goods",
+		    "style" :   
+		    {	"navigationBarTitleText": "已售出商品",
+		        "enablePullDownRefresh": false,
+		    	"navigationBarBackgroundColor": "#7e0c6e"
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/order-details/my_selled_order",
+		    "style" :   
+		    {	"navigationBarTitleText": "售出商品订单",
+		        "enablePullDownRefresh": false,
+		    	"navigationBarBackgroundColor": "#7e0c6e"
+		    }
+		    
+		}
+		,{
 		    "path" : "pages/fans/other_fans",
 		    "style" :   
 		    {	"navigationBarTitleText": "TA的粉丝",
