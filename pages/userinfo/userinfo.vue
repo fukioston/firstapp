@@ -2,7 +2,7 @@
 <template>
 	<uni-section  title="您的个人信息" type="line">
 		<uni-forms class="infoinput" ref="baseForm"  label-position="top">
-		<uni-forms-item label="您的头像" required>
+		<uni-forms-item label="您的头像">
 				<uni-file-picker 
 				    limit="1"
 				    class='picker'
@@ -67,6 +67,7 @@
 				console.log('上传失败：',e)
 			},			
 			onSubmit(){
+					
 				if(this.userinfos.nick_name==''){
 					uni.showToast({
 									title: '昵称不能为空',
@@ -75,6 +76,7 @@
 								});
 				}
 				else{
+					console.log(this.userinfos);
 					uniCloud.callFunction({
 						name:"save_userinfo",
 						data:{
@@ -82,6 +84,7 @@
 						}
 					}).then(res=>{
 						if(res.result.state){
+							
 							uni.showToast({
 											title: '保存成功',
 											icon: 'none',

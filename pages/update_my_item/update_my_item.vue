@@ -67,7 +67,7 @@
 		},
 		methods: {
 			onSubmit(){
-				if(!isNaN(parseFloat(this.good.nprice))&&!isNaN(parseFloat(this.good.oprice))){
+				if(!isNaN(+this.good.nprice)&&!isNaN(+this.good.oprice)){
 					uniCloud.callFunction({
 							name:"update-item",
 							data:{
@@ -82,6 +82,7 @@
 							})
 					
 						});
+					console.log(parseFloat(this.good.nprice));
 				}
 				else{
 					uni.showToast({
