@@ -178,8 +178,9 @@
             "path" : "pages/userinfo/userinfo",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "设置",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#7e0c6e"
             }
             
         }
@@ -222,7 +223,8 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#7e0c6e"
             }
             
         }

@@ -112,4 +112,8 @@ picker{
 	width:50px;
 	height:50px;
 }
+.uploadBtn{
+	background-color: #7e0c6e;
+	width:90%;
+}
 </style>
