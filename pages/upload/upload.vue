@@ -152,7 +152,9 @@
 								}
 								
 							}).then(res=>{
-								console.log(res)
+								
+								    // 上传成功后重置页面数据
+							
 								uni.showToast({
 												title: '上传成功',
 												duration: 2000,
@@ -165,6 +167,14 @@
 													url: '/pages/index/index'
 												});
 										}, 1000)
+										this.itemname = "";
+										this.introduction = "";
+										this.oprice = "";
+										this.nprice = "";
+										this.imageValue = [];
+																		
+										// 清空文件选择器
+										this.$refs.baseForm.reset();
 						
 							})
 						
