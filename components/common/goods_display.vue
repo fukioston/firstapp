@@ -1,5 +1,5 @@
 <template>
-	<view class="goods" @click="send_para">
+	<view class="goods">
 		<view class="ima">
 			<image class='avatar' 
 			:src="msg.imgUrl[0]"
@@ -15,6 +15,10 @@
 			        <text>{{ get_showdata(msg.introduction) }}</text>
 			      </view>
 		</view>
+	<view class="btn-view">
+	<button class="btn" @click="send_para">编辑</button>
+	<button class="btn" @click="delGoods">删除</button>
+	</view>
 	</view>	
 </template>
 
@@ -33,6 +37,12 @@
 			send_para(){
 				this.$emit("to_good",this.msg);
 			},
+			delGoods() {
+			      // 调用父组件传递的编辑方法，并传递商品信息
+		
+			       this.$emit("delGoods", this.msg);
+				  console.log("ssss")
+			    },
 			get_showdata(a){
 				if(a.length>15){
 					return a.substring(0,15)+"...";
@@ -114,4 +124,19 @@
 	      border-radius: 50%; /* 使其呈圆形 */
 		  background-color: #666;
 	    }
+	.btn-view {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center; /* 水平居中 */
+	  width: 20%;
+	}
+	.btn {
+	  width: 100%;
+	  height: 45%;
+	  font-size: 20rpx;
+	  margin-bottom: 5%; /* 调整这里的值，控制按钮之间的间距 */
+	}
+
+
 </style>

@@ -5,7 +5,7 @@
 			<!--<u-navbar :placeholder="true" bgColor="#efeefd">
 			</u-navbar>-->
 		</view>
-		<Goods class="goods" @to_good="to_goods" v-for="(item, index) in goods" :key="index" :msg="item">
+		<Goods class="goods" @delGoods="delGoods" @to_good="to_goods" v-for="(item, index) in goods" :key="index" :msg="item">
 		</Goods>
 	</view>
 </template>
@@ -59,6 +59,26 @@
 				uni.navigateTo({
 					url:"/pages/update_my_item/update_my_item?data="+encodeURIComponent(str)
 				});
+			},
+			delGoods(msg){
+				const str=JSON.stringify(msg);
+				const str2= JSON.parse(str);
+				var goods_id=str2._id
+				uniCloud.callFunction({
+					name:"del_goods",
+					data:{
+						_id:goods_id
+					}
+				}).then(res=>{
+						uni.showToast({
+							title:"删除商品成功",
+							icon:"succeed",
+							duration:2000
+						});
+						})
+						
+				
+					
 			}
 		}
 	}
