@@ -107,6 +107,7 @@ User_mes	String
 					<image class="icon" src="../../static/image/travel/personal/selled.png">
 						<text>已售出商品</text>
 						<image class="right" src="../../static/image/travel/personal/Clipped.png">
+				
 				</view>
 				<view @click="goto_address">
 					<image class="icon" src="../../static/image/travel/personal/addr.png">
@@ -726,4 +727,14 @@ User_mes	String
 		}
 
 	}
+	.red-dot {
+	  width: 10rpx;
+	  height: 10rpx;
+	  background-color: red;
+	  border-radius: 50%;
+	  position: absolute;
+	  top: 8rpx;
+	  right: 8rpx;
+	}
+	
 </style>

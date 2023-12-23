@@ -34,6 +34,7 @@
 					<text>{{good.introduction}}</text>
 				</view>
 			</view>
+			<button class="btn"  @click="send">{{btnText}}</button>
 		</view>
 		
 		
@@ -48,7 +49,8 @@
 				good:'',
 				order:'',
 				ifgood:false,
-				iforder:false
+				iforder:false,
+				 btnText: '点击确认发货'
 			}
 		},
 		components:{
@@ -86,7 +88,15 @@
 			}
 		},
 		methods: {
-			
+			send(){
+				console.log(this.order._id)
+				if(this.btnText==="点击确认发货")
+				this.btnText="点击取消发货"
+				else this.btnText="点击确认发货"
+				// uniCloud.callFunction({
+					
+				// })
+			}
 		}
 	}
 </script>
@@ -222,5 +232,10 @@
 	.nprice{
 		font-size:40rpx;
 		color:red;
+	}
+	.btn{
+		width: 95%;
+		margin: 0 auto;
+		background-color: #7e0c6e;
 	}
 </style>

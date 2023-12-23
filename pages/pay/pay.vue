@@ -112,6 +112,7 @@ export default {
       		item_id:this.item_id,
       		buyer_id:this.buyer_id,
 			addr:this.addr,
+			type:0,
       	}
       	
       }).then(res=>{

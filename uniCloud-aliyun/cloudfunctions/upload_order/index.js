@@ -3,7 +3,7 @@ const order=db.collection("order")
 const goods=db.collection('goods')
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
-	let {item_id,buyer_id,addr}=event
+	let {item_id,buyer_id,addr,type}=event
 	let goodsResult = await goods.where({
 	            _id: item_id  
 	        }).update({
@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
 	        });
 	return await order.add({
 		
-			item_id,buyer_id,addr
+			item_id,buyer_id,addr,type
 		
 	})
 	//返回数据给客户端

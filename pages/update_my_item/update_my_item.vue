@@ -160,6 +160,7 @@
 	.uploadBtn{
 		width: 95%;
 		margin: 0 auto;
+		background-color: #7e0c6e;
 		
 	}
 </style>
