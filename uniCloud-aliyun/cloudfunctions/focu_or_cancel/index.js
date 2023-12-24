@@ -3,7 +3,6 @@ const db=uniCloud.database();
 const collection=db.collection("user-info");
 exports.main = async (event, context) => {
 	//event为客户端上传的参数
-	console.log('event : ', event)
 	let idfir=event.fir._id;
 	let idsec='';
 	let mes=await collection.get();
@@ -21,8 +20,8 @@ exports.main = async (event, context) => {
 		}
 		event.fir.fans.push(event.sec.user_name);
 		event.sec.focus.push(event.fir.user_name);
-		collection.doc(idfir).update({fans:event.fir.fans});
-		collection.doc(idsec).update({focus:event.sec.focus});
+		await collection.doc(idfir).update({fans:event.fir.fans});
+		await collection.doc(idsec).update({focus:event.sec.focus});
 		
 	}else{
 		for(let i=0;i<event.fir.fans.length;i++){

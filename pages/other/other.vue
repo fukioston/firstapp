@@ -237,6 +237,7 @@ User_mes	String
 				}
 			},
 			focu_or_cancel(order){
+				console.log(order)
 				uniCloud.callFunction({
 					name:'focu_or_cancel',
 					data:{
