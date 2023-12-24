@@ -206,6 +206,14 @@
 						});
 						 return; // 阻止进一步执行
 					}
+					if(this.user_id===this.upload_id)
+					{
+						uni.showToast({
+						    title: '不能购买自己上传的商品！',
+						    icon:'error',
+						});
+						 return; // 阻止进一步执行
+					}
 					if(this.type==0)
 					{
 						uni.showToast({

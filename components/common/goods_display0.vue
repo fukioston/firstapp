@@ -1,5 +1,5 @@
 <template>
-	<view class="goods">
+	<view class="goods" @click="send_para">
 		<view class="ima">
 			<image class='avatar' 
 			:src="msg.imgUrl[0]"
@@ -15,10 +15,10 @@
 			        <text>{{ get_showdata(msg.introduction) }}</text>
 			      </view>
 		</view>
-	<view class="btn-view">
+	<!-- <view class="btn-view">
 	<button class="btn" @click="send_para">编辑</button>
 	<button class="btn" @click="delGoods">删除</button>
-	</view>
+	</view> -->
 	</view>	
 </template>
 
