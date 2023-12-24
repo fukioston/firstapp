@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import Goods from "../../components/common/goods_display.vue"
+	import Goods from "../../components/common/goods_display0.vue"
 	export default {
 		data() {
 			return {

@@ -161,7 +161,7 @@
 												icon: "success"
 											});
 											
-										uni.$emit('refreshPage'); // 触发事件
+										uni.$emit('refreshPage1'); // 触发事件
 								setTimeout(function() {
 												uni.switchTab({
 													url: '/pages/index/index'

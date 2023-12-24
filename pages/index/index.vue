@@ -17,9 +17,9 @@
 		data() {
 			return {
 				datalist2:[
-				    "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/goods/img/commodity2.jpg",
-					 "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/cloudstorage/ed17ba31-28c2-4967-ad23-a59b941b91b7.png",
-					  "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/cloudstorage/ed17ba31-28c2-4967-ad23-a59b941b91b7.png"
+				    "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/10040k000000briz6365C.jpg",
+					 "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/OIP.jpg",
+					  "https://mp-fd6dc3a5-188f-43a6-9c26-4428a1908465.cdn.bspapp.com/R.png"
 				],
 				dataList:[],
 				currentpage:0
@@ -32,14 +32,14 @@
 
 				},
 				onShow() {
-				        uni.$on('refreshPage', this.get_myaddress);
-				        this.get_myaddress(); // 确保初次加载也获取数据
-				    },
-				    onHide() {
-				        uni.$off('refreshPage', this.get_myaddress);
-				    },
+				      uni.$on('refreshPage', this.refreshData); // 注册新方法
+				              this.refreshData(); // 初次加载也调用新方法
+				          },
+				          onHide() {
+				              uni.$off('refreshPage', this.refreshData); // 移除监听器
+				          },
 		onLoad() {
-			this.getAll();
+			// this.getAll();
 			uni.getPushClientId({
 				success:res=>{
 					console.log(res)
@@ -86,6 +86,11 @@
 					 this.dataList = this.dataList.concat(res.result.data);
 				})
 			},
+			refreshData() {
+				this.dataList=[]
+			            this.currentpage = 0;
+			            this.getAll();
+			        },
 		}
 	}
 </script>
