@@ -72,12 +72,14 @@
 						title: '您至少上传一张图片',
 						icon:'error'
 					})
+					return
 				}else{
-					if(this.good.name==''||this.good.introduction==''){
+					if(this.good.name==''||this.good.introduction==''||this.good.nprice==''||this.good.oprice==''){
 						uni.showToast({
 							title: '商品信息不可为空',
 							icon:'error'
 						})
+						return
 					}
 					else{
 						if(!isNaN(+this.good.nprice)&&!isNaN(+this.good.oprice)){
