@@ -81,6 +81,13 @@
 						})
 						return
 					}
+					if (+this.good.oprice > 10000 || +this.good.nprice > 10000) {
+					            uni.showToast({
+					                title: '价格不能超过10000元',
+					                icon: 'error'
+					            });
+					            return; // 阻止进一步执行
+					        }
 					else{
 						if(!isNaN(+this.good.nprice)&&!isNaN(+this.good.oprice)){
 							uniCloud.callFunction({

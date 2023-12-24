@@ -138,6 +138,13 @@
 						            });
 						            return; // 阻止进一步执行
 									}
+									if (+this.oprice > 10000 || +this.nprice > 10000) {
+									            uni.showToast({
+									                title: '价格不能超过10000元',
+									                icon: 'error'
+									            });
+									            return; // 阻止进一步执行
+									        }
 							uniCloud.callFunction({
 								name:"upload-item",
 								data:{
