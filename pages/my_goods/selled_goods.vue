@@ -59,10 +59,15 @@
 					name:'good_to_order',
 					data:msg
 				}).then(res=>{
-				const str=JSON.stringify(res.result);
-				console.log(str);
+					var result=res.result
+					// console.log(result["good"]["_id"]);
+					var order_id=result["order"]["_id"]
+					var good_id=result["good"]["_id"]
+				// const str=JSON.stringify(res.result);
+				
 				uni.navigateTo({
-					url:"/pages/order-details/my_selled_order?data="+encodeURIComponent(str)
+					url: "/pages/order-details/my_selled_order?data=" + order_id + "&good_id=" + good_id
+
 				});
 				});
 				

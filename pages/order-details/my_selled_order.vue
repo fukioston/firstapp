@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="dataLoaded">
 		<view class="order" :v-if="iforder">
 			<view class="line">
 				<view class="dot"></view>
@@ -28,11 +28,15 @@
 			<view class="textbox">
 				
 				<view class="name">
-					<text>{{good.name}}</text>
+					<text>商品名称：{{good.name}}</text>
 				</view>
 				<view class="introduction">
-					<text>{{good.introduction}}</text>
+					<text>商品介绍：{{good.introduction}}</text>
 				</view>
+				<view class="introduction">
+				<text v-if="order.state === 1">商品状态：已发货</text>
+				<text v-else>商品状态：未发货</text>
+				        </view>
 			</view>
 			<button class="btn"  @click="send">{{btnText}}</button>
 		</view>
@@ -50,6 +54,7 @@
 				order:'',
 				ifgood:false,
 				iforder:false,
+				dataLoaded:false,
 				 btnText: '点击确认发货'
 			}
 		},
@@ -58,26 +63,23 @@
 		},
 		onLoad(options){
 			if(options){
-				if(options.data){
-					let msg=JSON.parse(decodeURIComponent(options.data));
-					console.log("data",options.data);
-					console.log(msg);
-					this.good=msg.good;
-					if(this.good!=''){
-						this.ifgood=true;
+				console.log(options["data"])
+				console.log(options["good_id"])
+				uniCloud.callFunction({
+					name:"get_good_order",
+					data:{
+						order_id:options["data"],
+						good_id:options["good_id"]
 					}
-					this.order=msg.order;
-					if(this.order!=''){
-						this.iforder=true;
-					}
-				}
-				else{
-					uni.showToast({
-						title:'未传入订单信息',
-						duration:2000,
-					icon:'error'
-					});
-				}
+				}).then(res=>{
+					var r=res.result
+					this.good=r["good"]
+					this.order=r["order"]
+					if(this.order.state==1)
+					this.btnText="点击取消发货"
+					this.dataLoaded = true;
+					// console.log(res.result["good"])
+				})
 			}
 			else{
 				uni.showToast({
@@ -93,9 +95,40 @@
 				if(this.btnText==="点击确认发货")
 				this.btnText="点击取消发货"
 				else this.btnText="点击确认发货"
-				// uniCloud.callFunction({
-					
-				// })
+				console.log(this.order._id)
+				uniCloud.callFunction({
+					name:"send",
+					data:{
+						_id:this.order._id,
+						state:this.order.state
+					},
+					}).then(res=>{
+						if(this.order.state==0)
+						{uni.showToast({
+										title: '成功发货',
+										duration: 2000,
+										icon: "success"
+									});
+									
+								
+						setTimeout(function() {
+										location.reload();
+								}, 1000)}
+								else{
+								uni.showToast({
+												title: '成功取消发货',
+												duration: 2000,
+												icon: "success"
+											});
+											
+										
+								setTimeout(function() {
+												location.reload();
+										}, 1000)}
+						 
+					})
+						
+				
 			}
 		}
 	}

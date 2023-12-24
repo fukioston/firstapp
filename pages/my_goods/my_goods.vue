@@ -75,6 +75,28 @@
 							icon:"succeed",
 							duration:2000
 						});
+						setTimeout(function() {
+									uniCloud.callFunction({
+											name:"get_goods_object",
+											data:{
+												user:this.$store.state.Nowuser
+											}
+										}).then(res=>{
+											if(res.result.state==0){
+												this.goods=[];
+												uni.showToast({
+													title:"加载商品失败",
+													icon:"error",
+													duration:2000
+												});
+											}
+											else{
+											this.goods=res.result.goods;
+											console.log(this.goods);
+											}
+										});
+									
+								}, 1000)
 						})
 						
 				

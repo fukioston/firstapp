@@ -1,0 +1,7 @@
+{
+  "name": "send",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
