@@ -179,7 +179,7 @@
 										this.oprice = "";
 										this.nprice = "";
 										this.imageValue = [];
-																		
+										this.fileUrl=[]			
 										// 清空文件选择器
 										this.$refs.baseForm.reset();
 						

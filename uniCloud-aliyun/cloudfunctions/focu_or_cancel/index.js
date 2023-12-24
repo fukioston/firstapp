@@ -39,8 +39,8 @@ exports.main = async (event, context) => {
 				event.sec.focus.splice(i,1);
 			}
 		}
-		collection.doc(idfir).update({fans:event.fir.fans});
-		collection.doc(idsec).update({focus:event.sec.focus});
+		await collection.doc(idfir).update({fans:event.fir.fans});
+		await collection.doc(idsec).update({focus:event.sec.focus});
 	}
 	//返回数据给客户端
 	return {state:true};
