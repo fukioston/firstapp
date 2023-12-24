@@ -31,6 +31,13 @@
 				console.log(res);
 
 				},
+				onShow() {
+				        uni.$on('refreshPage', this.get_myaddress);
+				        this.get_myaddress(); // 确保初次加载也获取数据
+				    },
+				    onHide() {
+				        uni.$off('refreshPage', this.get_myaddress);
+				    },
 		onLoad() {
 			this.getAll();
 			uni.getPushClientId({

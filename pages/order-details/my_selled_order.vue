@@ -33,7 +33,7 @@
 				<view class="introduction">
 					<text>商品介绍：{{good.introduction}}</text>
 				</view>
-				<view class="introduction">
+				<view class="introduction2">
 				<text v-if="order.state === 1">商品状态：已发货</text>
 				<text v-else>商品状态：未发货</text>
 				        </view>
@@ -111,20 +111,50 @@
 									});
 									
 								
-						setTimeout(function() {
-										location.reload();
-								}, 1000)}
+						
+						uniCloud.callFunction({
+								name:"get_good_order",
+								data:{
+									order_id:this.order._id,
+									good_id:this.good._id
+								}
+							}).then(res=>{
+								var r=res.result
+								this.good=r["good"]
+								this.order=r["order"]
+								if(this.order.state==1)
+								this.btnText="点击取消发货"
+								this.dataLoaded = true;
+								// console.log(res.result["good"])
+							})
+						}
 								else{
 								uni.showToast({
 												title: '成功取消发货',
 												duration: 2000,
 												icon: "success"
 											});
+									uniCloud.callFunction({
+											name:"get_good_order",
+											data:{
+												order_id:this.order._id,
+												good_id:this.good._id
+											}
+										}).then(res=>{
+											var r=res.result
+											this.good=r["good"]
+											this.order=r["order"]
+											if(this.order.state==1)
+											this.btnText="点击取消发货"
+											this.dataLoaded = true;
+											// console.log(res.result["good"])
+										})
 											
 										
-								setTimeout(function() {
-												location.reload();
-										}, 1000)}
+								
+								
+								
+								}
 						 
 					})
 						

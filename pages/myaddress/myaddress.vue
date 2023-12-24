@@ -36,6 +36,13 @@ export default {
   onLoad(e){
 	  this.get_myaddress()
   },
+  onShow() {
+          uni.$on('refreshPage', this.get_myaddress);
+          this.get_myaddress(); // 确保初次加载也获取数据
+      },
+      onHide() {
+          uni.$off('refreshPage', this.get_myaddress);
+      },
   methods: {
 	  get_myaddress(){
 	  	console.log(uniCloud.getCurrentUserInfo().uid)
@@ -63,13 +70,9 @@ export default {
 		 						duration: 1500,
 		 						icon: "none"
 		 					});
+							this.get_myaddress()
 		 					
 		 				
-		 		setTimeout(function() {
-		 						uni.navigateTo({
-		 							url: '/pages/myaddress/myaddress'
-		 						});
-		 				}, 1000)
 		 	})
 		 },
     editContact(contact) {

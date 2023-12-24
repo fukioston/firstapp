@@ -61,12 +61,15 @@
 												duration: 2000,
 												icon: "none"
 											});
+									this.name = "";
+									this.address = "";
+									this.number = "";
+																	
 											
 										
 								setTimeout(function() {
-												uni.navigateTo({
-													url: '/pages/myaddress/myaddress'
-												});
+									uni.$emit('refreshPage'); 
+												uni.navigateBack();
 										}, 1000)
 						
 							})

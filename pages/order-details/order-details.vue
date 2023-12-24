@@ -36,6 +36,10 @@
 				<view class="introduction">
 					<text>{{good.introduction}}</text>
 				</view>
+				<view class="introduction2">
+				<text v-if="order.state === 1">商品状态：已发货</text>
+				<text v-else>商品状态：未发货</text>
+				        </view>
 			</view>
 		</view>
 		
